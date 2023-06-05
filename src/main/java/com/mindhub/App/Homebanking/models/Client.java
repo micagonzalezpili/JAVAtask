@@ -1,20 +1,20 @@
 
 package com.mindhub.App.Homebanking.models;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.jpa.repository.JpaRepository;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity // le digo a springboot q me cree una table en la base de datos
 public class Client {
 
     @Id // le asigno un id a cada cliente y diferenciarlos (primary key)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native") // genera un id automaticamente
-    @GenericGenerator(name = "native", strategy = "native")// la strategy la tiene la base de datos genericamente
+    @GenericGenerator(name = "native", strategy = "native")// la strategy la tiene la base de datos genericamente y este es el encargado de ejecutar la linea d arriba
     private long id;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    Set<Account> accounts = new HashSet<>();
     private String firstName;
     private String lastName;
     private String email;
@@ -50,11 +50,24 @@ public class Client {
         this.email = email;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String toString() {
         return firstName + " " + lastName + " " + email ;
     }
 
-    public interface ClientRepository extends JpaRepository<Client, Long>{
-        List<Client> findByLastName(String lastName);
+    public Set<Account> getAccounts() {
+        return accounts;
     }
+
+   public void addAccount(Account account){
+        account.setClient(this);
+        accounts.add(account);
+   }
 }

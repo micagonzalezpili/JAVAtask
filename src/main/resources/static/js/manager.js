@@ -17,12 +17,13 @@ const app = createApp({
 },
 methods: {
 loadData(){
-axios.get('http://localhost:8080/clients')
+axios.get('http://localhost:8080/rest/clients')
          .then(response => {
          this.data = response.data
            console.log(this.data);
          this.clients = this.data._embedded.clients
             console.log(this.clients)
+            
          })
          .catch(error => {
            console.error(error);
@@ -32,7 +33,7 @@ addClient(){
 this.postClient()
 },
 postClient(){
-axios.post('http://localhost:8080/clients', this.clientData)
+axios.post('http://localhost:8080/rest/clients', this.clientData)
 .then(response => {
     this.loadData()
 })
@@ -48,16 +49,16 @@ axios.delete(id)
     .catch(error => {
       console.error(error);
     });
-},
+}/* ,
 modifyClient(){
-  axios.patch('http://localhost:8080/clients', this.clientData, firstName)
+  axios.patch('http://localhost:8080/rest/clients', this.clientData, firstName)
   .then(response => {
     this.loadData()
   })
   .catch(error => {
     console.error(error)
   })
-}
+} */
 }
 })
 app.mount('#app');
