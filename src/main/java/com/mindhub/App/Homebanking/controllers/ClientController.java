@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 
 public class ClientController {
 
-    @Autowired
+    @Autowired // inyecta un repo
     private ClientRepository clientRepository;
 
 

@@ -5,8 +5,7 @@ const app = createApp({
     return {
       data: [],     
       nombre: "",
-      apellido: "",
-      //email: "",
+      apellido: "",   
       accounts: [],
       
     };
@@ -23,9 +22,7 @@ axios.get('http://localhost:8080/api/clients/1')
          this.data = response.data
            console.log(this.data);
          this.nombre = this.data.firstName         
-         this.apellido = this.data.lastName
-         /* this.email = this.data.email
-         console.log(this.email); */
+         this.apellido = this.data.lastName         
          this.accounts = this.data.accounts
          console.log(this.accounts);
      

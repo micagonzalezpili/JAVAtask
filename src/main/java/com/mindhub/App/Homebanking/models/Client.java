@@ -14,7 +14,7 @@ public class Client {
     private long id;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    Set<Account> accounts = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
     private String firstName;
     private String lastName;
     private String email;

@@ -5,6 +5,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource // va a escuchar y responder la peticion en formato JSON xq asi lo maneja REST
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface ClientRepository extends JpaRepository<Client, Long> { // propiedad herencia, a traves de los metodos de JPA manejo los datos de Client
     List<Client> findByLastName(String lastName);
 }
