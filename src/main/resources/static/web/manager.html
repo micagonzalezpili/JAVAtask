@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homebanking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+<header>
+    <h1 class="mt-2 mb-2 ms-4">Client Manager</h1>
+</header>
+<main class="col-12 ms-3 d-flex" id="app">
+    <div class="d-flex flex-column col-8">
+        <form class="col-8 ms-3">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name" v-model="clientData.firstName" placeholder="Name">
+
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" aria-describedby="lastName" v-model="clientData.lastName" placeholder="Last Name">
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address:</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="clientData.email" placeholder="Email">
+
+            </div>
+            <button type="submit" class="btn btn-success ms-3" @click="addClient">Add client</button>           
+
+        </form>
+        <h2 class="mt-4 mb-2 ms-3">Client List</h2>
+        <div class="col-8 ms-3">
+            <table class="table col-5">
+                <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="client of clients" >
+                    <th scope="row">{{client.firstName}}</th>
+                    <td>{{client.lastName}}</td>
+                    <td>{{client.email}}</td>
+                    <td><button type="submit" class="btn btn-danger ms-3" @click="deleteClient(client._links.client.href)">Delete client</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+    <div class="me-3">
+        <h2 class="mt-2 mb-2">Client REST Response</h2>
+        {{data}}
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="../js/manager.js"></script>
+</body>
+</html>
