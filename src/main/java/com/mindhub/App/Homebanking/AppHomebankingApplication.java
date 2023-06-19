@@ -17,8 +17,7 @@ public class AppHomebankingApplication {
 		SpringApplication.run(AppHomebankingApplication.class, args);
 
 	}
-
-	@Bean // cada vez q se crea la app
+	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository){ // declaro la var
 		return (args -> {
 			Client melba = new Client("Melba", "Morel","melba@mindhub.com" );
