@@ -3,7 +3,6 @@ import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
-
 @Entity
 public class ClientLoan {
     @Id
@@ -18,6 +17,7 @@ public class ClientLoan {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name= "loan_id")
     private Loan loan;
+
     private double amount;
     private int payments;
     public ClientLoan(){}
@@ -30,19 +30,15 @@ public class ClientLoan {
     public void setLoan(Loan loan) {
         this.loan = loan;
     }
-
     public double getAmount() {
         return amount;
     }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
-
     public int getPayments() {
         return payments;
     }
-
     public void setPayments(int payments) {
         this.payments = payments;
     }

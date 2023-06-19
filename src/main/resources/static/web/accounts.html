@@ -33,9 +33,9 @@
             <li class="nav-item">
               <a class="nav-link active" href="#">Accounts</a>
             </li>
-            <li class="nav-item">
+           <!--  <li class="nav-item">
               <a class="nav-link" href="#">Other page</a>
-            </li>
+            </li> -->
             <!--  <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown
@@ -69,9 +69,35 @@
     </nav>
     <h1 class="text-center p-2 text-black">Your accounts</h1>
   </header>
-  <main id="app" class="d-flex flex-column col-12" style="min-height: 80vh;">
 
-    <h3 class="text-center mb-5 text-black">¡Welcome {{nombre}}!</h3>
+  <main id="app" class="d-flex flex-column col-12" style="min-height: 80vh;">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../img/banner1.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
+        </div>
+        <div class="carousel-item">
+          <img src="../img/banner2.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+        </div>
+        <div class="carousel-item">
+          <img src="../img/banner3.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-2">     
+    </div>
+
+    <h3 class="text-center mb-5 mt-2 text-black">¡Welcome {{nombre}}!</h3>
    
     <div class="d-flex col-12 gap-3 justify-content-center align-items-center flex-wrap" >
       <div class="card mb-3 d-flex flex-column "
@@ -79,7 +105,7 @@
         <div class="card-header fw-bold">Account number: {{account.number}}</div>
         <div class="card-body justify-content-evenly">
           <h5 class="card-title text-center  fw-bold">Amount available: </h5>
-          <h5 class="text-center fw-bold">${{account.balance}}</h5>
+          <h5 class="text-center fw-bold">💲{{account.balance}}</h5>
           <p class="card-text text-center " >Created: {{account.creationDate}}</p>          
         </div>
         <a :href="'./account.html?id='+account.id" class="d-flex align-self-center"><button type="button" class="btn btn-dark  mb-2"  style="width: 10rem;">See transactions</button></a>       
@@ -92,7 +118,7 @@
         <div class="card-header fw-bold">Loan name: {{loan.name}}</div>
         <div class="card-body justify-content-evenly">
           <h5 class="card-title fw-bold text-center">Amount requested:</h5> 
-          <h5 class="fw-bold text-center"> ${{loan.amount}}</h5>
+          <h5 class="fw-bold text-center"> 💲{{loan.amount}}</h5>
           <p class="card-text text-center" > Total payments: {{loan.payments}}</p>          
         </div>               
       </div>
@@ -102,6 +128,7 @@
     </section>
 
   </main>
+  
   <footer
     class="d-flex flex-wrap flex-lg-row justify-content-between align-items-center text-center text-black p-2 bg-dark text-white col-12"
     style="min-height: 10vh;">

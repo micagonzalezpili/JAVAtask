@@ -10,9 +10,8 @@ import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/api")
-
 public class ClientController {
-    @Autowired // inyecta un repo
+    @Autowired
     private ClientRepository clientRepository;
 
     @RequestMapping("/clients")
@@ -23,8 +22,8 @@ public class ClientController {
                 .map(client -> new ClientDTO(client))
                 .collect(toList());
     }
-    @RequestMapping("/clients/{id}")
-    public ClientDTO getClientId(@PathVariable Long id){ // VARIABLE DE RUTAAAAAAAA
+    @RequestMapping("/clients/{id}")// VARIABLE DE RUTAAAAAAAA
+    public ClientDTO getClientId(@PathVariable Long id){
         return new ClientDTO( clientRepository
                 .findById(id)
                 .orElse(null));

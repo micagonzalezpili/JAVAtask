@@ -12,9 +12,7 @@ const app = createApp({
     };
   },
   created() {
-    this.loadData();
-   /* this.clientID = this.data.client._links.client.href
-   console.log(this.clientID); */
+    this.loadData();      
 },
 methods: {
 loadData(){
@@ -27,14 +25,11 @@ axios.get('http://localhost:8080/api/clients/1')
          this.accounts = this.data.accounts
          console.log(this.accounts);
          this.loans = this.data.clientLoans
-         console.log(this.loans);
-
-     
+         console.log(this.loans);     
          })
          .catch(error => {
            console.error(error);
          });
-}
-  
+}  
 }})
 app.mount('#app');

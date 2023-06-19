@@ -24,7 +24,6 @@ public class Loan {
         this.maxAmount = maxAmount;
         this.payments = payments;
     }
-
     public Long getId() {
         return id;
     }
