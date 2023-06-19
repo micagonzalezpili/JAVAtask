@@ -1,5 +1,7 @@
 package com.mindhub.App.Homebanking;
 import com.mindhub.App.Homebanking.models.*;
+import com.mindhub.App.Homebanking.models.enums.CardColor;
+import com.mindhub.App.Homebanking.models.enums.CardType;
 import com.mindhub.App.Homebanking.models.enums.TransactionType;
 import com.mindhub.App.Homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
@@ -19,7 +21,7 @@ public class AppHomebankingApplication {
 	}
 
 	@Bean // cada vez q se crea la app
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository){ // declaro la var
+	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository){ // declaro la var
 		return (args -> {
 			Client melba = new Client("Melba", "Morel","melba@mindhub.com" );
 			Client client2 = new Client("Micaela", "Gonzalez Pili","micagpili@gmail.com" );
@@ -113,6 +115,18 @@ public class AppHomebankingApplication {
 			clientLoanRepository.save(clientLoan2);
 			clientLoanRepository.save(clientLoan3);
 			clientLoanRepository.save(clientLoan4);
+
+			Card goldCard = new Card("1234 5678 9101 1121", (short) 281, LocalDate.now().plusYears(5), LocalDate.now(), CardType.DEBIT, CardColor.GOLD);
+			Card platinumCard = new Card("3141 5161 7181 9202", (short) 445, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.PLATINUM);
+			Card silverCard = new Card("2122 3242 5262 7282", (short) 976, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.SILVER);
+
+			cardRepository.save(goldCard);
+			cardRepository.save(platinumCard);
+			cardRepository.save(silverCard);
+
+			melba.addCard(goldCard);
+			melba.addCard(platinumCard);
+			client2.addCard(silverCard);
 
 
 		});

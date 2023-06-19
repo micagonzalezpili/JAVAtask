@@ -1,2 +1,7 @@
-package com.mindhub.App.Homebanking.models.enums;public enum CardColor {
+package com.mindhub.App.Homebanking.models.enums;
+
+public enum CardColor {
+    GOLD,
+    SILVER,
+    PLATINUM
 }
