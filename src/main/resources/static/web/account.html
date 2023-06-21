@@ -34,7 +34,7 @@
               <a class="nav-link active" href="./accounts.html">Accounts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Other page</a>
+              <a class="nav-link" href="./cards.html">Cards</a>
             </li>
             <!--  <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -68,20 +68,46 @@
       </div>
     </nav>
     <h1 class="text-center p-2 text-black">Transactions</h1>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../img/banner1.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
+        </div>
+        <div class="carousel-item">
+          <img src="../img/banner2.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+        </div>
+        <div class="carousel-item">
+          <img src="../img/banner3.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
   </header>
   <main id="app" class="d-flex flex-column align-items-center col-12" style="min-height: 80vh;">
     <div class="col-6 mt-5  table-responsive-sm">
       <table class="col-6 table table-dark col-sm-3">
         <thead>            
-          <th class="text-center border border-black p-2" colspan="5">Account: {{data.number}}</th>           
-            <tr class=" border border-black"><th class=" border border-black"scope="col" >Type</th>                       
-            <th scope="col" class=" border border-black p-1" >Date</th>
-            <th scope="col" class=" border border-black p-1" >Time</th>
-            <th scope="col" class=" border border-black p-1" >Description</th>
-            <th scope="col" class=" border border-black p-1">Amount</th></tr> 
+          <th class="text-center border border-black p-2" colspan="5">Account: {{data.number}}</th>                
+            <tr class=" border border-black">
+              <th class=" border border-black"scope="col" >Type </th>                       
+              <th scope="col" class=" border border-black p-1" >Date</th>
+              <th scope="col" class=" border border-black p-1" >Time</th>
+              <th scope="col" class=" border border-black p-1" >Description</th>
+              <th scope="col" class=" border border-black p-1">Amount</th>
+          </tr> 
         </thead>
         <tbody>
             <tr v-for="transaction of transactions" class=" border border-black">
+              
                 <td class=" border border-black p-1" :class="{'text-danger': transaction.type === 'DEBIT', 'text-success': transaction.type === 'CREDIT'}">{{transaction.type}}</td>
                 <td class=" border border-black p-1">{{transaction.date}}</td>
                 <td class=" border border-black p-1">{{transaction.time}}</td>

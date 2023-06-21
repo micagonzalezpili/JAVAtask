@@ -116,9 +116,9 @@ public class AppHomebankingApplication {
 			clientLoanRepository.save(clientLoan3);
 			clientLoanRepository.save(clientLoan4);
 
-			Card goldCard = new Card("1234 5678 9101 1121", (short) 281, LocalDate.now().plusYears(5), LocalDate.now(), CardType.DEBIT, CardColor.GOLD);
-			Card platinumCard = new Card("3141 5161 7181 9202", (short) 445, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.PLATINUM);
-			Card silverCard = new Card("2122 3242 5262 7282", (short) 976, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.SILVER);
+			Card goldCard = new Card(melba,"1234 5678 9101 1121", (short) 281, LocalDate.now().plusYears(5), LocalDate.now(), CardType.DEBIT, CardColor.GOLD);
+			Card platinumCard = new Card(melba,"3141 5161 7181 9202", (short) 445, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.PLATINUM);
+			Card silverCard = new Card(client2,"2122 3242 5262 7282", (short) 976, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.SILVER);
 
 			cardRepository.save(goldCard);
 			cardRepository.save(platinumCard);

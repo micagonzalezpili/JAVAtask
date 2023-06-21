@@ -53,9 +53,6 @@ public class Client {
     public void setId(long id) {
         this.id = id;
     }
-    public String toString() {
-        return firstName + " " + lastName + " " + email ;
-    }
     @JsonIgnore
     public Set<Account> getAccounts() {
         return accounts;
@@ -72,6 +69,8 @@ public class Client {
         clientLoan.setClient(this);
         clientLoans.add(clientLoan);
     }
+    @JsonIgnore
+    public Set<Card> getCards(){return cards;}
     public void addCard(Card card){
         card.setClient(this);
         cards.add(card);

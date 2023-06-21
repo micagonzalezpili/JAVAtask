@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CashFlow | Accounts</title>
+  <title>CashFlow | Not available</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="../style/style.css">
@@ -16,10 +16,10 @@
 
 </head>
 
-<body>
+<body >
   <header style="min-height: 10vh;">
-    <nav class="navbar navbar-expand-lg navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar bg-dark border-bottom border-bottom-dark position-sticky " data-bs-theme="dark">
+      <div class="container-fluid ">
         <img src="../img/logo-removebg-preview.png" class="navbar-brand" href="#" style="width: 8rem;">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,9 +31,9 @@
               <a class="nav-link " aria-current="page" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Accounts</a>
+              <a class="nav-link " href="./web/accounts.html">Accounts</a>
             </li>
-           <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="../web/cards.html">Cards</a>
             </li> 
             <!--  <li class="nav-item dropdown">
@@ -49,97 +49,40 @@
               </li> -->
 
           </ul>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="34" height="34"
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="34" height="34"
             viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
             stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
             <path d="M20 12h-13l3 -3m0 6l-3 -3" />
           </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+          </a>
+          <a href="#">
+           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
             viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
             stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
             <path d="M9 12h12l-3 -3" />
             <path d="M18 15l3 -3" />
-          </svg>
+          </svg> 
+          </a>
+ 
         </div>
       </div>
     </nav>
-    <h1 class="text-center p-2 text-black">Your accounts</h1>
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="../img/banner1.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
-        </div>
-        <div class="carousel-item">
-          <img src="../img/banner2.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
-        </div>
-        <div class="carousel-item">
-          <img src="../img/banner3.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+    <h1 class="text-center p-2 text-black">Hi! We are working on this page</h1>
   </header>
 
-  <main id="app" class="d-flex flex-column col-12 justify-content-center align-items-center " style="min-height: 80vh;">
-    
-    
-    <h3 class="text-center mb-3 mt-2 text-black">¡Welcome {{nombre}}!</h3>
-    <h4 class="text-center fw-bold mb-2 " style="text-decoration: underline;">Accounts</h4>
-   
-    <div class="d-flex col-6 rounded gap-3 justify-content-center align-items-center flex-wrap  pt-3" style="background-color: rgba(8, 54, 54, 0.349); ">
-      <div class="card mb-3 d-flex flex-column "
-        style="min-width: 18rem; min-height: 15rem;background-color:  #9ec787a2; " id="card" v-for="account of accounts">
-        <div class="card-header fw-bold">Account number: {{account.number}}</div>
-        <div class="card-body justify-content-evenly">
-          <h5 class="card-title text-center  fw-bold">Amount available: </h5>
-          <h5 class="text-center fw-bold">💲{{account.balance}}</h5>
-          <p class="card-text text-center " >Created: {{account.creationDate}}</p>          
-        </div>
-        <a :href="'./account.html?id='+account.id" class="d-flex align-self-center"><button type="button" class="btn btn-dark  mb-2"  style="width: 10rem;">See transactions</button></a>       
-      </div>
-    </div>
-
-    <h4 class="text-center fw-bold mb-2" style="text-decoration: underline;">Loans</h4>
-    <div v-if="data.clientLoans" class="d-flex col-6 rounded gap-3 justify-content-center align-items-center flex-wrap pt-3 mb-2"style="background-color: rgba(8, 54, 54, 0.349); " >
-      <div class="card mb-3 d-flex flex-column "
-        style="min-width: 18rem; min-height: 15rem;background-color:  #87c7bea2; " id="card" v-for="loan of loans">
-        <div class="card-header fw-bold">Loan name: {{loan.name}}</div>
-        <div class="card-body justify-content-evenly">
-          <h5 class="card-title fw-bold text-center">Amount requested:</h5> 
-          <h5 class="fw-bold text-center"> 💲{{loan.amount}}</h5>
-          <p class="card-text text-center" > Total payments: {{loan.payments}}</p>          
-        </div>               
-      </div>
-      
-    </div>  
-    <section v-else="">
-      <h4>Your account has no requested loans.</h4>
-    </section>
-    <div class="d-flex justify-content-center align-items-center ">
-    <a href="../web/cards.html" class="mb-4">
-          <button type="button" class="btn btn-success ">Go to Cards</button>
-        </a>
-    </div>
-   
-
+  <main id="app" class="d-flex flex-column justify-content-center align-items-centercol-12" style="min-height: 80vh;">
+    <h3 class="text-center font-monospace " style="min-height: 100;">Sorry for the inconvenience, this page will be available soon!</h3>
   </main>
-  
+
   <footer
     class="d-flex flex-wrap flex-lg-row justify-content-between align-items-center text-center text-black p-2 bg-dark text-white col-12"
     style="min-height: 10vh;">
+    
     <div >
       <h5 class="mb-2">Follow us</h5>
       <a href="https://es-la.facebook.com/" target="_blank">
@@ -172,32 +115,28 @@
       
     </div>
     <div class="d-flex flex-column p-2">
-      <a href="./web/text.html">
+      <a href="#">
       <p>User Support</p>  
       </a>
-      <a href="./web/text.html">
+      <a href="#">
         <p>Work with us</p>
       </a>
-      <a href="./web/text.html">
+      <a href="#">
         <p>CashFlow microloans</p>
       </a>
-      <a href="./web/text.html">
-        <a href="">
-       <p>Security center</p>  
+      <a href="#">
+       <p>Secutrity center</p>  
       </a>
-      <a href="./web/text.html">
-        <a href="">
+      <a href="#">
         <p>Contact us</p>
       </a>   
     </div>
     <h6>@2023 CashFlow Bank</h6>
   </footer>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="../js/accounts.js"></script>
+    crossorigin="anonymous"></script> 
 </body>
 
 </html>

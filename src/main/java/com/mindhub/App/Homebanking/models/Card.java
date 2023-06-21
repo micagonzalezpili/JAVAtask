@@ -28,14 +28,15 @@ public class Card {
 
     public Card(){}
 
-    public Card(String number, short cvv, LocalDate thruDate, LocalDate fromDate, CardType cardType, CardColor cardColor){
-        this.cardholder = client.getFirstName() + client.getLastName();
+    public Card(Client client, String number, short cvv, LocalDate thruDate, LocalDate fromDate, CardType cardType, CardColor cardColor){
+        this.cardholder = client.getFirstName() + " " + client.getLastName();
         this.number = number;
         this.cvv = cvv;
         this.thruDate = thruDate;
         this.fromDate = fromDate;
         this.type = cardType;
         this.color = cardColor;
+        this.client = client;
     }
 
     public long getId() {
@@ -100,6 +101,10 @@ public class Card {
 
     public void setColor(CardColor color) {
         this.color = color;
+    }
+
+    public Client getClient() {
+        return client;
     }
 
     public void setClient(Client client) {
