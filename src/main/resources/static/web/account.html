@@ -49,21 +49,26 @@
               </li> -->
 
           </ul>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="34" height="34"
+          <a href="./sign-in.html">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="34" height="34"
             viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
             stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
             <path d="M20 12h-13l3 -3m0 6l-3 -3" />
           </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+          </a>
+          <a href="../index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
             viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
             stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
             <path d="M9 12h12l-3 -3" />
             <path d="M18 15l3 -3" />
-          </svg>
+          </svg> 
+          </a>
+         
         </div>
       </div>
     </nav>
@@ -73,11 +78,17 @@
         <div class="carousel-item active">
           <img src="../img/banner1.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
         </div>
-        <div class="carousel-item">
-          <img src="../img/banner2.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+        <div class="carousel-item active">
+          <img src="../img/banner3.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
         </div>
         <div class="carousel-item">
-          <img src="../img/banner3.jpg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+          <img src="../img/banner4.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+        </div>
+        <div class="carousel-item">
+          <img src="../img/banner5.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+        </div>
+        <div class="carousel-item">
+          <img src="../img/banner6.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -115,8 +126,13 @@
                 <td class=" border border-black p-1" :class="{'text-danger': transaction.amount < 0, 'text-success': transaction.amount > 0}" >${{transaction.amount.toFixed(2)}}</td>
             </tr>
         </tbody>       
-    </table>
+    </table>    
     </div>
+    <div class="d-flex justify-content-center align-items-center ">
+      <a href="../web/accounts.html" class="mb-4">
+            <button type="button" class="btn btn-danger">Back to accounts</button>
+          </a>
+      </div>
 
   </main>
   <footer

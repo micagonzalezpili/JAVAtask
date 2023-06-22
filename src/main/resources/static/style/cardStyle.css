@@ -1,5 +1,5 @@
 
-#card {
+#cardBody, #cardBodyDos {
   font-family: "Overpass Mono", monospace;
   font-weight: 400;
   display: flex;
@@ -8,7 +8,8 @@
   align-items: center;
   min-height: 20vh;
   margin: 0;
-  background-image: linear-gradient(to right top,  #41dfff, #46eefa, #5ffbf1, #8fc1d8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  background: rgb(58,71,180);
+  background: linear-gradient(90deg, rgba(58,71,180,0.7147233893557423) 0%, rgba(48,253,29,0.6558998599439776) 50%, rgba(66,232,236,0.6362920168067228) 96%, rgba(75,69,252,0.6530987394957983) 100%);
 }
 
 .card {
@@ -217,7 +218,7 @@
   width: 40px;
   height: 17px;
   color: #021318;
-  background-color: #eeecec;
+  background-color: #8dddd2;
   text-align: center;
   font-size: 11px;
 }
