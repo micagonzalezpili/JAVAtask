@@ -18,251 +18,255 @@
 </head>
 
 <body>
-    <header style="min-height: 10vh;">
-        <nav class="navbar navbar-expand-lg navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
-            <div class="container-fluid">
-                <img src="../img/logo-removebg-preview.png" class="navbar-brand" href="#" style="width: 8rem;">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="../index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="../web/accounts.html">Accounts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Cards</a>
-                        </li>
-                        <!--  <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li> -->
+    <div id="app" >
+        <header style="min-height: 10vh;">
+                <nav class="navbar navbar-expand-lg navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+                    <div class="container-fluid">
+                        <img src="../img/logo-removebg-preview.png" class="navbar-brand" href="#" style="width: 8rem;">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href="../index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="../web/accounts.html">Accounts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Cards</a>
+                                </li>
+                                <!--  <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li> -->
 
-                    </ul>
-                    <a href="./sign-in.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="34" height="34"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                        <path d="M20 12h-13l3 -3m0 6l-3 -3" />
-                      </svg>
-                      </a>
-                      <a href="../index.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                        <path d="M9 12h12l-3 -3" />
-                        <path d="M18 15l3 -3" />
-                      </svg> 
-                      </a>
-                </div>
-            </div>
-        </nav>
-        <h1 class="text-center p-2 text-black">Your cards</h1>
-    </header>
-
-    <main id="app" class="d-flex flex-column col-12" style="min-height: 80vh;">
-
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../img/banner1.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
-              </div>
-              <div class="carousel-item active">
-                <img src="../img/banner3.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
-              </div>
-              <div class="carousel-item">
-                <img src="../img/banner4.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
-              </div>
-              <div class="carousel-item">
-                <img src="../img/banner5.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
-              </div>
-              <div class="carousel-item">
-                <img src="../img/banner6.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-
-        <h3 class="text-center mb-5 mt-2 text-black">¡Welcome {{data.firstName}}!</h3>
-
-        <div class="d-flex flex-column justify-content-center align-items-center gap-3">
-
-            <div v-if="debitCards" class="d-flex justify-content-center align-content-center flex-wrap flex-column mb-2 col-5 p-2 rounded pb-3" style="background-color: rgba(8, 54, 54, 0.349); ">
-                <h4 class="text-center fw-bold"> • Debit Cards</h4>
-                <div v-for="debitCard of debitCards">
-                    <div v-if="debitCard.color == 'GOLD'">
-                        <div class="card" id="cardBody">
-                        <div class="card-inner">
-                            <div class="card-front">
-                                <div class="card-bg" style="background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
-                                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);;"></div>
-                                <div class="card-glow"></div>
-                                <svg width="72" height="24" viewBox="0 0 72 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="logo">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M52.3973 1.01093L51.5588 5.99054C49.0448 4.56717 43.3231 4.23041 43.3231 6.85138C43.3231 7.89285 44.6177 8.60913 46.178 9.47241C48.5444 10.7817 51.5221 12.4291 51.5221 16.062C51.5221 21.8665 45.4731 24 41.4645 24C37.4558 24 34.8325 22.6901 34.8325 22.6901L35.7065 17.4848C38.1115 19.4688 45.4001 20.032 45.4001 16.8863C45.4001 15.5645 43.9656 14.785 42.3019 13.8811C40.0061 12.6336 37.2742 11.1491 37.2742 7.67563C37.2742 1.30988 44.1978 0 47.1132 0C49.8102 0 52.3973 1.01093 52.3973 1.01093ZM66.6055 23.6006H72L67.2966 0.414276H62.5732C60.3923 0.414276 59.8612 2.14215 59.8612 2.14215L51.0996 23.6006H57.2234L58.4481 20.1566H65.9167L66.6055 23.6006ZM60.1406 15.399L63.2275 6.72235L64.9642 15.399H60.1406ZM14.7942 16.3622L20.3951 0.414917H26.7181L17.371 23.6012H11.2498L6.14551 3.45825C2.83215 1.41281 0 0.807495 0 0.807495L0.108643 0.414917H9.36816C11.9161 0.414917 12.1552 2.50314 12.1552 2.50314L14.1313 12.9281L14.132 12.9294L14.7942 16.3622ZM25.3376 23.6006H31.2126L34.8851 0.414917H29.0095L25.3376 23.6006Z"
-                                        fill="white" />
-                                </svg>
-                                <div class="card-contactless">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="56">
-                                        <path fill="none" stroke="#f9f9f9" stroke-width="6" stroke-linecap="round" d="m35,3a50,50 0 0,1 0,50M24,8.5a39,39 0 0,1 0,39M13.5,13.55a28.2,28.5
-                    0 0,1 0,28.5M3,19a18,17 0 0,1 0,18" />
-                                    </svg>
-                                </div>
-                                <div class="card-chip"></div>
-                                <div class="card-holder">{{debitCard.cardholder}}</div>
-                                <section class="ms-1 text-warning"> <p class="p-1">GOLD</p> </section>
-                                <div class="card-number">{{debitCard.number}}</div>
-                                <div class="card-valid">{{debitCard.thruDate}}</div>
-                            </div>
-                            <div class="card-back">
-                                <div class="card-signature">CashFlow Bank</div>
-                                <div class="card-seccode">{{debitCard.cvv}}</div>
-                            </div>
+                            </ul>
+                            <a href="./sign-in.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="34" height="34"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+                            </svg>
+                            </a>
+                            <button type="button" @click.prevent="logOut">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                    <path d="M9 12h12l-3 -3" />
+                                    <path d="M18 15l3 -3" />
+                                  </svg> 
+                                </button> 
                         </div>
                     </div>
-                   <!--  <div class="hint">Hover me ;)</div> -->
-                    </div>                   
-                </div>
-            </div>
+                </nav>
+                <h1 class="text-center p-2 text-black">Your cards</h1>
+            </header>
 
-            <div v-if="creditCards" class="d-flex justify-content-center align-content-center flex-wrap flex-column mb-2 col-5 p-2 rounded pb-3" style="background-color: rgba(8, 54, 54, 0.349); ">
-                <h4 class="text-center fw-bold"> • Credit Cards</h4>
-                <div v-for="creditCard of creditCards">  
-                    <div v-if="creditCard.color == 'PLATINUM'">
-                      <div class="card" id="cardBodyDos">
-                        <div class="card-inner">
-                            <div class="card-front">
-                                <div class="card-bg" style="background: linear-gradient(90deg, rgba(0,0,5,0.8799894957983193) 0%, rgba(41,41,46,0.8099614845938375) 35%, rgba(192,212,215,0.19371498599439774) 100%);"></div>
-                                <div class="card-glow"></div>
-                                <svg width="72" height="24" viewBox="0 0 72 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="logo">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M52.3973 1.01093L51.5588 5.99054C49.0448 4.56717 43.3231 4.23041 43.3231 6.85138C43.3231 7.89285 44.6177 8.60913 46.178 9.47241C48.5444 10.7817 51.5221 12.4291 51.5221 16.062C51.5221 21.8665 45.4731 24 41.4645 24C37.4558 24 34.8325 22.6901 34.8325 22.6901L35.7065 17.4848C38.1115 19.4688 45.4001 20.032 45.4001 16.8863C45.4001 15.5645 43.9656 14.785 42.3019 13.8811C40.0061 12.6336 37.2742 11.1491 37.2742 7.67563C37.2742 1.30988 44.1978 0 47.1132 0C49.8102 0 52.3973 1.01093 52.3973 1.01093ZM66.6055 23.6006H72L67.2966 0.414276H62.5732C60.3923 0.414276 59.8612 2.14215 59.8612 2.14215L51.0996 23.6006H57.2234L58.4481 20.1566H65.9167L66.6055 23.6006ZM60.1406 15.399L63.2275 6.72235L64.9642 15.399H60.1406ZM14.7942 16.3622L20.3951 0.414917H26.7181L17.371 23.6012H11.2498L6.14551 3.45825C2.83215 1.41281 0 0.807495 0 0.807495L0.108643 0.414917H9.36816C11.9161 0.414917 12.1552 2.50314 12.1552 2.50314L14.1313 12.9281L14.132 12.9294L14.7942 16.3622ZM25.3376 23.6006H31.2126L34.8851 0.414917H29.0095L25.3376 23.6006Z"
-                                        fill="white" />
-                                </svg>
-                                <div class="card-contactless">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="56">
-                                        <path fill="none" stroke="#f9f9f9" stroke-width="6" stroke-linecap="round" d="m35,3a50,50 0 0,1 0,50M24,8.5a39,39 0 0,1 0,39M13.5,13.55a28.2,28.5
-                                 0 0,1 0,28.5M3,19a18,17 0 0,1 0,18" />
-                                    </svg>
+            <main  class="d-flex flex-column col-12" style="min-height: 80vh;">
+
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../img/banner1.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
+                    </div>
+                    <div class="carousel-item active">
+                        <img src="../img/banner3.jpg" class="d-block w-100 object-fit-cover " alt="..." style="height: 20vh;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/banner4.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/banner5.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/banner6.jpeg" class="d-block w-100 object-fit-cover" alt="..." style="height: 20vh;">
+                    </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <h3 class="text-center mb-5 mt-2 text-black">¡Welcome {{data.firstName}}!</h3>
+
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3">
+
+                    <div v-if="debitCards" class="d-flex justify-content-center align-content-center flex-wrap flex-column mb-2 col-5 p-2 rounded pb-3" style="background-color: rgba(8, 54, 54, 0.349); ">
+                        <h4 class="text-center fw-bold"> • Debit Cards</h4>
+                        <div v-for="debitCard of debitCards">
+                            <div v-if="debitCard.color == 'GOLD'">
+                                <div class="card" id="cardBody">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <div class="card-bg" style="background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                                        radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);;"></div>
+                                        <div class="card-glow"></div>
+                                        <svg width="72" height="24" viewBox="0 0 72 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" class="logo">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M52.3973 1.01093L51.5588 5.99054C49.0448 4.56717 43.3231 4.23041 43.3231 6.85138C43.3231 7.89285 44.6177 8.60913 46.178 9.47241C48.5444 10.7817 51.5221 12.4291 51.5221 16.062C51.5221 21.8665 45.4731 24 41.4645 24C37.4558 24 34.8325 22.6901 34.8325 22.6901L35.7065 17.4848C38.1115 19.4688 45.4001 20.032 45.4001 16.8863C45.4001 15.5645 43.9656 14.785 42.3019 13.8811C40.0061 12.6336 37.2742 11.1491 37.2742 7.67563C37.2742 1.30988 44.1978 0 47.1132 0C49.8102 0 52.3973 1.01093 52.3973 1.01093ZM66.6055 23.6006H72L67.2966 0.414276H62.5732C60.3923 0.414276 59.8612 2.14215 59.8612 2.14215L51.0996 23.6006H57.2234L58.4481 20.1566H65.9167L66.6055 23.6006ZM60.1406 15.399L63.2275 6.72235L64.9642 15.399H60.1406ZM14.7942 16.3622L20.3951 0.414917H26.7181L17.371 23.6012H11.2498L6.14551 3.45825C2.83215 1.41281 0 0.807495 0 0.807495L0.108643 0.414917H9.36816C11.9161 0.414917 12.1552 2.50314 12.1552 2.50314L14.1313 12.9281L14.132 12.9294L14.7942 16.3622ZM25.3376 23.6006H31.2126L34.8851 0.414917H29.0095L25.3376 23.6006Z"
+                                                fill="white" />
+                                        </svg>
+                                        <div class="card-contactless">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="56">
+                                                <path fill="none" stroke="#f9f9f9" stroke-width="6" stroke-linecap="round" d="m35,3a50,50 0 0,1 0,50M24,8.5a39,39 0 0,1 0,39M13.5,13.55a28.2,28.5
+                            0 0,1 0,28.5M3,19a18,17 0 0,1 0,18" />
+                                            </svg>
+                                        </div>
+                                        <div class="card-chip"></div>
+                                        <div class="card-holder">{{debitCard.cardholder}}</div>
+                                        <section class="ms-1 text-warning"> <p class="p-1">GOLD</p> </section>
+                                        <div class="card-number">{{debitCard.number}}</div>
+                                        <div class="card-valid">{{debitCard.thruDate}}</div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="card-signature">CashFlow Bank</div>
+                                        <div class="card-seccode">{{debitCard.cvv}}</div>
+                                    </div>
                                 </div>
-                                <div class="card-chip"></div>                                
-                                <div class="card-holder">{{creditCard.cardholder}}</div>
-                                <section class="ms-1 text-black "> <p class="p-1">PLATINUM</p> </section>
-                                <div class="card-number">{{creditCard.number}}</div>
-                                <div class="card-valid">{{creditCard.thruDate}}</div>
                             </div>
-                            <div class="card-back">
-                                <div class="card-signature">CashFlow Bank</div>
-                                <div class="card-seccode">{{creditCard.cvv}}</div>
-                            </div>
+                        <!--  <div class="hint">Hover me ;)</div> -->
+                            </div>                   
                         </div>
                     </div>
-                    <!-- <div class="hint">Hover me ;)</div>   -->
-                    </div>              
+
+                    <div v-if="creditCards" class="d-flex justify-content-center align-content-center flex-wrap flex-column mb-2 col-5 p-2 rounded pb-3" style="background-color: rgba(8, 54, 54, 0.349); ">
+                        <h4 class="text-center fw-bold"> • Credit Cards</h4>
+                        <div v-for="creditCard of creditCards">  
+                            <div v-if="creditCard.color == 'PLATINUM'">
+                            <div class="card" id="cardBodyDos">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <div class="card-bg" style="background: linear-gradient(90deg, rgba(0,0,5,0.8799894957983193) 0%, rgba(41,41,46,0.8099614845938375) 35%, rgba(192,212,215,0.19371498599439774) 100%);"></div>
+                                        <div class="card-glow"></div>
+                                        <svg width="72" height="24" viewBox="0 0 72 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg" class="logo">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M52.3973 1.01093L51.5588 5.99054C49.0448 4.56717 43.3231 4.23041 43.3231 6.85138C43.3231 7.89285 44.6177 8.60913 46.178 9.47241C48.5444 10.7817 51.5221 12.4291 51.5221 16.062C51.5221 21.8665 45.4731 24 41.4645 24C37.4558 24 34.8325 22.6901 34.8325 22.6901L35.7065 17.4848C38.1115 19.4688 45.4001 20.032 45.4001 16.8863C45.4001 15.5645 43.9656 14.785 42.3019 13.8811C40.0061 12.6336 37.2742 11.1491 37.2742 7.67563C37.2742 1.30988 44.1978 0 47.1132 0C49.8102 0 52.3973 1.01093 52.3973 1.01093ZM66.6055 23.6006H72L67.2966 0.414276H62.5732C60.3923 0.414276 59.8612 2.14215 59.8612 2.14215L51.0996 23.6006H57.2234L58.4481 20.1566H65.9167L66.6055 23.6006ZM60.1406 15.399L63.2275 6.72235L64.9642 15.399H60.1406ZM14.7942 16.3622L20.3951 0.414917H26.7181L17.371 23.6012H11.2498L6.14551 3.45825C2.83215 1.41281 0 0.807495 0 0.807495L0.108643 0.414917H9.36816C11.9161 0.414917 12.1552 2.50314 12.1552 2.50314L14.1313 12.9281L14.132 12.9294L14.7942 16.3622ZM25.3376 23.6006H31.2126L34.8851 0.414917H29.0095L25.3376 23.6006Z"
+                                                fill="white" />
+                                        </svg>
+                                        <div class="card-contactless">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="56">
+                                                <path fill="none" stroke="#f9f9f9" stroke-width="6" stroke-linecap="round" d="m35,3a50,50 0 0,1 0,50M24,8.5a39,39 0 0,1 0,39M13.5,13.55a28.2,28.5
+                                        0 0,1 0,28.5M3,19a18,17 0 0,1 0,18" />
+                                            </svg>
+                                        </div>
+                                        <div class="card-chip"></div>                                
+                                        <div class="card-holder">{{creditCard.cardholder}}</div>
+                                        <section class="ms-1 text-black "> <p class="p-1">PLATINUM</p> </section>
+                                        <div class="card-number">{{creditCard.number}}</div>
+                                        <div class="card-valid">{{creditCard.thruDate}}</div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="card-signature">CashFlow Bank</div>
+                                        <div class="card-seccode">{{creditCard.cvv}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="hint">Hover me ;)</div>   -->
+                            </div>              
+                            
+                        </div>
+                    </div>
+
+                    <section v-else="">
+                            <h4>Your account has no available cards.</h4>
+                    </section>
+
+                    <a href="../web/accounts.html" class="mb-4">
+                        <button type="button" class="btn btn-danger">Back to Accounts</button>
+                    </a>
                     
                 </div>
-            </div>
-
-            <section v-else="">
-                    <h4>Your account has no available cards.</h4>
-            </section>
-
-            <a href="../web/accounts.html" class="mb-4">
-                <button type="button" class="btn btn-danger">Back to Accounts</button>
-            </a>
-            
-        </div>
 
 
-    </main>
+            </main>
 
-    <footer
-        class="d-flex flex-wrap flex-lg-row justify-content-between align-items-center text-center text-black p-2 bg-dark text-white col-12"
-        style="min-height: 10vh;">
-        <div>
-            <h5 class="mb-2">Follow us</h5>
-            <a href="https://es-la.facebook.com/" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44"
-                    height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
-                </svg>
-            </a>
-            <a href="https://www.instagram.com/" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44"
-                    height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
-                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                    <path d="M16.5 7.5l0 .01" />
-                </svg>
-            </a>
-            <a href="https://twitter.com/?lang=es" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="44"
-                    height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path
-                        d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z" />
-                </svg>
-            </a>
-        </div>
-        <div class="d-flex flex-column p-2">
-            <a href="./web/text.html">
-            <p>User Support</p>  
-            </a>
-            <a href="./web/text.html">
-              <p>Work with us</p>
-            </a>
-            <a href="./web/text.html">
-              <p>CashFlow microloans</p>
-            </a>
-            <a href="./web/text.html">
-              <a href="">
-             <p>Security center</p>  
-            </a>
-            <a href="./web/text.html">
-              <a href="">
-              <p>Contact us</p>
-            </a>   
-          </div>
-        <h6>@2023 CashFlow Bank</h6>
-    </footer>
+            <footer
+                class="d-flex flex-wrap flex-lg-row justify-content-between align-items-center text-center text-black p-2 bg-dark text-white col-12"
+                style="min-height: 10vh;">
+                <div>
+                    <h5 class="mb-2">Follow us</h5>
+                    <a href="https://es-la.facebook.com/" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44"
+                            height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44"
+                            height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+                            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                            <path d="M16.5 7.5l0 .01" />
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/?lang=es" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="44"
+                            height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="d-flex flex-column p-2">
+                    <a href="./web/text.html">
+                    <p>User Support</p>  
+                    </a>
+                    <a href="./web/text.html">
+                    <p>Work with us</p>
+                    </a>
+                    <a href="./web/text.html">
+                    <p>CashFlow microloans</p>
+                    </a>
+                    <a href="./web/text.html">
+                    <a href="">
+                    <p>Security center</p>  
+                    </a>
+                    <a href="./web/text.html">
+                    <a href="">
+                    <p>Contact us</p>
+                    </a>   
+                </div>
+                <h6>@2023 CashFlow Bank</h6>
+            </footer>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../js/cards.js"></script>
+    
 </body>
 
 </html>

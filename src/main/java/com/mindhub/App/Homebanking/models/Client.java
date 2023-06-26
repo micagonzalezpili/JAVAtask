@@ -1,6 +1,9 @@
 package com.mindhub.App.Homebanking.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,12 +24,15 @@ public class Client {
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
+
     public Client() { }
 
-    public Client(String first, String last, String mail) {
+    public Client(String first, String last, String mail, String pass) {
         firstName = first;
         lastName = last;
         email = mail;
+        password = pass;
     }
 
     public String getFirstName() {
@@ -75,5 +81,10 @@ public class Client {
         card.setClient(this);
         cards.add(card);
     }
-
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

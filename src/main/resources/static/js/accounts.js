@@ -1,3 +1,4 @@
+
 const { createApp } = Vue;
 
 const app = createApp({
@@ -16,7 +17,7 @@ const app = createApp({
 },
 methods: {
 loadData(){
-axios.get('http://localhost:8080/api/clients/1')
+axios.get('http://localhost:8080/api/clients/current')
          .then(response => {
          this.data = response.data
          console.log(this.data);
@@ -30,6 +31,17 @@ axios.get('http://localhost:8080/api/clients/1')
          .catch(error => {
            console.error(error);
          });
-}  
+},
+logOut() {
+  console.log("hola");
+   axios.post('/api/logout')
+    .then(response => {
+      console.log('Signed out!!');
+      window.location.href = '/index.html';
+    })
+    .catch(error => {
+      console.error('Error', error);
+    }); 
+} 
 }})
 app.mount('#app');

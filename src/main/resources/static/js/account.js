@@ -38,7 +38,17 @@ loadData(){
     .catch(error => {
         console.error(error);
       });
-}
+},
+logOut() {
+  axios.post('/api/logout')
+    .then(response => {
+      console.log('Signed out!!');
+      window.location.href = '/index.html';
+    })
+    .catch(error => {
+      console.error('Error', error);
+    });
+} 
   
 }})
 app.mount('#app');

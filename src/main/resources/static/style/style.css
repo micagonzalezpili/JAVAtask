@@ -5,8 +5,19 @@ body {
     background-size: cover;
     font-family: 'Exo', sans-serif;  
 }
+
 h1{
     background-color: rgba(250, 235, 215, 0.479);
+}
+#dollar:hover{
+    box-Shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+    transform : scale(1.05);
+    transition: all 0.3s ease;
+}
+#dollar:hover{
+    box-Shadow:'0px 0px 20px rgba(0, 0, 0, 0.2)';
+    transform: 'scale(1)';
+    transition: 'all 0.3s ease';
 }
 #card:hover{
     box-Shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
@@ -14,7 +25,7 @@ h1{
     transition: all 0.3s ease;
 }
 
-  #card:hover{
+#card:hover{
     box-Shadow:'0px 0px 20px rgba(0, 0, 0, 0.2)';
     transform: 'scale(1)';
     transition: 'all 0.3s ease';
@@ -41,7 +52,7 @@ h1{
     transform: 'scale(1)';
     transition: 'all 0.3s ease';
 }
-#family:hover {
+ #family:hover {
     -webkit-transform: rotateY(180deg);
     -webkit-transform-style: preserve-3d;
     transform: rotateY(180deg);
@@ -52,8 +63,4 @@ h1{
     -webkit-transform-style: preserve-3d;
     transform: rotateY(180deg);
     transform-style: preserve-3d;
-}
-a{
-    text-decoration: none;
-    color: rgb(95, 189, 142);
-}
+} 
