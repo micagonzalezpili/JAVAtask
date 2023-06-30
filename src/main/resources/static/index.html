@@ -1,4 +1,326 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<title>CashFlow</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content=""> 
+
+<link rel="stylesheet" type="text/css" href="./style/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="./style/style copy.css">
+
+<link rel="stylesheet" href="./style/responsive.css">
+
+<link rel="icon" href="./img/logo-removebg-preview.png" type="image/gif" />
+
+<link rel="stylesheet" href="./style/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+<link rel="stylesheet" href="./style/owl.carousel.min.css">
+<link rel="stylesheet" href="./style/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+<body >
+  <div id="app">
+       <div class="header_section">
+      <div class="header_left">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="logo"><a href="#"><img src="./img/logo-removebg-preview.png"></a></div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li v-show="loggedIn" class="nav-item">
+                <a class="nav-link " href="./web/accounts.html">Accounts</a>
+              </li>
+              <li v-show="loggedIn" class="nav-item">
+                <a class="nav-link" href="./web/cards.html">Cards</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./web/sign-in.html">Login</a>
+              </li>         
+              <div v-if="loggedIn">
+                <button type="button" @click.prevent="logOut" class="bg-dark rounded">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+                                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                                  stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                  <path d="M9 12h12l-3 -3" />
+                                  <path d="M18 15l3 -3" />
+                                </svg> 
+                              </button> 
+                </div>     
+            </ul>
+          </div>
+        </nav>
+        <div class="banner_main">
+          <h1 class="banner_taital text-success">CashFlow <br>Bank</h1>
+          <p class="banner_text">Your intelligent home banking solution!</p>
+          <div class="btn_main">
+            <div class="more_bt"><a href="#">Read More </a></div>
+            <div class="contact_bt"><a href="./web/contact.html">Contact Us</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="header_right">
+        <img src="./img/banner-img.png" class="banner_img">
+      </div>
+    </div>
+   
+    <div class="services_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 class="services_taital">WELCOME TO CASHFLOW BANK</h1>
+            <p class="services_text">Take full control of your finances with our intuitive and secure platform. Manage your expenses, set budgets, and discover new investment opportunities. Keep your personal and financial data protected with our top-level security measures.
+
+              Discover a new way to manage your money with CashFlow! </p>
+            <div class="moremore_bt"><a href="./web/text.html">Read More </a></div>
+          </div>
+          <div class="col-md-4">
+            <div><img src="./img/img-1.png" class="image_1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="what_we_do_section layout_padding">
+      <div class="container">
+        <h1 class="what_taital">WHAT WE DO</h1>
+        <p class="what_text">It is a long established fact that a reader will be distracted by the readable content of a </p>
+        <div class="what_we_do_section_2">
+          <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <div class="box_main">
+              <div class="icon_1"><img src="./img/icon-1.png"></div>
+              <h3 class="accounting_text">Account Management</h3>
+              <p class="lorem_text p-1">Easily access and manage your bank accounts, including checking, savings, all in one place. View balances, transaction history, and make transfers with convenience.</p>
+              <div class="moremore_bt_1"><a href="#">Read More </a></div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="box_main active">
+              <div class="icon_1"><img src="./img/icon-2.png"></div>
+              <h3 class="accounting_text p-1">Security and Privacy</h3>
+              <p class="lorem_text">We prioritize the security and privacy of your financial information. We employ advanced encryption and multi-factor authentication to ensure that your data is protected.</p>
+              <div class="moremore_bt_1"><a href="#">Read More </a></div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="box_main">
+              <div class="icon_1"><img src="./img/icon-3.png"></div>
+              <h3 class="accounting_text">Investment</h3>
+              <p class="lorem_text"> Explore investment opportunities and make informed decisions. Access real-time market data, monitor your investment portfolio, and execute trades within our platform.</p>
+              <div class="moremore_bt_1"><a href="#">Read More </a></div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="box_main">
+              <div class="icon_1"><img src="./img/icon-4.png"></div>
+              <h3 class="accounting_text">Financial Planning</h3>
+              <p class="lorem_text">Whether it's saving for a down payment, funding your child's education, or preparing for retirement, we provide tools and resources to help you create personalized financial plans.</p>
+              <div class="moremore_bt_1"><a href="#">Read More </a></div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="project_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="project_main">
+              <h1 class="services_taital">WHAT YOU CAN DO</h1>
+              <p class="services_text">Perform various transactions and payments seamlessly. Transfer funds between accounts, pay bills, set up recurring payments, and send money to friends and family. </p>
+              <div class="moremore_bt"><a href="./web/text.html">Read More </a></div>
+              <div class="image_6"><img src="./img/img-6.png"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="images_main">
+              <div class="images_left">
+                <div class="container_1">
+                  <img src="./img/img-2.png" alt="Avatar" class="image" style="width:100%">
+                  <div class="middle">
+                    <div class="text"><img src="./img/search-icon.png"></div>
+                    <h2 class="fact_text">Established Fact</h2>
+                  </div>
+                </div>
+                <div class="container_1">
+                  <img src="./img/img-3.png" alt="Avatar" class="image" style="width:100%">
+                  <div class="middle">
+                    <div class="text"><img src="./img/search-icon.png"></div>
+                    <h2 class="fact_text">Established Fact</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="images_right">
+                <div class="container_1">
+                  <img src="./img/img-4.png" alt="Avatar" class="image" style="width:100%">
+                  <div class="middle">
+                    <div class="text"><img src="./img/search-icon.png"></div>
+                    <h2 class="fact_text">Established Fact</h2>
+                  </div>
+                </div>
+                <div class="container_1">
+                  <img src="./img/img-5.png" alt="Avatar" class="image" style="width:100%">
+                  <div class="middle">
+                    <div class="text"><img src="./img/search-icon.png"></div>
+                    <h2 class="fact_text">Established Fact</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="project_section_2 layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <div class="icon_1"><img src="./img/icon-3.png"></div>
+            <h3 class="accounting_text_1">1000+</h3>
+            <p class="yers_text">Years of Business</p>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="icon_1"><img src="./img/icon-4.png"></div>
+            <h3 class="accounting_text_1">20000+</h3>
+            <p class="yers_text"> New Clients </p>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="icon_1"><img src="./img/icon-2.png"></div>
+            <h3 class="accounting_text_1">10000+</h3>
+            <p class="yers_text">Satisfied Customers</p>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="icon_1"><img src="./img/icon-1.png"></div>
+            <h3 class="accounting_text_1">1500+</h3>
+            <p class="yers_text">Services</p>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="client_section layout_padding">
+      <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <h1 class="what_taital">What our clients says </h1>
+              <div class="client_section_2 layout_padding">
+                <ul>
+                  <li><img src="./img/round-1.png" class="round_1"></li>
+                  <li><img src="./img/img-11.png" class="image_11"></li>
+                  <li><img src="./img/round-2.png" class="round_2"></li>
+                </ul>
+                <p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <h1 class="what_taital">what is syas our clients</h1>
+              <div class="client_section_2 layout_padding">
+                <ul>
+                  <li><img src="./img/round-1.png" class="round_1"></li>
+                  <li><img src="./img/img-11.png" class="image_11"></li>
+                  <li><img src="./img/round-2.png" class="round_2"></li>
+                </ul>
+                <p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <h1 class="what_taital">what is syas our clients</h1>
+              <div class="client_section_2 layout_padding">
+                <ul>
+                  <li><img src="./img/round-1.png" class="round_1"></li>
+                  <li><img src="./img/img-11.png" class="image_11"></li>
+                  <li><img src="./img/round-2.png" class="round_2"></li>
+                </ul>
+                <p class="dummy_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <h4 class="about_text">About Us</h4>
+            <div class="location_text"><img src="./img/map-icon.png"><span class="padding_left_15">Mar del Plata, Argentina</span></div>
+            <div class="location_text"><img src="./img/call-icon.png"><span class="padding_left_15">+01 9876543210</span></div>
+            <div class="location_text"><img src="./img/mail-icon.png"><span class="padding_left_15">cashflow@bank.com</span></div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <h4 class="about_text">About Financial</h4>
+            <p class="dolor_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+          </div>          
+          <div class="col-lg-3 col-sm-6">
+            <h4 class="about_text">Newsletter</h4>
+            <input type="text" class="mail_text" placeholder="Enter your email" name="Enter your email">
+            <div class="subscribe_bt"><a href="#">Subscribe</a></div>
+            <div class="footer_social_icon">
+              <ul>
+                <li><a href="#"><img src="./img/fb-icon1.png"></a></li>
+                 <li><a href="#"><img src="./img/twitter-icon1.png"></a></li>
+                <li><a href="#"><img src="./img/linkedin-icon1.png"></a></li>
+                <li><a href="#"><img src="./img/youtub-icon1.png"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/jquery-3.0.0.min.js"></script>
+    <script src="./js/plugin.js"></script>
+  
+    <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="./js/custom.js"></script>
+  
+    <script src="./js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./js/index.js"></script>
+    <script>
+      AOS.init({
+        duration: 1500,
+      });
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,18 +361,7 @@
             <li v-show="loggedIn" class="nav-item">
               <a class="nav-link" href="./web/cards.html">Cards</a>
             </li>
-            <!--  <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li> -->
-
+          
           </ul>
           <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="34" height="34"
@@ -118,7 +429,7 @@
     
     <div class="template col-8 d-flex justify-content-center align-content-center m-3 rounded flex-wrap flex-lg-nowrap"
       style="background-color: rgba(8, 54, 54, 0.349); ">
-      <div  class="d-flex flex-column justify-content-center align-items-center">
+      <div data-aos="fade-up" class="d-flex flex-column justify-content-center align-items-center">
         <h4 class="text-center mt-2">Building a future together.</h4>
         <div  class="d-flex flex-wrap m-2 flex-lg-column justify-content-center align-items-center ">
           <h5 class="mt-2 ms-2 fw-bold">We got you covered. At home and abroad.</h5>
@@ -127,7 +438,7 @@
           <p class="mt-2 text-center w-50  fw-bold">All accounts have fraud protection and any unauthorized debit card
             transactions are covered.</p>
         </div>
-        <div  class="d-flex flex-wrap m-2 flex-lg-column justify-content-center align-items-center">
+        <div data-aos="fade-up" class="d-flex flex-wrap m-2 flex-lg-column justify-content-center align-items-center">
           <h5 class="mt-2 ms-2 fw-bold">Access your money whenever, wherever.</h5>
           <img src="./img/img2.jpg" alt="img2" class="img-fluid rounded" style="width: 30rem; height: 45rem; object-fit: cover;"
             id="phone">
@@ -259,13 +570,14 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="./js/index.js"></script>
   <script>
     AOS.init({
       duration: 1500,
     });
   </script>
-  <script src="./js/index.js"></script>
+  
 
 </body>
 
-</html>
+</html>  -->

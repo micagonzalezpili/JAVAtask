@@ -18,14 +18,14 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     @Autowired
     ClientRepository clientRepository;
     @Override
-    public void init(AuthenticationManagerBuilder auth) throws Exception {
+    public void init(AuthenticationManagerBuilder auth) throws Exception { // indica q puede haber excepciones si algo falla, manejo de errores
 
         auth.userDetailsService(inputName-> {
             Client client = clientRepository.findByEmail(inputName);
 
             if (client != null) {
 
-                if (client.getEmail().contains("admin") ) {
+                if (client.getEmail().contains("admin@gmail.com") ) {
                     return new User(client.getEmail(), client.getPassword(),
                             AuthorityUtils.createAuthorityList("ADMIN"));
                 }else {
@@ -38,8 +38,6 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
         });
 
     }
-
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();

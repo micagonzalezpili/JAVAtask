@@ -6,7 +6,8 @@ const app = createApp({
             email: "",
             password: "",
             name: "",
-            lastName: ""
+            lastName: "",
+            loggedIn: false
 
 
 
@@ -23,16 +24,29 @@ const app = createApp({
             })
               .then(response => {
                 console.log('Signed in!!');
+                this.loggedIn = true;
                 window.location.href = '/web/accounts.html';
               })
               .catch(error => console.error('Error', error));
           }, 
+        createAccount(){
+                    axios.post('/api/clients/current/accounts')
+                    .then(response => {
+                    console.log("account created!!!");
+                    })
+                    .catch(error => {
+                    console.log(error)
+                    })
+                },
         signUp() {
             axios.post('/api/clients', 'first=' + this.name + '&lastName=' + this.lastName + '&email=' + this.email + '&password=' + this.password,
                 { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(() => {
                     console.log("registered");
-                    this.signIn()
+                    this.signIn();
+                    this.createAccount();
+                    
+                    
                 })
                 .catch(error => console.error('Error', error)); 
         },
@@ -46,6 +60,7 @@ const app = createApp({
                     console.error('Error', error);
                 });
         }
+        
 
     }
 })

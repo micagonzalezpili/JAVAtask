@@ -35,9 +35,9 @@ public class AppHomebankingApplication {
 			clientRepository.save(client2);
 			clientRepository.save(admin);
 
-			Account account1 = new Account("VIN001", LocalDate.now() , 5000.0, melba);
-			Account account2 = new Account("VIN002", LocalDate.now().plusDays(1) , 7500.0, melba);
-			Account account3 = new Account("VIN003", LocalDate.now(), 5000.0, client2);
+			Account account1 = new Account("VIN-001", LocalDate.now() , 5000.0, melba);
+			Account account2 = new Account("VIN-002", LocalDate.now().plusDays(1) , 7500.0, melba);
+			Account account3 = new Account("VIN-003", LocalDate.now(), 5000.0, client2);
 
 			accountRepository.save(account1);
 			accountRepository.save(account2);

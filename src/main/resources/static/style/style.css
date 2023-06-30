@@ -64,3 +64,7 @@ h1{
     transform: rotateY(180deg);
     transform-style: preserve-3d;
 } 
+a{
+    color: #77aa77;
+    text-decoration: none;
+}

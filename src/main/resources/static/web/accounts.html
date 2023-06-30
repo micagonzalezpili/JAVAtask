@@ -1,4 +1,163 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<title>Accounts</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content=""> 
+
+<link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="../style/style copy.css">
+
+<link rel="stylesheet" href="../style/responsive.css">
+
+<link rel="icon" href="/img/logo-removebg-preview.png" type="image/gif" />
+
+<link rel="stylesheet" href="../style/jquery.mCustomScrollbar.min.css">
+
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+<link rel="stylesheet" href="../style/owl.carousel.min.css">
+<link rel="stylesheet" href="../style/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+  <div id="app">
+ <div class="header_section header_bg">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="logo"><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="#">Accounts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../web/cards.html">Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../web/sign-in.html">Login</a>
+            </li>   
+            <div  v-if="loggedIn">
+            <button type="button" @click.prevent="logOut" class="bg-dark rounded">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+                              viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                              <path d="M9 12h12l-3 -3" />
+                              <path d="M18 15l3 -3" />
+                            </svg> 
+                          </button> 
+            </div> 
+                       
+          </ul>
+        </div>
+      </nav>
+    </div>
+    
+    <div class="what_we_do_section layout_padding">
+      
+      <div class="container d-flex flex-column flex-wrap ">
+        <h2 class="what_taital">ACCOUNTS</h2>
+        <div class="what_we_do_section_2 mb-3 justify-content-center align-items-center">
+          <div class="row">
+          <div class="col-lg-3 col-sm-6" v-for="account of accounts">
+            <div class="box_main d-flex flex-column" >              
+              <h3 class="accounting_text">Account number: {{account.number}}</h3>
+              <p class="lorem_text">Amount available: 💲{{account.balance}}</p>
+              <p class="lorem_text">Created: {{account.creationDate}}</p>
+              <button type="button" class="btn btn-primary  align-self-center mb-2"  style="width: 10rem;"><a :href="'./account.html?id='+account.id" style="text-decoration: none; color: white;">See transactions</a>  </button> 
+              <button v-show="accounts.length < 3" type="button" class="btn btn-primary mb-2 w-50 align-self-center p-2" @click="createAccount">Create new account</button>
+            </div>
+          </div>          
+        </div>
+        </div>
+        <h2 class="what_taital mt-3">LOANS</h2>
+         <div class="what_we_do_section_2 mb-3">
+          <div class="row">
+          <div class="col-lg-3 col-sm-6"v-for="loan of loans">
+            <div class="box_main" >              
+              <h3 class="accounting_text">Loan name: {{loan.name}}</h3>
+              <p class="lorem_text">Amount requested: 💲{{loan.amount}}</p>
+              <p class="lorem_text">Total payments: {{loan.payments}}</p>          
+            </div>
+          </div> 
+           <div class="d-flex flex-column mt-4">
+           <a href="../web/cards.html" class="mb-4 align-self-center">
+          <button type="button" class="btn btn-success">Go to cards</button>
+        </a>
+        </div>         
+        </div>
+        </div> 
+       
+       
+      </div>
+    </div>
+  
+    <div class="footer_section layout_padding margin_top_90">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <h4 class="about_text">About Financial</h4>
+            <div class="location_text"><img src="../img/map-icon.png"><span class="padding_left_15">Mar del Plata, Argentina</span></div>
+            <div class="location_text"><img src="../img/call-icon.png"><span class="padding_left_15">+01 9876543210</span></div>
+            <div class="location_text"><img src="../img/mail-icon.png"><span class="padding_left_15">cashflow@bank.com</span></div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <h4 class="about_text">About Financial</h4>
+            <p class="dolor_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+          </div>
+          <div class="col-lg-3 col-sm-6">            
+            <div class="footer_social_icon">
+              <ul>
+                <li><a href="#"><img src="../img/fb-icon1.png"></a></li>
+                 <li><a href="#"><img src="../img/twitter-icon1.png"></a></li>
+                <li><a href="#"><img src="../img/linkedin-icon1.png"></a></li>
+                <li><a href="#"><img src="../img/youtub-icon1.png"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>  
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>  
+    <script src="js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../js/accounts.js"></script>
+</body>
+</html> 
+<!--  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -37,17 +196,6 @@
            <li class="nav-item">
               <a class="nav-link" href="../web/cards.html">Cards</a>
             </li> 
-            <!--  <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li> -->
 
           </ul>
           <a href="./sign-in.html">
@@ -104,14 +252,13 @@
     </div>
   </header>
 
-  <main  class="d-flex flex-column col-12 justify-content-center align-items-center " style="min-height: 80vh;">
-    
+  <main  class="d-flex flex-column col-12 justify-content-center align-items-center " style="min-height: 80vh;">    
     
     <h3 class="text-center mb-3 mt-2 text-black">¡Welcome {{nombre}}!</h3>
     <h4 class="text-center fw-bold mb-2 " style="text-decoration: underline;">Accounts</h4>
-   
+    
     <div class="d-flex col-6 rounded gap-3 justify-content-center align-items-center flex-wrap  pt-3" style="background-color: rgba(8, 54, 54, 0.349); ">
-      <div class="card mb-3 d-flex flex-column "
+      <div class="card mb-1 d-flex flex-column "
         style="min-width: 18rem; min-height: 15rem;background-color:  #9ec787a2; " id="card" v-for="account of accounts">
         <div class="card-header fw-bold">Account number: {{account.number}}</div>
         <div class="card-body justify-content-evenly">
@@ -121,10 +268,11 @@
         </div>
         <a :href="'./account.html?id='+account.id" class="d-flex align-self-center"><button type="button" class="btn btn-dark  mb-2"  style="width: 10rem;">See transactions</button></a>       
       </div>
+      <a href=""><button v-show="accounts.length < 3" type="button" class="btn btn-primary mb-2" @click="createAccount">Create new account</button></a>
     </div>
 
-    <h4 class="text-center fw-bold mb-2" style="text-decoration: underline;">Loans</h4>
-    <div v-if="data.clientLoans" class="d-flex col-6 rounded gap-3 justify-content-center align-items-center flex-wrap pt-3 mb-2"style="background-color: rgba(8, 54, 54, 0.349); " >
+    <h4 v-show="loans.length >= 1" class="text-center fw-bold mb-2 mt-2" style="text-decoration: underline;">Loans</h4>
+    <div  v-if="data.clientLoans" class="d-flex col-6 rounded gap-3 justify-content-center align-items-center flex-wrap pt-3 mb-2"style="background-color: rgba(8, 54, 54, 0.349); " >
       <div class="card mb-3 d-flex flex-column "
         style="min-width: 18rem; min-height: 15rem;background-color:  #87c7bea2; " id="card" v-for="loan of loans">
         <div class="card-header fw-bold">Loan name: {{loan.name}}</div>
@@ -133,12 +281,11 @@
           <h5 class="fw-bold text-center"> 💲{{loan.amount}}</h5>
           <p class="card-text text-center" > Total payments: {{loan.payments}}</p>          
         </div>               
-      </div>
-      
+      </div>      
     </div>  
-    <section v-else="">
+    <div v-else="">
       <h4>Your account has no requested loans.</h4>
-    </section>
+    </div>
     <div class="d-flex justify-content-center align-items-center ">
     <a href="../web/cards.html" class="mb-4">
           <button type="button" class="btn btn-success ">Go to Cards</button>
@@ -214,4 +361,4 @@
   
 </body>
 
-</html>
+</html> -->

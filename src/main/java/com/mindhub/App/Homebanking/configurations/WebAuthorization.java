@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-@EnableWebSecurity // habilita web security para poder trabajar con la misma
-@Configuration // configura la app antes de que inicie
+@EnableWebSecurity
+@Configuration
 public class WebAuthorization {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -23,19 +22,24 @@ public class WebAuthorization {
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/index.html").permitAll()
                 .antMatchers("/web/sign-up.html").permitAll()
+                .antMatchers("/web/sign-in.html").permitAll()
                 .antMatchers("/style/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/img/**").permitAll()
+                .antMatchers("/web/contact.html").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/logout").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers("/api/clients/current").hasAuthority("CLIENT")
-                .antMatchers("/web/accounts.html").hasAnyAuthority("CLIENT", "ADMIN")  // Permite acceso a CLIENT y ADMIN
-                .antMatchers("/web/account.html").hasAnyAuthority("CLIENT", "ADMIN")  // Permite acceso a CLIENT y ADMIN
-                .antMatchers("/web/cards.html").hasAnyAuthority("CLIENT", "ADMIN")  // Permite acceso a CLIENT y ADMIN
+                .antMatchers(HttpMethod.POST,"/api/clients/current/accounts").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST,"/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers("/web/accounts.html").hasAnyAuthority("CLIENT", "ADMIN")
+                .antMatchers("/web/account.html").hasAnyAuthority("CLIENT", "ADMIN")
+                .antMatchers("/web/cards.html").hasAnyAuthority("CLIENT", "ADMIN")
+                .antMatchers("/web/create-cards.html").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/web/**").hasAuthority("ADMIN")
-                .antMatchers("/h2-console").hasAuthority("ADMIN")
-                .anyRequest().denyAll();
+                .antMatchers("/h2-console/**").hasAuthority("ADMIN");
+
 
 
         http.formLogin()

@@ -5,10 +5,9 @@ const app = createApp({
     return {          
       email: "",
       password: "",
-      loggedIn: false
-    
-      
-       
+      loggedIn: false,
+      loggedOut: true
+         
     };
   },
   created() {   
@@ -23,6 +22,7 @@ methods: {
       .then(response => {
         console.log('Signed in!!');
          this.loggedIn = true;
+         this.loggedOut = false;
         window.location.href = '/web/accounts.html';
        
       })

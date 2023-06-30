@@ -8,7 +8,8 @@ const app = createApp({
       nombre: "",
       apellido: "",   
       accounts: [],
-      loans: []
+      loans: [],
+      loggedIn: true
       
     };
   },
@@ -31,6 +32,15 @@ axios.get('http://localhost:8080/api/clients/current')
          .catch(error => {
            console.error(error);
          });
+},
+createAccount(){
+  axios.post('/api/clients/current/accounts')
+  .then(response => {
+    console.log("account created!!!");
+  })
+  .catch(error => {
+    console.log(error)
+  })
 },
 logOut() {
   console.log("hola");
