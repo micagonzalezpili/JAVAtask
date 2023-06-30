@@ -40,8 +40,6 @@ public class WebAuthorization {
                 .antMatchers("/web/**").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").hasAuthority("ADMIN");
 
-
-
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")
@@ -49,8 +47,8 @@ public class WebAuthorization {
 
         http.logout().logoutUrl("/api/logout");
 
-        // Desactivar verificación de tokens CSRF
-        http.csrf().disable();
+        // Desactivar verificación de tokens CSRF porque mediante la JSESSIONID ya estamos aplicando la seg
+        http.csrf().disable(); // las csrf mandan solicitudes como si fueran el usuario autenticado
 
         // Deshabilitar frameOptions para acceder a h2-console
         http.headers().frameOptions().disable();

@@ -8,8 +8,8 @@
   align-items: center;
   min-height: 20vh;
   margin: 0;
-  background: rgb(58,71,180);
-  background: linear-gradient(90deg, rgba(58,71,180,0.7147233893557423) 0%, rgba(48,253,29,0.6558998599439776) 50%, rgba(66,232,236,0.6362920168067228) 96%, rgba(75,69,252,0.6530987394957983) 100%);
+  background: rgb(130,16,16);
+background: linear-gradient(90deg, rgba(130,16,16,0.6783088235294117) 0%, rgba(133,77,80,0.6643032212885154) 35%, rgba(144,214,220,0.6306897759103641) 66%, rgba(192,212,215,0) 100%);
 }
 
 .card {
@@ -65,7 +65,7 @@
   content: "";
   position: absolute;
   top: 15%;
-  width: 100%;
+  width: 100vw;
   height: 40px;
   background-image: linear-gradient(to right top, #021318, #07191f, #0a1f26, #0b262e, #0c2c35, #0c2c35, #0c2c35, #0c2c35, #0b262e, #0a1f26, #07191f, #021318);
 }

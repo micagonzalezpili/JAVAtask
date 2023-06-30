@@ -34,8 +34,8 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
 </head>
 <body>
   <div id="app">
-    <div class="header_section header_bg" style="min-height: 10vh;">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="header_section header_bg d-flex " style="min-height: 10vh;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
           <div class="logo"><a href="#"><img src="../img/logo-removebg-preview.png"></a></div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -51,9 +51,12 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
               <li class="nav-item">
                 <a class="nav-link" href="../web/cards.html">Cards</a>
               </li>
-              <li class="nav-item">
+              <div v-if="loggedOut">
+                <li class="nav-item">
                 <a class="nav-link" href="../web/sign-in.html">Login</a>
-              </li>  
+              </li> 
+              </div>
+               
               <div  v-if="loggedIn">
                 <button type="button" @click.prevent="logOut" class="bg-dark rounded">
                               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
@@ -88,7 +91,8 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                 <option value="PLATINUM">PLATINUM</option>
               </select>
         </div>                       
-        <button type="submit" class="btn btn-success mb-2 w-25 align-self-center" @click="createCard">Create new card</button>
+        <a href="#"><button type="submit" class="btn btn-success mb-2 w-100 align-self-center" @click="createCard">Create new card</button></a>
+        <a href="../web/cards.html"><button type="submit" class="btn btn-danger mb-2 w-100 align-self-center" >Back to cards</button></a>
     </div>
 
     <div class="footer_section layout_padding margin_top_90" style="min-height: 20vh;">

@@ -5,7 +5,8 @@ const app = createApp({
     return {
       data: [],          
       type: "",
-      color: ""     
+      color: "" ,
+      loggedIn: true   
       
       
        

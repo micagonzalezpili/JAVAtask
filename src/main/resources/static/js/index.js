@@ -6,7 +6,8 @@ const app = createApp({
       email: "",
       password: "",
       loggedIn: false,
-      loggedOut: true
+      loggedOut: true,
+      showErrorMessage: false
          
     };
   },
@@ -19,8 +20,13 @@ methods: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
-      .then(response => {
-        console.log('Signed in!!');
+      .then(response => {        
+        if (this.email && this.password) {         
+          console.log('Signed in!!');
+          this.showErrorMessage = false;
+        } else {
+          this.showErrorMessage = true;
+        }
          this.loggedIn = true;
          this.loggedOut = false;
         window.location.href = '/web/accounts.html';

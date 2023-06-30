@@ -6,7 +6,9 @@ const app = createApp({
       data: [],               
       cards: [],
       debitCards: [],
-      creditCards: []
+      creditCards: [],
+      loggedOut: false,
+      loggedIn: true
       
        
     };

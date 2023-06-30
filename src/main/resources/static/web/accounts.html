@@ -34,7 +34,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
 </head>
 <body>
   <div id="app">
- <div class="header_section header_bg">
+    <div class="header_section header_bg">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="logo"><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,9 +51,12 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
             <li class="nav-item">
               <a class="nav-link" href="../web/cards.html">Cards</a>
             </li>
-            <li class="nav-item">
+            <div v-if="loggedOut">
+               <li class="nav-item">
               <a class="nav-link" href="../web/sign-in.html">Login</a>
-            </li>   
+            </li>  
+            </div>
+            
             <div  v-if="loggedIn">
             <button type="button" @click.prevent="logOut" class="bg-dark rounded">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
@@ -74,9 +77,9 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
     
     <div class="what_we_do_section layout_padding">
       
-      <div class="container d-flex flex-column flex-wrap ">
+      <div class="container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <h2 class="what_taital">ACCOUNTS</h2>
-        <div class="what_we_do_section_2 mb-3 justify-content-center align-items-center">
+        <div class="what_we_do_section_2 mb-3 ">
           <div class="row">
           <div class="col-lg-3 col-sm-6" v-for="account of accounts">
             <div class="box_main d-flex flex-column" >              

@@ -56,7 +56,7 @@ public class CardController {
 
     }
 
-    public String cardNumber(){
+    private String cardNumber(){
         String randomNumber1;
         String randomNumber2;
         String randomNumber3;

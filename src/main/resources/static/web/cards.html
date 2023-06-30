@@ -37,7 +37,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
   <div id="app">
     <div class="header_section header_bg">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="logo"><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
+          <img src="../img/logo-removebg-preview.png" style="width: 15rem;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -50,31 +50,35 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                 <a class="nav-link " href="../web/accounts.html">Accounts</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../web/cards.html">Cards</a>
+                <a class="nav-link" href="#">Cards</a>
               </li>
-              <li class="nav-item">
+              <div v-if="loggedOut">
+                <li class="nav-item">
                 <a class="nav-link" href="../web/sign-in.html">Login</a>
-              </li>  
+              </li> 
+              </div>
+                
               <div  v-if="loggedIn">
-                <button type="button" @click.prevent="logOut" class="bg-dark rounded">
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
-                                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
-                                  stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                  <path d="M9 12h12l-3 -3" />
-                                  <path d="M18 15l3 -3" />
-                                </svg> 
-                              </button> 
-                </div>                 
+              <button type="button" @click.prevent="logOut" class="bg-dark rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                <path d="M9 12h12l-3 -3" />
+                                <path d="M18 15l3 -3" />
+                              </svg> 
+                            </button> 
+              </div> 
+                         
             </ul>
           </div>
         </nav>
-    </div>
+      </div>
  
     <div class="what_we_do_section layout_padding">
         <h3 class="text-center mb-5 mt-2 text-black">¡Welcome {{data.firstName}}!</h3>
-      <div class="container">
+      <div class="container d-flex flex-column">
         <div v-if="debitCards" class="d-flex justify-content-center align-items-center flex-wrap flex-column mb-2 col-12 gap-3 p-2 rounded pb-3" >
             <h2 class="what_taital">DEBIT CARDS</h2>
             <div v-for="debitCard of debitCards" class="mb-3">
@@ -234,7 +238,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                                 </div>
                                 <div class="card-chip"></div>                                
                                 <div class="card-holder">{{creditCard.cardholder}}</div>
-                                <section class="ms-1 text-black "> <p class="p-1">PLATINUM</p> </section>
+                                <section class="ms-1 text-black "> <p class="p-1">SILVER</p> </section>
                                 <div class="card-number">{{creditCard.number}}</div>
                                 <div class="card-valid">{{creditCard.thruDate}}</div>
                             </div>
@@ -286,7 +290,12 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
             
            
         </div>
-         
+        <div class="d-flex align-self-center">
+        <a href="../web/accounts.html" class="mb-4">
+            <button type="button" class="btn btn-danger">Go to Accounts</button>
+        </a>     
+        </div>
+        
       </div>
     </div>
 
