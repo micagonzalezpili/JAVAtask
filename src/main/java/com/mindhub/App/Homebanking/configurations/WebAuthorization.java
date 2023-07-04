@@ -19,38 +19,39 @@ public class WebAuthorization {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/api/login").permitAll()
-                .antMatchers("/index.html").permitAll()
-                .antMatchers("/web/sign-up.html").permitAll()
-                .antMatchers("/web/sign-in.html").permitAll()
+                .antMatchers("/api/login","/index.html", "/web/sign-up.html","/web/sign-in.html").permitAll() // ACOMODAR EN MENOS LINEAS
                 .antMatchers("/style/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/img/**").permitAll()
                 .antMatchers("/web/contact.html").permitAll()
+                .antMatchers("/web/text.html").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/logout").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/transactions").hasAuthority("CLIENT")
+                .antMatchers("/api/accounts/**").hasAuthority("CLIENT")
                 .antMatchers("/api/clients/current").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST,"/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST,"/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers("/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers("/web/accounts.html").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers("/web/account.html").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers("/web/cards.html").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers("/web/create-cards.html").hasAnyAuthority("CLIENT", "ADMIN")
+                .antMatchers("/web/transfers.html").hasAnyAuthority("CLIENT", "ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/web/**").hasAuthority("ADMIN")
-                .antMatchers("/h2-console/**").hasAuthority("ADMIN");
+                .antMatchers("/h2-console/**").hasAuthority("ADMIN")
+                .anyRequest().denyAll();
 
         http.formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .loginPage("/api/login"); // defino la ruta donde realizaremos el login
+                .loginPage("/api/login");
 
-        http.logout().logoutUrl("/api/logout");
+        http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
 
-        // Desactivar verificación de tokens CSRF porque mediante la JSESSIONID ya estamos aplicando la seg
         http.csrf().disable(); // las csrf mandan solicitudes como si fueran el usuario autenticado
 
-        // Deshabilitar frameOptions para acceder a h2-console
         http.headers().frameOptions().disable();
 
         // Si el usuario no está autenticado, simplemente enviar una respuesta de error de autenticación

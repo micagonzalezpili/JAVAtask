@@ -8,8 +8,8 @@
   align-items: center;
   min-height: 20vh;
   margin: 0;
-  background: rgb(130,16,16);
-background: linear-gradient(90deg, rgba(130,16,16,0.6783088235294117) 0%, rgba(133,77,80,0.6643032212885154) 35%, rgba(144,214,220,0.6306897759103641) 66%, rgba(192,212,215,0) 100%);
+  background: rgb(40,180,108);
+background: linear-gradient(90deg, rgba(40,180,108,0.6783088235294117) 0%, rgba(117,189,254,0.6643032212885154) 35%, rgba(122,244,255,0.6306897759103641) 59%, rgba(192,212,215,0) 100%);
 }
 
 .card {

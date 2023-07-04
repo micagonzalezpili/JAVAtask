@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -42,15 +43,19 @@ public class CardController {
         Client currentClient = clientRepository.findByEmail(authentication.getName());
         String cardhold = currentClient.getFirstName() + " " + currentClient.getLastName();
 
-        if(currentClient.getCards()
+
+        if(!currentClient.getCards()
                 .stream()
                 .filter(card -> card.getType() == type )
-                .count() >= 3){
-           return new ResponseEntity<>("Client has already 3 cards of the same type.", HttpStatus.FORBIDDEN);
+                .filter(card -> card.getColor() == color)
+                .collect(Collectors.toList())
+                .isEmpty()){
+           return new ResponseEntity<>("Client has already card of the same type and same color.", HttpStatus.FORBIDDEN);
        }else{
             Card card = new Card(currentClient,cardNumber(), createCVV(),LocalDate.now().plusYears(5),LocalDate.now(), type, color);
-            cardRepository.save(card);
             currentClient.addCard(card);
+            cardRepository.save(card);
+
             return new ResponseEntity<>( HttpStatus.CREATED);
         }
 

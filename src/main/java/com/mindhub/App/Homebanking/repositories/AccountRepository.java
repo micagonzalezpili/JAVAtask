@@ -6,4 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface AccountRepository extends JpaRepository<Account, Long> { //tabla y luego primarykey son genericos y pueden ser d cualquier tipo
         Account findByNumber(String number);
+
 }

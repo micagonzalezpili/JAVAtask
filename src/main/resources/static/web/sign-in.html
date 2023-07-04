@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="../style/jquery.mCustomScrollbar.min.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+
 </head>
 <body >
   <div id="app">
@@ -50,7 +51,7 @@
               <a class="nav-link" href="#">Login</a>
             </li>     
             <div  v-if="loggedIn">
-              <button type="button" @click.prevent="logOut" class="bg-dark rounded">
+              <button type="button" @click.prevent="logOut" class="bg-light pt-1 rounded">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -77,7 +78,7 @@
                 <input type="email" class="mail_text_1" placeholder="Email" name="Email" v-model="email">
                 <input type="password" class="mail_text_1" id="exampleInputPassword1" placeholder="Password" name="Password"  v-model="password">
                 <p v-if="showErrorMessage">Please, complete all the fields.</p>
-                <a href="#" ><button @click="signIn"class="margin_top_90 btn btn-danger align-self-center">Sign In</button></a>
+                <a href="#" ><button @click="signIn"class="margin_top_90 btn btn-success align-self-center">Sign In</button></a>
                 <p class="pt-2">Don't have an account yet? <a href="./sign-up.html" style="text-decoration: underline; color: #062247;">Register here!</a></p>
               </div>
               
@@ -132,6 +133,7 @@
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/index.js"></script>
     
 </body>

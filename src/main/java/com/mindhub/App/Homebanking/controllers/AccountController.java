@@ -39,11 +39,22 @@ public class AccountController {
     }
 
     @RequestMapping("/accounts/{id}")
-    public AccountDTO getAccountsId(@PathVariable Long id){
+    public ResponseEntity<Object> getAccountById(@PathVariable Long id, Authentication authentication){
+        Account account = accountRepository.findById(id).orElse(null);
+        Client client = clientRepository.findByEmail(authentication.getName());
+        if(account == null){
+            return new ResponseEntity<>("Account does not exist.", HttpStatus.FORBIDDEN);
+        }
+        if(client.getAccounts().stream().filter(account1 -> account1.equals(account)).collect(Collectors.toList()).isEmpty()){
+            return new ResponseEntity<>("The account does not belong to the authenticated user.", HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(new AccountDTO(account), HttpStatus.ACCEPTED);
+    }
+    /*public AccountDTO getAccountsId(@PathVariable Long id){ // ACOMODAR METODO
     return new AccountDTO(accountRepository
             .findById(id)
             .orElse(null));
-    }
+    }*/
    @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
     public ResponseEntity<Object> createAccount(Authentication authentication) {
 
@@ -60,8 +71,9 @@ public class AccountController {
           return new ResponseEntity<>("The client can´t have more than 3 accounts.", HttpStatus.FORBIDDEN);
       }else {
          Account account = new Account(randomNumber, LocalDate.now(), 0.0, client);
-         accountRepository.save(account);
          client.addAccount(account);
+         accountRepository.save(account);
+
          return new ResponseEntity<>(HttpStatus.CREATED);
      }
 

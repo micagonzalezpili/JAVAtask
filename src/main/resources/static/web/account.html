@@ -34,7 +34,7 @@
 </head>
 <body>
   <div id="app">
-    <div class="header_section">
+    <div class="header_section" style="min-height: 10vh;">
       <div class="header_left">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="logo"><a href="#"><img src="../img/logo-removebg-preview.png"></a></div>
@@ -46,17 +46,17 @@
               <li class="nav-item">
                 <a class="nav-link" href="../index.html">Home</a>
               </li>
-              <li v-show="loggedIn" class="nav-item">
+              <li  class="nav-item">
                 <a class="nav-link " href="../web/accounts.html">Accounts</a>
               </li>
-              <li v-show="loggedIn" class="nav-item">
+              <li  class="nav-item">
                 <a class="nav-link" href="../web/cards.html">Cards</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../web/sign-in.html">Login</a>
-              </li>         
-              <div  v-if="loggedIn">
-                <button type="button" @click.prevent="logOut" class="bg-dark rounded">
+                <a class="nav-link" href="../web/transfers.html">Transfers</a>
+              </li>        
+              <div  v-if="loggedOut">
+                <button type="button" @click.prevent="logOut" class="bg-light pt-1 rounded">
                               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
                                   viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
                                   stroke-linejoin="round">
@@ -75,11 +75,11 @@
       
     </div>
         
-        <div class="services_section layout_padding">
+        <div class="services_section layout_padding" style="min-height: 80vh;">
           <div class="container d-flex flex-column ">
             <table class="col-6 table table-dark col-sm-3">
               <thead>            
-                <th class="text-center border border-black p-2" colspan="5">Account: {{data.accounts[0].number}}</th>                
+                <th class="text-center border border-black p-2" colspan="5">Account: {{data.accountID}}</th>                
                   <tr class=" border border-black">
                     <th class=" border border-black"scope="col" >Type </th>                       
                     <th scope="col" class=" border border-black p-1" >Date</th>
@@ -89,14 +89,14 @@
                 </tr> 
               </thead>
               <tbody >
-                  <tr v-if="transactions && transactions.length > 0" v-for="transaction of transactions" class=" border border-black">                            
-                      <td class=" border border-black p-1" :class="{'text-danger': transaction.type === 'DEBIT', 'text-success': transaction.type === 'CREDIT'}">{{transaction.type}}</td>
-                      <td class=" border border-black p-1">{{transaction.date}}</td>
-                      <td class=" border border-black p-1">{{transaction.time}}</td>
-                      <td class=" border border-black p-1">{{transaction.description}}</td>
-                      <td class=" border border-black p-1" :class="{'text-danger': transaction.amount < 0, 'text-success': transaction.amount > 0}" >${{transaction.amount.toFixed(2)}}</td>
-                  </tr>
-                  <tr v-else="!transactions"><td colspan="5" class="text-center">Your account don't have transactions yet. </td></tr>
+                <tr v-for="transaction of transactions" class=" border border-black">              
+                  <td class=" border border-black p-1" :class="{'text-danger': transaction.type === 'DEBIT', 'text-success': transaction.type === 'CREDIT'}">{{transaction.type}}</td>
+                  <td class=" border border-black p-1">{{transaction.date}}</td>
+                  <td class=" border border-black p-1">{{transaction.time}}</td>
+                  <td class=" border border-black p-1">{{transaction.description}}</td>
+                  <td class=" border border-black p-1" :class="{'text-danger': transaction.amount < 0, 'text-success': transaction.amount > 0}" >${{transaction.amount.toFixed(2)}}</td>
+              </tr>
+                  <!-- <tr v-else="!transactions"><td colspan="5" class="text-center">Your account don't have transactions yet. </td></tr> -->
               </tbody>          
           </table>   
           <a href="../web/accounts.html" class="mb-4 align-self-center">
@@ -105,7 +105,7 @@
           </div>
         </div>
         
-        <div class="footer_section layout_padding margin_top_90">
+        <div class="footer_section layout_padding margin_top_90" style="min-height: 10vh;">
           <div class="container">
             <div class="row">
               <div class="col-lg-3 col-sm-6">
