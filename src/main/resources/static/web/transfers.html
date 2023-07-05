@@ -51,8 +51,8 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
             <li class="nav-item">
               <a class="nav-link" href="#">Transfers</a>
             </li> 
-            <div  v-if="loggedIn" style="background-color: #06060600;">
-              <button type="button" @click.prevent="logOut" class="bg-light pt-1 rounded">
+            <div  v-if="loggedIn" style="background-color: #77737300;">
+              <button type="button" @click.prevent="logOut" class=" pt-1 rounded">
                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -66,6 +66,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
           </ul>
         </div>
       </nav>
+      
     </div>
  
     <div class="contact_section layout_padding">
@@ -112,7 +113,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                 <div class="d-flex flex-column col-12 justify-content-center align-items-center mt-3"> 
                     <label for="description" class="fw-bold mb-2">Description:</label> 
                     <input type="text" name="description" id="description" v-model="description">
-                    <button class="btn mt-3" style="color: rgb(11, 78, 78); background-color: rgba(151, 151, 142, 0.329);" @click="confirmOperation"> Send </button>
+                    <div class="moremore_bt d-flex justify-content-center align-items-center w-50"><a href="../web/cards.html" class="w-50 "><button class="btn"  @click="confirmOperation"> Send </button></a></div>
                 </div>
                
                 
@@ -127,17 +128,18 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
       </div>
     </div>
     
-    <div class="footer_section layout_padding margin_top_90">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
-            <h4 class="about_text">About Financial</h4>
+    <div class="footer_section layout_padding margin_top_90" style="min-height: 10vh;">
+      <div class="container d-flex justify-content-evenly">
+        <div class="row d-flex justify-content-evenly">
+          <div class="col-lg-3 col-sm-6 ">
+            <h4 class="about_text">About Us</h4>
             <div class="location_text"><img src="../img/map-icon.png"><span class="padding_left_15">Mar del Plata, Argentina</span></div>
             <div class="location_text"><img src="../img/call-icon.png"><span class="padding_left_15">+01 9876543210</span></div>
             <div class="location_text"><img src="../img/mail-icon.png"><span class="padding_left_15">cashflow@bank.com</span></div>
           </div>
-          <div class="col-lg-3 col-sm-6">
-            <p class="dolor_text">Developed by Micaela Gonzalez Pili</p>
+          <div class="col-lg-3 col-sm-6 d-flex justify-content-center align-items-center">
+           
+            <p class="dolor_text ">Developed by <br> Micaela Gonzalez Pili</p> 
           </div>
           <div class="col-lg-3 col-sm-6">            
             <div class="footer_social_icon">

@@ -60,7 +60,6 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
               <a class="nav-link" href="../web/sign-in.html" >Login</a>
             </li>  
             </div>
-            
             <div  v-if="loggedIn">
             <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
@@ -89,11 +88,13 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
             <div class="box_main d-flex flex-column" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
             -webkit-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
             -moz-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);">              
-              <h3 class="accounting_text">Account number: {{account.number}}</h3>
-              <p class="lorem_text">Amount available: 💲{{account.balance}}</p>
-              <p class="lorem_text">Created: {{account.creationDate}}</p>
-              <button type="button" class="btn btn-primary  align-self-center mb-2"  style="width: 10rem;"><a :href="'./account.html?id='+account.id" style="text-decoration: none; color: white;">See transactions</a>  </button> 
-              <button v-show="accounts.length < 3" type="button" class="btn btn-primary mb-2 w-75 align-self-center p-2" @click="createAccount">Create new account</button>
+              <h4 class="lorem_text text-black fw-bold" >Account number:<br> {{account.number}}</h4>
+              <h3 class="accounting_text ">Amount available: <br>💲{{account.balance.toFixed(2)}}</h3>
+              <p class="lorem_text text-black fw-bold">Created:<br> {{account.creationDate}}</p>
+             <!--  <button type="button" class="btn w-75  align-self-center mb-2"  style="background-color: black; text-decoration: none; color: white;"><a :href="'./account.html?id='+account.id" style="text-decoration: none;">See transactions</a>  </button>  -->
+           <!--    <button v-show="accounts.length < 3" type="button" class="btn  mb-2 w-75 align-self-center p-2" style=" background-color: black; text-decoration: none; " @click="createAccount">Create new account</button> -->
+              <div class="moremore_bt d-flex justify-content-center align-items-center w-100"><a :href="'./account.html?id='+account.id" class="w-50 p-2">See Transactions</a></div> 
+              <div  class="moremore_bt d-flex justify-content-center align-items-center w-100 "><a v-show="accounts.length < 3" :href="'./account.html?id='+account.id" class="w-50"><button v-show="accounts.length < 3" type="button" class="btn  mb-2 w-100  align-self-center p-1"  @click="createAccount">Create <br> new account</button></a></div> 
             </div>
           </div>          
         </div>
@@ -105,16 +106,18 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
             <div class="box_main" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
             -webkit-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
             -moz-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);" >              
-              <h3 class="accounting_text">Loan name: {{loan.name}}</h3>
-              <p class="lorem_text">Amount requested: 💲{{loan.amount}}</p>
-              <p class="lorem_text">Total payments: {{loan.payments}}</p>          
+              <h3 class="lorem_text fw-bold text-black">Loan name: <br>  {{loan.name}}</h3>
+              <h3 class="accounting_text">Amount requested: <br>  💲{{loan.amount.toFixed(2)}}</h3>
+              <p class="lorem_text text-black fw-bold">Total payments: <br>  {{loan.payments}}</p>          
             </div>
           </div> 
-           <div class="d-flex flex-column mt-4">
-           <a href="../web/cards.html" class="mb-4 align-self-center">
+           <div class="d-flex flex-column mt-4 justify-content-center align-items-center">
+          <!--  <a href="../web/cards.html" class="mb-4 align-self-center">
           <button type="button" class="btn btn-success">Go to cards</button>
-        </a>
-        </div>         
+          </a> -->
+          <div class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="../web/cards.html" class="w-50 p-2">Go to cards</a></div>
+        </div>       
+
         </div>
         </div> 
        
@@ -123,17 +126,17 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
     </div>
   
     <div class="footer_section layout_padding margin_top_90" style="min-height: 10vh;">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
-            <h4 class="about_text">About Financial</h4>
+      <div class="container d-flex justify-content-evenly">
+        <div class="row d-flex justify-content-evenly">
+          <div class="col-lg-3 col-sm-6 ">
+            <h4 class="about_text">About Us</h4>
             <div class="location_text"><img src="../img/map-icon.png"><span class="padding_left_15">Mar del Plata, Argentina</span></div>
             <div class="location_text"><img src="../img/call-icon.png"><span class="padding_left_15">+01 9876543210</span></div>
             <div class="location_text"><img src="../img/mail-icon.png"><span class="padding_left_15">cashflow@bank.com</span></div>
           </div>
-          <div class="col-lg-3 col-sm-6">
-            <h4 class="about_text">About Financial</h4>
-            <p class="dolor_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+          <div class="col-lg-3 col-sm-6 d-flex justify-content-center align-items-center">
+           
+            <p class="dolor_text ">Developed by <br> Micaela Gonzalez Pili</p> 
           </div>
           <div class="col-lg-3 col-sm-6">            
             <div class="footer_social_icon">

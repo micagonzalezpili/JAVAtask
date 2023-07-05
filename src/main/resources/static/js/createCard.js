@@ -47,7 +47,12 @@ axios.post('/api/clients/current/cards', 'color='+ this.color + '&type=' + this.
 })
 .catch(error => {
     console.log(error);
-    alert(error.response.data)
+    Swal.fire(
+      'Oops.. something went wrong.',
+      'You already have cards of the same type/color.',
+      'error'
+    )
+    
 })
 }
   
