@@ -4,6 +4,7 @@ import com.mindhub.App.Homebanking.models.Account;
 import com.mindhub.App.Homebanking.models.Client;
 import com.mindhub.App.Homebanking.repositories.AccountRepository;
 import com.mindhub.App.Homebanking.repositories.ClientRepository;
+import com.mindhub.App.Homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,8 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/api")
 public class ClientController {
     @Autowired
+    private ClientService clientService;
+    @Autowired
     private ClientRepository clientRepository;
 
     @Autowired
@@ -29,18 +32,12 @@ public class ClientController {
 
     @RequestMapping("/clients")
     public List<ClientDTO> getClientsDTO() {
-        return clientRepository
-                .findAll()
-                .stream()
-                .map(client -> new ClientDTO(client))
-                .collect(toList());
+        return clientService.getAllClientsDTO();
     }
 
     @RequestMapping("/clients/{id}")// VARIABLE DE RUTAAAAAAAA
     public ClientDTO getClientId(@PathVariable Long id) {
-        return new ClientDTO(clientRepository
-                .findById(id)
-                .orElse(null));
+        return clientService.getClientDTO(id);
     }
 
      @Autowired
@@ -64,12 +61,12 @@ public class ClientController {
          }
 
 
-      if (clientRepository.findByEmail(email) != null) {
+      if (clientService.findByEmail(email) != null) {
          return new ResponseEntity<>("Email already in use. Please try again.", HttpStatus.FORBIDDEN);
       }
 
-     Client client = clientRepository.save(new Client(first, lastName, email, passwordEncoder.encode(password)));
-
+     Client client = new Client(first, lastName, email, passwordEncoder.encode(password));
+     clientService.save(client);
      Account account = new Account(createAcc(), LocalDate.now(), 0.0, client);
      accountRepository.save(account);
      client.addAccount(account);
@@ -79,7 +76,7 @@ public class ClientController {
 
      @RequestMapping("/clients/current")
     public ClientDTO getCurrentClient(Authentication authentication){ // info del cliente autenticado
-        return new ClientDTO(clientRepository.findByEmail(authentication.getName()));
+        return new ClientDTO(clientService.findByEmail(authentication.getName()));
      }
 
      public String createAcc(){

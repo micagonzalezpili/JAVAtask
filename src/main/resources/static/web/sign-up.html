@@ -31,8 +31,10 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
 <body >
   <div id="app">
  <div class="header_section header_bg">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="logo"><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
+  <nav class="navbar border-bottom  navbar-expand-lg " style="background-color: #7773731e; box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+  -webkit-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);">
+        <div ><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -74,13 +76,14 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
         <div class="contact_section2">
           <div class="row justify-content-evenly">
             <div class="col-md-5 padding_left_0">
-              <div class="mail_section">     
+              <div class="mail_section w-75">     
                 <input type="text" class="mail_text_1" placeholder="First name" name="First" id="exampleInputName" v-model="name">          
                 <input type="text" class="mail_text_1" placeholder="Last name" name="Last" id="exampleInputLastName" v-model="lastName">
                 <input type="email" class="mail_text_1" placeholder="Email" name="Email" v-model="email">
                 <input type="password" class="mail_text_1" id="exampleInputPassword1" placeholder="Password" name="Password"  v-model="password">
-                <button type="submit" class="btn btn-danger mt-2 w-25 align-self-center" @click="signUp">Sign up</button>
-                <p class="pt-2">Already have an account? <a href="../web/sign-in.html" style="text-decoration: underline; color: #062247;">Login here!</a></p>
+                <a href="#" ><button @click="signUp"class="mt-2 btn btn-success  align-self-center">Sign Up</button></a>
+                <!-- <button type="submit" class="btn btn-danger mt-2 w-25 align-self-center" @click="signUp">Sign up</button> -->
+                <p class="pt-2 fw-bold d-flex justify-content-center">Already have an account? <a href="../web/sign-in.html" style="text-decoration: underline; color: #062247;">Login here!</a></p>
               </div>
               
             </div>
@@ -92,18 +95,18 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
       </div>
     </div>
     
-    <div class="footer_section layout_padding margin_top_90">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
-            <h4 class="about_text">About Financial</h4>
+    <div class="footer_section layout_padding margin_top_90" style="min-height: 10vh;">
+      <div class="container d-flex justify-content-evenly">
+        <div class="row d-flex justify-content-evenly">
+          <div class="col-lg-3 col-sm-6 ">
+            <h4 class="about_text">About Us</h4>
             <div class="location_text"><img src="../img/map-icon.png"><span class="padding_left_15">Mar del Plata, Argentina</span></div>
             <div class="location_text"><img src="../img/call-icon.png"><span class="padding_left_15">+01 9876543210</span></div>
             <div class="location_text"><img src="../img/mail-icon.png"><span class="padding_left_15">cashflow@bank.com</span></div>
           </div>
-          <div class="col-lg-3 col-sm-6">
-            <h4 class="about_text">About Financial</h4>
-            <p class="dolor_text">ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+          <div class="col-lg-3 col-sm-6 d-flex justify-content-center align-items-center">
+           
+            <p class="dolor_text fw-bold">Developed by <br> Micaela Gonzalez Pili</p> 
           </div>
           <div class="col-lg-3 col-sm-6">            
             <div class="footer_social_icon">
@@ -136,6 +139,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/sign-up.js"></script>
     
 </body>

@@ -1,4 +1,3 @@
-
 const { createApp } = Vue;
 
 const app = createApp({
@@ -48,6 +47,7 @@ const app = createApp({
        { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
         .then(response => {
           console.log("Transaction made!!!");
+          window.location.href= '/web/accounts.html'
         })
         .catch(
           error => {

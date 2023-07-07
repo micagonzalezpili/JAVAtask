@@ -7,6 +7,9 @@ import com.mindhub.App.Homebanking.models.enums.TransactionType;
 import com.mindhub.App.Homebanking.repositories.AccountRepository;
 import com.mindhub.App.Homebanking.repositories.ClientRepository;
 import com.mindhub.App.Homebanking.repositories.TransactionRepository;
+import com.mindhub.App.Homebanking.services.Implement.AccountServiceImplement;
+import com.mindhub.App.Homebanking.services.Implement.ClientServiceImplement;
+import com.mindhub.App.Homebanking.services.Implement.TransactionServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +27,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class TransactionController {
     @Autowired
+    private ClientServiceImplement clientServiceImplement;
+    @Autowired
+    private AccountServiceImplement accountServiceImplement;
+    @Autowired
+    private TransactionServiceImplement transactionServiceImplement;
+    @Autowired
     private TransactionRepository transactionRepository;
-
     @Autowired
     private AccountRepository accountRepository;
-
     @Autowired
     private ClientRepository clientRepository;
     @Transactional
@@ -37,9 +44,9 @@ public class TransactionController {
                                                     @RequestParam String originAcc, @RequestParam String destinAcc,
                                                     Authentication authentication){
 
-        Account account1 = accountRepository.findByNumber(originAcc);
-        Account account2 = accountRepository.findByNumber(destinAcc);
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Account account1 = accountServiceImplement.findByNumber(originAcc);
+        Account account2 = accountServiceImplement.findByNumber(destinAcc);
+        Client client = clientServiceImplement.findByEmail(authentication.getName());
 
         if(amount > account1.getBalance()){
             return new ResponseEntity<>("Cannot transfer more than the available amount.", HttpStatus.FORBIDDEN);
@@ -72,14 +79,14 @@ public class TransactionController {
         Transaction debitTransaction = new Transaction(TransactionType.DEBIT, - amount, description + " "+ originAcc, LocalDateTime.now(), account1);
         account1.addTransaction(debitTransaction);
         account1.setBalance(account1.getBalance() - amount);
-        transactionRepository.save(debitTransaction);
-        accountRepository.save(account1);
+        transactionServiceImplement.save(debitTransaction);
+        accountServiceImplement.save(account1);
 
         Transaction creditTransaction = new Transaction(TransactionType.CREDIT, amount, description + " " + destinAcc, LocalDateTime.now(), account2);
         account2.addTransaction(creditTransaction);
         account2.setBalance(account2.getBalance() + amount);
-        transactionRepository.save(creditTransaction);
-        accountRepository.save(account2);
+        transactionServiceImplement.save(creditTransaction);
+        accountServiceImplement.save(account2);
 
         return new ResponseEntity<>("The transaction was made successfully.", HttpStatus.CREATED);
 

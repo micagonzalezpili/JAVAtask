@@ -1,86 +1,80 @@
  <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+        
+        <title>Cards</title>
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="author" content=""> 
+        
+        <link rel="stylesheet" type="text/css" href="../style/style copy.css">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-
-<title>Cards</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content=""> 
-
-<link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
-
-<link rel="stylesheet" type="text/css" href="../style/style copy.css">
-<link rel="stylesheet" type="text/css" href="../style/cardStyle.css">
-
-<link rel="stylesheet" href="../style/responsive.css">
-
-<link rel="icon" href="/img/logo-removebg-preview.png" type="image/gif" />
-
-<link rel="stylesheet" href="../style/jquery.mCustomScrollbar.min.css">
-
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-
-<link rel="stylesheet" href="../style/owl.carousel.min.css">
-<link rel="stylesheet" href="../style/owl.theme.default.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-</head>
+        <link rel="stylesheet" href="../style/cardStyle.css">
+        
+        <link rel="stylesheet" href="../style/responsive.css">
+        
+        <link rel="stylesheet" href="../style/jquery.mCustomScrollbar.min.css">
+        
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="icon" href="/img/logo-removebg-preview.png" type="image/gif" />
+         <link rel="stylesheet" href="../style/owl.carousel.min.css">
+        <link rel="stylesheet" href="../style/owl.theme.default.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">  
+        
+        </head>
 <body  style="background-color: #06060615;">
   <div id="app">
-    <div class="header_section header_bg" style="min-height: 10vh;">
-        <nav class="navbar border-bottom  navbar-expand-lg " style="background-color: #7773731e;">
+    <div class="header_section header_bg">
+        <nav class="navbar navbar-expand-lg " style="background-color: #7773731e; box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+        -webkit-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+        -moz-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);">
           <div ><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse " id="navbarSupportedContent" >
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                 <a class="nav-link" href="../index.html">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link " href="../web/accounts.html" >Accounts</a>
+              <li v-show="loggedIn" class="nav-item">
+                <a class="nav-link " href="../web/accounts.html">Accounts</a>
+              </li>
+              <li v-show="loggedIn" class="nav-item">
+                <a class="nav-link" href="#">Cards</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" >Cards</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../web/transfers.html" >Transfers</a>
-              </li>
-              <div v-if="loggedOut">
-                 <li class="nav-item">
-                <a class="nav-link" href="../web/sign-in.html" >Login</a>
-              </li>  
-              </div>
-              
-              <div  v-if="loggedIn">
-              <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
-                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                <path d="M9 12h12l-3 -3" />
-                                <path d="M18 15l3 -3" />
-                              </svg> 
-                            </button> 
-              </div> 
-                         
+                <a class="nav-link" href="../web/transfers.html">Transfers</a>
+              </li> 
+              <div  v-if="loggedIn" style="background-color: #77737300;">
+                <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+                                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                                  stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                    <path d="M9 12h12l-3 -3" />
+                    <path d="M18 15l3 -3" />
+                    </svg> 
+                </button> 
+                </div>              
             </ul>
           </div>
         </nav>
+        
       </div>
  
     <div class="what_we_do_section layout_padding">
-        <h3 class="text-center mb-5 mt-2 text-black">¡Welcome {{data.firstName}}!</h3>
+        <h3 class="text-center mb-5 mt-2 what_taital text-black">¡Welcome {{data.firstName}}!</h3>
       <div class="container d-flex flex-column">
         <div v-if="debitCards" class="d-flex justify-content-center align-items-center flex-wrap flex-column mb-2 col-12 gap-3 p-2 rounded pb-3" >
             <h2 class="what_taital">DEBIT CARDS</h2>
@@ -123,7 +117,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                                 <div class="card" id="cardBodyDos">
                                     <div class="card-inner">
                                         <div class="card-front">
-                                            <div class="card-bg" style="background: linear-gradient(90deg, rgba(0,0,5,0.8799894957983193) 0%, rgba(41,41,46,0.8099614845938375) 35%, rgba(192,212,215,0.19371498599439774) 100%);"></div>
+                                            <div class="card-bg" style=" background: linear-gradient(90deg, rgba(0,0,5,0.8799894957983193) 0%, rgba(41,41,46,0.8099614845938375) 35%, rgba(192,212,215,0.19371498599439774) 100%);"></div>
                                             <div class="card-glow"></div>
                                             <svg width="72" height="24" viewBox="0 0 72 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg" class="logo">
@@ -184,7 +178,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                             </div>                   
                         </div>  
             </div>
-            <div class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="./create-cards.html" class="w-50 "><button v-if="creditCards.length < 3" type="button" class="btn w-100 align-self-center p-2">Create new card</button></a></div>
+            <div class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="./create-cards.html" class="w-100 "><button v-if="creditCards.length < 3" type="button" class="btn w-100 align-self-center p-2">Create new card</button></a></div>
                                 
         </div>
         <div v-if="creditCards" class="d-flex flex-column justify-content-center align-items-center flex-wrap mb-2 col-12 gap-3 p-2 rounded pb-3 text-center" >
@@ -290,7 +284,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
              </div>
             </div>
 
-            <div class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="./create-cards.html" class="w-50 "><button v-if="creditCards.length < 3" type="button" class="btn w-100 align-self-center p-2">Create new card</button></a></div>
+            <div class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="./create-cards.html" class="w-100 "><button v-if="creditCards.length < 3" type="button" class="btn w-100 align-self-center p-2">Create new card</button></a></div>
            
         </div>
         <div class="d-flex align-self-center">
@@ -314,7 +308,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
             </div>
             <div class="col-lg-3 col-sm-6 d-flex justify-content-center align-items-center">
              
-              <p class="dolor_text ">Developed by <br> Micaela Gonzalez Pili</p> 
+              <p class="dolor_text fw-bold">Developed by <br> Micaela Gonzalez Pili</p> 
             </div>
             <div class="col-lg-3 col-sm-6">            
               <div class="footer_social_icon">

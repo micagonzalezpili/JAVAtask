@@ -34,45 +34,45 @@
 </head>
 <body style="background-color: #06060615;">
   <div id="app">
-    <div class="header_section" style="min-height: 10vh;">
-      <div class="header_left">
-        <nav class="navbar navbar-expand-lg navbar-light ">
-          <div class="logo"><a href="#"><img src="../img/logo-removebg-preview.png"></a></div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="../index.html">Home</a>
-              </li>
-              <li  class="nav-item">
-                <a class="nav-link " href="../web/accounts.html">Accounts</a>
-              </li>
-              <li  class="nav-item">
-                <a class="nav-link" href="../web/cards.html">Cards</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../web/transfers.html">Transfers</a>
-              </li>        
-              <div  v-if="loggedOut" >
-                <button type="button" @click.prevent="logOut" class="bg-light pt-1 rounded">
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
-                                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
-                                  stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                  <path d="M9 12h12l-3 -3" />
-                                  <path d="M18 15l3 -3" />
-                                </svg> 
-                              </button> 
-              </div>     
-            </ul>
-          </div>
-        </nav>
-        
-      </div>
-     
+    <div class="header_section header_bg" style="min-height: 10vh;">
+      <nav class="navbar border-bottom  navbar-expand-lg " style="background-color: #7773731e; box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+      -webkit-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+      -moz-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);">
+        <div ><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent" >
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="#" >Accounts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../web/cards.html" >Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../web/transfers.html" >Transfers</a>
+            </li>
+            
+            <div  v-if="loggedOut">
+            <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+                              viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                              <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                              <path d="M9 12h12l-3 -3" />
+                              <path d="M18 15l3 -3" />
+                            </svg> 
+                          </button> 
+            </div> 
+                       
+          </ul>
+        </div>
+      </nav>
     </div>
         
         <div class="services_section layout_padding" style="min-height: 80vh;">
@@ -102,8 +102,23 @@
           <!-- <a href="../web/accounts.html" class="mb-4 align-self-center">
             <button type="button" class="btn btn-danger">Back to accounts</button>
           </a>  -->
-          <div class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="../web/accounts.html" class="w-50 p-2">Back to accounts</a></div>
+          <div class="moremore_bt d-flex justify-content-center align-items-center w-50 "><a href="../web/accounts.html" class="w-50 p-2 ">Back to accounts</a></div>
           </div>
+          <div class="container d-flex justify-content-evenly mt-4 d-none d-sm-flex">
+             <div class=" d-flex flex-wrap flex-column justify-content-evenly align-items-center ms-3 rounded w-25 cardAccount" style="background-color: rgba(65, 143, 117, 0.438);">
+            <h4 class="mt-1">Read more about our loans!</h4>
+            <img src="../img/img-1.png" alt="img" class="mb-1 w-75">            
+          </div>
+          <div class=" d-flex flex-column justify-content-evenly align-items-center  ms-3 rounded w-25 cardAccount" style="background-color: rgba(65, 143, 117, 0.438);">
+            <h4 class="mt-1">Download our app here </h4>
+             <img src="../img/img-5.png" alt="img" style="height: 20rem;" class="mb-2 p-1">         
+          </div>
+          <div class=" d-flex  flex-column justify-content-evenly align-items-center  ms-3 rounded w-25 cardAccount" style="background-color: rgba(65, 143, 117, 0.438);">
+            <h4 class="mt-1">Your money available<br> all around the world! </h4> 
+            <img src="../img/img-3.png" alt="img" class="mb-2 p-1">           
+          </div>
+          </div>
+         
         </div>
         
         <div class="footer_section layout_padding margin_top_90" style="min-height: 10vh;">
@@ -117,7 +132,7 @@
               </div>
               <div class="col-lg-3 col-sm-6 d-flex justify-content-center align-items-center">
                
-                <p class="dolor_text ">Developed by <br> Micaela Gonzalez Pili</p> 
+                <p class="dolor_text fw-bold ">Developed by <br> Micaela Gonzalez Pili</p> 
               </div>
               <div class="col-lg-3 col-sm-6">            
                 <div class="footer_social_icon">

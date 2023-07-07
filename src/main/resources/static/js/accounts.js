@@ -37,6 +37,7 @@ createAccount(){
   axios.post('/api/clients/current/accounts')
   .then(response => {
     console.log("account created!!!");
+    window.location.href = '/web/accounts.html';
   })
   .catch(error => {
     console.log(error)

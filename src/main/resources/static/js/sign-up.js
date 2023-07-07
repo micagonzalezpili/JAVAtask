@@ -47,9 +47,12 @@ const app = createApp({
                     this.createAccount();
                 })
                 .catch(function (error) {
-                    if (error.response) {          
-                      alert("Please, fill all the fields and make sure they are are correct.",error.response.status);          
-                    } else if (error.request) {
+                  if (error.response) {          
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Please, try again.',
+                      text: 'Make sure you filled all the fields.'
+                    }) } else if (error.request) {
                       // The request was made but no response was received
                       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                       // http.ClientRequest in node.js

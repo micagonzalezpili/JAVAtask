@@ -6,6 +6,8 @@ import com.mindhub.App.Homebanking.models.Client;
 import com.mindhub.App.Homebanking.models.Transaction;
 import com.mindhub.App.Homebanking.repositories.AccountRepository;
 import com.mindhub.App.Homebanking.repositories.ClientRepository;
+import com.mindhub.App.Homebanking.services.Implement.AccountServiceImplement;
+import com.mindhub.App.Homebanking.services.Implement.ClientServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,10 @@ import java.util.stream.Collectors;
 
 public class AccountController {
     @Autowired
+    private AccountServiceImplement accountServiceImplement;
+    @Autowired
+    private ClientServiceImplement clientServiceImplement;
+    @Autowired
     private AccountRepository accountRepository;
 
     @Autowired
@@ -31,17 +37,13 @@ public class AccountController {
 
     @RequestMapping("/accounts")
     public List<AccountDTO> getAccountsDTO(){
-      return accountRepository
-              .findAll()
-              .stream()
-              .map(account -> new AccountDTO(account))
-              .collect(Collectors.toList());
+      return accountServiceImplement.getAllAccountsDTO();
     }
 
     @RequestMapping("/accounts/{id}")
     public ResponseEntity<Object> getAccountById(@PathVariable Long id, Authentication authentication){
-        Account account = accountRepository.findById(id).orElse(null);
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Account account = accountServiceImplement.findById(id);
+        Client client = clientServiceImplement.findByEmail(authentication.getName());
         if(account == null){
             return new ResponseEntity<>("Account does not exist.", HttpStatus.FORBIDDEN);
         }
@@ -50,35 +52,28 @@ public class AccountController {
         }
         return new ResponseEntity<>(new AccountDTO(account), HttpStatus.ACCEPTED);
     }
-    /*public AccountDTO getAccountsId(@PathVariable Long id){ // ACOMODAR METODO
-    return new AccountDTO(accountRepository
-            .findById(id)
-            .orElse(null));
-    }*/
    @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
     public ResponseEntity<Object> createAccount(Authentication authentication) {
 
-     Client client = clientRepository.findByEmail(authentication.getName());
+     Client client = clientServiceImplement.findByEmail(authentication.getName());
      String randomNumber;
 
      do{
          Random random = new Random();
          randomNumber = String.format("VIN-%06d", random.nextInt(999999));
 
-     }while(accountRepository.findByNumber(randomNumber) != null);
+     }while(accountServiceImplement.findByNumber(randomNumber) != null);
 
      if (client.getAccounts().size() >= 3) {
           return new ResponseEntity<>("The client can´t have more than 3 accounts.", HttpStatus.FORBIDDEN);
       }else {
          Account account = new Account(randomNumber, LocalDate.now(), 0.0, client);
          client.addAccount(account);
-         accountRepository.save(account);
+         accountServiceImplement.save(account);
 
          return new ResponseEntity<>(HttpStatus.CREATED);
      }
 
     }
-
-
 
 }

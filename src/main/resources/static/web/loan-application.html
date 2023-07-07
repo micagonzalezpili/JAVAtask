@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
-<title>Transfers</title>
+<title>Loan Application</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content=""> 
@@ -51,9 +51,9 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
               <a class="nav-link" href="../web/cards.html">Cards</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Transfers</a>
+              <a class="nav-link" href="../web/transfers.html">Transfers</a>
             </li> 
-            <div  v-if="loggedIn" class="ms-2" style="background-color: #77737300;">
+            <div  v-if="loggedIn" style="background-color: #77737300;">
               <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
@@ -73,51 +73,40 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
  
     <div class="contact_section layout_padding">
       <div class="container-fluid">
-        <h1 class="what_taital">Make a new transfer</h1>
+        <h1 class="what_taital">Apply for loans</h1>
         
         <div class="contact_section2 ">
           <div class="row justify-content-evenly">
             <div class="col-md-5 padding_left_0">
              <form action="" @submit.prevent="confirmOperation" style="border: 3px solid black; border-radius: 10px;" class="p-3">
-              <div class="d-flex justify-content-center gap-2">
-                <label for="" class="me-4 fw-bold">From:</label>
-                <select class="form-select w-50" aria-label="Default select example" v-model="accountSelected">
-                  <!-- <option disabled value="">Choose an account</option>      -->          
-                  <option :value="account" v-for="account of arrayAccounts">{{ account}}</option>            
-                </select>
-                <!-- <h6 v-if="accountSelected" class="mt-2">Amount available: $ {{selectedAccountBalance}}</h6> -->
-              </div>    
-                <div class="d-flex mt-3 justify-content-center gap-2">
-                  <label for="" class="me-4 fw-bold">Destin:</label>
-                  <label for="own">Own account</label>
-                  <input type="radio" name="acc" id="own" > 
-                  <label for="other">Others account</label>
-                  <input type="radio" name="acc" id="other" >
-                  </div>        
-                  <div class="d-flex flex-column w-100 justify-content-center align-items-center mt-3"> 
-                    <label for="otherAcc" class="fw-bold mb-2">Account number:</label> 
-                    <input type="text" name="otherAcc" id="otherAcc" v-model="accChosen">
-                  </div>  
-                <!-- <div v-if="own" class="d-flex flex-column w-100 justify-content-center align-items-center mt-2"> 
-                  <select class="form-select w-50" aria-label="Default select example" >
-                    <option disabled value="">Choose an account</option>
-                    <option :value="account.id" v-for="account of accounts">{{account.number}}</option>                          
-                  </select>                   
-                </div>
-                <div v-else-if="other" class="d-flex flex-column w-100 justify-content-center align-items-center mt-3"> 
-                  <label for="otherAcc">Account number:</label> 
-                  <input type="text" name="otherAcc" id="otherAcc" v-model="">
-                </div> -->
+                    {{loanSelected}} {{selectedPayment}} {{amount}} {{destinAcc}} 
+                <div class="d-flex flex-column justify-content-center align-items-center gap-2 mt-3">
+                    <label for="" class="me-4 fw-bold">Type of loan:</label>
+                    <select class="form-select w-50" aria-label="Default select example" v-model="loanSelected">
+                      <option disabled value="">Choose one</option>
+                      <option :value="loan" v-for="loan in loans">{{ loan.name }}</option>
+                    </select>
+                    <p>{{ getMaxAmount }}</p>
+                  </div>
+                  
+                  <div class="d-flex flex-column justify-content-center align-items-center gap-2 mt-3">
+                    <label for="" class="me-4 fw-bold">Payments:</label>
+                    <select class="form-select w-50" aria-label="Default select example" v-model="selectedPayment">
+                      <option disabled value="">Choose one</option>
+                      <option v-for="payment in getSelectedLoanPayments()" :value="payment">{{ payment }}</option>
+                    </select>
+                  </div>
+                        
                 <div class="d-flex flex-column col-12 justify-content-center align-items-center mt-2"> 
                     <label for="amount " class="fw-bold mb-2">Amount:</label> 
                     <input type="number" name="amount" id="amount" v-model="amount">
                 </div>
-                <div class="d-flex flex-column col-12 justify-content-center align-items-center mt-3"> 
-                    <label for="description" class="fw-bold mb-2">Description:</label> 
-                    <input type="text" name="description" id="description" v-model="description">
+
+                <div class="d-flex flex-column w-100 justify-content-center align-items-center mt-3"> 
+                    <label for="otherAcc" class="fw-bold mb-2">Account of destin:</label> 
+                    <input type="text" name="otherAcc" id="otherAcc" v-model="destinAcc" >
                     <div class="moremore_bt d-flex justify-content-center align-items-center w-50"><a href="../web/accounts.html" class="w-50 "><button class="btn"  @click="confirmOperation"> Send </button></a></div>
-                </div>
-               
+                  </div>   
                 
              </form>
               
@@ -160,22 +149,22 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
  
   </div>
 
-    <script src="../js/jquery.min.js"></script>
+   <!--  <script src="../js/jquery.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/jquery-3.0.0.min.js"></script>
     <script src="../js/plugin.js"></script>  
-    <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
-    <script src="../js/owl.carousel.js"></script>
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> 
+    <!-- <script src="../js/owl.carousel.js"></script> -->
+<!--     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>  
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>  
-    <script src="../js/transfers.js"></script>
+    <script src="../js/loan-application.js"></script>
    
     
 </body>

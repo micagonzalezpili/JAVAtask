@@ -25,33 +25,16 @@ methods: {
       .then(response => {        
          this.loggedIn = true;
          this.loggedOut = false;
-      /*    Swal.fire({
-          title: 'Error!',
-          text: 'Do you want to continue',
-          icon: 'error',
-          confirmButtonText: 'Cool'
-        })
-         const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })        
-        Toast.fire({
-          icon: 'success',
-          title: 'Signed in successfully'
-        }) */
         window.location.href = '/web/accounts.html';
        
       })
       .catch(function (error) {
-        if (error.response) {          
-          alert("Please, fill all the fields and make sure your email and password are correct.",error.response.status);          
+         if (error.response) {          
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Make sure your email and password are correct.'
+          })       
         } else if (error.request) {
           // The request was made but no response was received
           // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

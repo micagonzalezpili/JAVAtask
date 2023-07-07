@@ -8,6 +8,8 @@ import com.mindhub.App.Homebanking.models.enums.CardColor;
 import com.mindhub.App.Homebanking.models.enums.CardType;
 import com.mindhub.App.Homebanking.repositories.CardRepository;
 import com.mindhub.App.Homebanking.repositories.ClientRepository;
+import com.mindhub.App.Homebanking.services.Implement.CardServiceImplement;
+import com.mindhub.App.Homebanking.services.Implement.ClientServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class CardController {
     @Autowired
+    private CardServiceImplement cardServiceImplement;
+    @Autowired
+    private ClientServiceImplement clientServiceImplement;
+    @Autowired
     private CardRepository cardRepository;
-
     @Autowired
     private ClientRepository clientRepository;
 
@@ -40,7 +45,7 @@ public class CardController {
             return new ResponseEntity<>("Card type is blank. Please try again.", HttpStatus.FORBIDDEN);
         }
 
-        Client currentClient = clientRepository.findByEmail(authentication.getName());
+        Client currentClient = clientServiceImplement.findByEmail(authentication.getName());
         String cardhold = currentClient.getFirstName() + " " + currentClient.getLastName();
 
 
@@ -54,7 +59,7 @@ public class CardController {
        }else{
             Card card = new Card(currentClient,cardNumber(), createCVV(),LocalDate.now().plusYears(5),LocalDate.now(), type, color);
             currentClient.addCard(card);
-            cardRepository.save(card);
+            cardServiceImplement.save(card);
 
             return new ResponseEntity<>( HttpStatus.CREATED);
         }
@@ -74,7 +79,7 @@ public class CardController {
             randomNumber3 = String.format("%04d", random.nextInt(9999));
             randomNumber4 = String.format("%04d", random.nextInt(9999));
             number = randomNumber1 + " " + randomNumber2  + " "  + randomNumber3 + " "  + randomNumber4;
-        }while(cardRepository.findByNumber(number) != null);
+        }while(cardServiceImplement.findByNumber(number) != null);
         return number;
     }
 
@@ -83,19 +88,5 @@ public class CardController {
         short cvv = (short) random.nextInt(1000);
         return cvv;
     }
-
-   /* public short createCVV() {
-        short cvv;
-        boolean cvvExists;
-
-        do {
-            Random random = new Random();
-            cvv = (short) random.nextInt(1000); // Genera nro random entre 0 y 999
-            String cvvAsString = String.format("%03d", cvv); //  cadena de tres dígitos
-            cvvExists = cardRepository.findByNumber(cvvAsString) != null; // me fijo si el cvv ya existe
-        } while (cvvExists);
-
-        return cvv;
-    }*/
 
 }
