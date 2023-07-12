@@ -30,12 +30,6 @@ public class LoanController {
     @Autowired
     private LoanServiceImplement loanServiceImplement;
     @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private LoanRepository loanRepository;
-    @Autowired
     private TransactionRepository transactionRepository;
     @Autowired
     private ClientLoanRepository clientLoanRepository;

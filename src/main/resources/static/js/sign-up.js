@@ -51,7 +51,7 @@ const app = createApp({
                     Swal.fire({
                       icon: 'error',
                       title: 'Please, try again.',
-                      text: 'Make sure you filled all the fields.'
+                      text: 'Make sure you filled all the fields correctly.'
                     }) } else if (error.request) {
                       // The request was made but no response was received
                       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

@@ -32,12 +32,7 @@ public class TransactionController {
     private AccountServiceImplement accountServiceImplement;
     @Autowired
     private TransactionServiceImplement transactionServiceImplement;
-    @Autowired
-    private TransactionRepository transactionRepository;
-    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private ClientRepository clientRepository;
+
     @Transactional
     @PostMapping("/transactions")
     public ResponseEntity<Object> createTransaction(@RequestParam double amount, @RequestParam String description,

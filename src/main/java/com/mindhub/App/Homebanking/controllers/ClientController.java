@@ -4,7 +4,9 @@ import com.mindhub.App.Homebanking.models.Account;
 import com.mindhub.App.Homebanking.models.Client;
 import com.mindhub.App.Homebanking.repositories.AccountRepository;
 import com.mindhub.App.Homebanking.repositories.ClientRepository;
+import com.mindhub.App.Homebanking.services.AccountService;
 import com.mindhub.App.Homebanking.services.ClientService;
+import com.mindhub.App.Homebanking.services.Implement.AccountServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +27,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
     @Autowired
-    private ClientRepository clientRepository;
-
-    @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     @RequestMapping("/clients")
     public List<ClientDTO> getClientsDTO() {
@@ -68,7 +67,7 @@ public class ClientController {
      Client client = new Client(first, lastName, email, passwordEncoder.encode(password));
      clientService.save(client);
      Account account = new Account(createAcc(), LocalDate.now(), 0.0, client);
-     accountRepository.save(account);
+     accountService.save(account);
      client.addAccount(account);
 
      return new ResponseEntity<>( HttpStatus.CREATED);
@@ -85,7 +84,7 @@ public class ClientController {
              Random random = new Random();
              randomNumber = String.format("VIN-%06d", random.nextInt(999999));
 
-         }while(accountRepository.findByNumber(randomNumber) != null);
+         }while(accountService.findByNumber(randomNumber) != null);
 
          return randomNumber;
 

@@ -22,12 +22,12 @@ public class AppHomebankingApplication {
 		SpringApplication.run(AppHomebankingApplication.class, args);
 
 	}
-	@Autowired
+	/*@Autowired
 	private PasswordEncoder passwordEncoder;
 	@Bean // cada vez q se crea la app
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository){ // declaro la var
 		return (args -> {
-			Client melba = new Client("Melba", "Morel","melba@mindhub.com", passwordEncoder.encode("melba123"));
+			Client melba = new Client("Melba", "Morel","melba@mindhub.com", passwordEncoder.encode("melba456"));
 			Client client2 = new Client("Micaela", "Gonzalez Pili","micagpili@gmail.com", passwordEncoder.encode("micapili" ));
 			Client admin = new Client("Admin", "Admin", "admin@gmail.com", passwordEncoder.encode("admin123"));
 
@@ -136,6 +136,6 @@ public class AppHomebankingApplication {
 
 		});
 
-	}
+	}*/
 
 }

@@ -17,6 +17,13 @@ const app = createApp({
     this.loadData();      
 },
 methods: {
+  precioFormat(number){
+    USDollar = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+  });
+  return USDollar.format(number)
+}, 
 loadData(){
 axios.get('http://localhost:8080/api/clients/current')
          .then(response => {

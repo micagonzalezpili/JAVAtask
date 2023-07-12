@@ -8,6 +8,8 @@ import com.mindhub.App.Homebanking.models.enums.CardColor;
 import com.mindhub.App.Homebanking.models.enums.CardType;
 import com.mindhub.App.Homebanking.repositories.CardRepository;
 import com.mindhub.App.Homebanking.repositories.ClientRepository;
+import com.mindhub.App.Homebanking.services.CardService;
+import com.mindhub.App.Homebanking.services.ClientService;
 import com.mindhub.App.Homebanking.services.Implement.CardServiceImplement;
 import com.mindhub.App.Homebanking.services.Implement.ClientServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class CardController {
     @Autowired
-    private CardServiceImplement cardServiceImplement;
+    private CardService cardServiceImplement;
     @Autowired
-    private ClientServiceImplement clientServiceImplement;
+    private ClientService clientServiceImplement;
     @Autowired
     private CardRepository cardRepository;
     @Autowired
