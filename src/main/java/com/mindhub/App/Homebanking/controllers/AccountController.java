@@ -25,19 +25,18 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-
 public class AccountController {
     @Autowired
     private AccountService accountServiceImplement;
     @Autowired
     private ClientService clientServiceImplement;
 
-    @RequestMapping("/accounts")
+    @GetMapping("/accounts")
     public List<AccountDTO> getAccountsDTO(){
       return accountServiceImplement.getAllAccountsDTO();
     }
 
-    @RequestMapping("/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public ResponseEntity<Object> getAccountById(@PathVariable Long id, Authentication authentication){
         Account account = accountServiceImplement.findById(id);
         Client client = clientServiceImplement.findByEmail(authentication.getName());
@@ -49,7 +48,7 @@ public class AccountController {
         }
         return new ResponseEntity<>(new AccountDTO(account), HttpStatus.ACCEPTED);
     }
-   @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
+    @PostMapping(path = "/clients/current/accounts")
     public ResponseEntity<Object> createAccount(Authentication authentication) {
 
      Client client = clientServiceImplement.findByEmail(authentication.getName());

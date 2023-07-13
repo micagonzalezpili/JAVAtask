@@ -29,12 +29,12 @@ public class ClientController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping("/clients")
+    @GetMapping("/clients")
     public List<ClientDTO> getClientsDTO() {
         return clientService.getAllClientsDTO();
     }
 
-    @RequestMapping("/clients/{id}")// VARIABLE DE RUTAAAAAAAA
+    @GetMapping("/clients/{id}")// VARIABLE DE RUTAAAAAAAA
     public ClientDTO getClientId(@PathVariable Long id) {
         return clientService.getClientDTO(id);
     }
@@ -42,7 +42,7 @@ public class ClientController {
      @Autowired
      private PasswordEncoder passwordEncoder;
 
-     @RequestMapping(path = "/clients", method = RequestMethod.POST)
+     @PostMapping("/clients")
      public ResponseEntity<Object> register(@RequestParam String first, @RequestParam String lastName,
           @RequestParam String email, @RequestParam String password) {
 
@@ -73,7 +73,7 @@ public class ClientController {
      return new ResponseEntity<>( HttpStatus.CREATED);
      }
 
-     @RequestMapping("/clients/current")
+     @GetMapping("/clients/current")
     public ClientDTO getCurrentClient(Authentication authentication){ // info del cliente autenticado
         return new ClientDTO(clientService.findByEmail(authentication.getName()));
      }
@@ -89,6 +89,4 @@ public class ClientController {
          return randomNumber;
 
      }
-
-
 }

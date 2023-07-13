@@ -77,7 +77,7 @@ public class LoanController {
         return new ResponseEntity<>("The loan has been created successfully.", HttpStatus.CREATED);
     }
 
-    @RequestMapping("/loans")
+    @GetMapping("/loans")
     public List<LoanDTO> getLoans(){
     return loanServiceImplement.getAllLoansDTO();
     }
