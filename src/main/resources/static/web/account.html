@@ -18,18 +18,18 @@
 
 <link rel="stylesheet" type="text/css" href="../style/style copy.css">
 
-<link rel="stylesheet" href="../style/responsive.css">
+<!-- <link rel="stylesheet" href="../style/responsive.css"> -->
+<link rel="shortcut icon" href="../img/logo-removebg-preview.png" type="image/x-icon">
+<!-- <link rel="icon" href="images/fevicon.png" type="image/gif" />
 
-<link rel="icon" href="images/fevicon.png" type="image/gif" />
+<link rel="stylesheet" href="../style/jquery.mCustomScrollbar.min.css"> -->
 
-<link rel="stylesheet" href="../style/jquery.mCustomScrollbar.min.css">
-
-<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-<link rel="stylesheet" href="../style/owl.carousel.min.css">
-<link rel="stylesheet" href="../style/owl.theme.default.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+<!-- <link rel="stylesheet" href="../style/owl.carousel.min.css">
+<link rel="stylesheet" href="../style/owl.theme.default.min.css"> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen"> -->
 
 </head>
 <body style="background-color: #06060615;">
@@ -57,7 +57,7 @@
               <a class="nav-link" href="../web/transfers.html" >Transfers</a>
             </li>
             
-            <div  v-if="loggedOut">
+            <div class="ms-3" v-if="loggedOut">
             <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
                               viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
@@ -78,11 +78,21 @@
         <div class="services_section layout_padding col-12" style="min-height: 80vh;">
           <div class="d-flex flex-wrap">
              <h5 class="what_taital">Your transactions</h5>
-             <div class="container d-flex flex-column col-8 justify-content-center align-items-center table-responsive ">
-             
+             <div class="container d-flex flex-wrap col-8 justify-content-center align-items-center table-responsive ">
+             <div class="d-flex flex-column p-3 me-5 mb-3 rounded-start" style="background-color: rgba(93, 163, 163, 0.473);">
+              <h6 class="fw-bold">Search transactions by date</h6>
+              <label for="startDate" class="align-self-center fw-bold">Start date:</label>
+              <input type="date" v-model="startDate">
+
+              <label for="endDate" class="align-self-center fw-bold mt-1">End date:</label>
+              <input type="date" v-model="endDate">
+
+              <button @click="filtrarTransacciones" class="btn btn-light col-5 align-self-center mt-2">Filter</button>
+              <!-- <button @click="descargarPdf">Download PDF</button> -->
+                  </div>
               <table class="w-50 table table-info table-striped table-hover col-sm-3 " >
               <thead>            
-                <th class="text-center table-bordered border border-black p-2" colspan="5">Account: {{data.number}}<br> Created: {{data.creationDate}} <br> Balance: {{ precioFormat(data.balance.toFixed(2)) }} </th>   
+                <th class="text-center table-bordered border border-black p-2" colspan="6">Account: {{data.number}}<br> Created: {{data.creationDate}} <br> Balance: {{ precioFormat(data.balance.toFixed(2)) }} </th>   
                
                   <tr class=" border border-black">
                     <th class=" border border-black"scope="col" >Type </th>                       
@@ -90,24 +100,32 @@
                     <th scope="col" class=" border border-black p-1" >Time</th>
                     <th scope="col" class=" border border-black p-1" >Description</th>
                     <th scope="col" class=" border border-black p-1">Amount</th>
+                    <th scope="col" class="border border-black p-1">Current Balance</th> 
                 </tr> 
               </thead>
               <tbody >
-                <tr v-for="transaction of transactions" class="border border-black">              
-                  <td class="border border-black p-1" :class="{'text-danger': transaction.type === 'DEBIT', 'text-success': transaction.type === 'CREDIT'}">{{ transaction.type }}</td>
-                  <td class="border border-black p-1">{{ transaction.date }}</td>
-                  <td class="border border-black p-1">{{ transaction.time }}</td>
-                  <td class="border border-black p-1">{{ transaction.description }}</td>
-                  <td class="border border-black p-1" :class="{'text-danger': transaction.amount < 0, 'text-success': transaction.amount > 0}">{{ precioFormat(transaction.amount.toFixed(2)) }}</td>
-              </tr>
-              
-                  <!-- <tr v-else="!transactions"><td colspan="5" class="text-center">Your account don't have transactions yet. </td></tr> -->
-              </tbody>          
+                <template v-if="activeTransactions && activeTransactions.length > 0">
+                  <tr v-for="transaction of activeTransactions" class="border border-black">
+                    <td class="border border-black p-1" :class="{'text-danger': transaction.type === 'DEBIT', 'text-success': transaction.type === 'CREDIT'}">{{ transaction.type }}</td>
+                    <td class="border border-black p-1">{{ transaction.date }}</td>
+                    <td class="border border-black p-1">{{ transaction.time }}</td>
+                    <td class="border border-black p-1">{{ transaction.description }}</td>
+                    <td class="border border-black p-1" :class="{'text-danger': transaction.amount < 0, 'text-success': transaction.amount > 0}">{{ precioFormat(transaction.amount.toFixed(2)) }}</td>
+                    <td class="border border-black p-1">{{ precioFormat(transaction.balance) }}</td>
+                  </tr>
+                </template>
+                <template v-else>
+                  <tr>
+                    <td colspan="6" class="text-center border border-black p-1 fw-bold">Your account doesn't have any transactions yet.</td>
+                  </tr>
+                </template>
+              </tbody> 
+               
           </table>   
           <!-- <a href="../web/accounts.html" class="mb-4 align-self-center">
             <button type="button" class="btn btn-danger">Back to accounts</button>
           </a>  -->
-          <div class="moremore_bt d-flex justify-content-center align-items-center w-75 "><a href="../web/accounts.html" class="w-50 p-2 ">Back to accounts</a></div>
+          <div class="moremore_bt d-flex justify-content-center align-items-center w-75 "><a href="../web/accounts.html" class="w-50 p-2 " style="text-decoration: none;">Back to accounts</a></div>
 
             </div>
           <div class="container d-flex flex-column justify-content-center align-items-center mt-4 d-none d-sm-flex col-4 gap-3">
@@ -117,7 +135,7 @@
           </div>
           <div class=" d-flex col-6 flex-wrap justify-content-evenly align-items-center ms-3 rounded  cardAccount" style="background-color: rgba(65, 143, 117, 0.438);">
             <h4 class="mt-1">Download our app here </h4>
-             <img src="../img/img-5.png" alt="img" style="height: 20rem;" class="mb-2 p-1">         
+             <img src="../img/img-5.png" alt="img" style="height: 20rem;" class="mb-2 p-1 object-fit-cover border rounded">         
           </div>
           <div class="d-flex col-6 flex-wrap justify-content-evenly align-items-center ms-3 rounded  cardAccount" style="background-color: rgba(65, 143, 117, 0.438);">
             <h4 class="mt-1">Your money available<br> all around the world! </h4> 
@@ -171,8 +189,9 @@
   <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>  
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="sweetalert2.all.min.js"></script> 
+
   <script src="../js/account.js"></script>
 </body>
 </html> 

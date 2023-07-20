@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface LoanService {
     Loan findByName(String name);
+    Loan findById(Long id);
     List<LoanDTO> getAllLoansDTO();
+    void save(Loan loan);
 }

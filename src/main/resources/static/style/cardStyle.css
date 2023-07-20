@@ -228,6 +228,9 @@
   right: 25px;
   top: 30px;
 }
+.cardsExpired{
+  border: 10px solid red;
+}
 
 /* .hint {
   padding: 2em 0;

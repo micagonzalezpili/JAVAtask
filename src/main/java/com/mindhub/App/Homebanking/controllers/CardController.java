@@ -1,26 +1,26 @@
 package com.mindhub.App.Homebanking.controllers;
 
+import com.mindhub.App.Homebanking.dtos.CardDTO;
 import com.mindhub.App.Homebanking.dtos.ClientDTO;
-import com.mindhub.App.Homebanking.models.Account;
 import com.mindhub.App.Homebanking.models.Card;
 import com.mindhub.App.Homebanking.models.Client;
 import com.mindhub.App.Homebanking.models.enums.CardColor;
 import com.mindhub.App.Homebanking.models.enums.CardType;
-import com.mindhub.App.Homebanking.repositories.CardRepository;
-import com.mindhub.App.Homebanking.repositories.ClientRepository;
 import com.mindhub.App.Homebanking.services.CardService;
 import com.mindhub.App.Homebanking.services.ClientService;
-import com.mindhub.App.Homebanking.services.Implement.CardServiceImplement;
-import com.mindhub.App.Homebanking.services.Implement.ClientServiceImplement;
+import com.mindhub.App.Homebanking.utilities.CardUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.mindhub.App.Homebanking.utilities.CardUtils.getCVV;
 
 @RestController
 @RequestMapping("/api")
@@ -29,6 +29,12 @@ public class CardController {
     private CardService cardServiceImplement;
     @Autowired
     private ClientService clientServiceImplement;
+
+   @GetMapping("/cards/{id}")// VARIABLE DE RUTAAAAAAAA
+    public CardDTO  getCardById(@PathVariable Long id) {
+        return new CardDTO(cardServiceImplement.getCard(id));
+    }
+
 
     @PostMapping(path = "/clients/current/cards")
     public ResponseEntity<Object> createCard(@RequestParam CardColor color, @RequestParam CardType type, Authentication authentication)  {
@@ -43,16 +49,17 @@ public class CardController {
         Client currentClient = clientServiceImplement.findByEmail(authentication.getName());
         String cardhold = currentClient.getFirstName() + " " + currentClient.getLastName();
 
-
+        //if(currentClient.getCards().stream().filter(card -> card.getActiveCard() == true).count() >=3)
         if(!currentClient.getCards()
                 .stream()
-                .filter(card -> card.getType() == type )
-                .filter(card -> card.getColor() == color)
+                .filter(card -> card.getType() == type && card.getActiveCard() == true )
+                .filter(card -> card.getColor() == color && card.getActiveCard() == true)
                 .collect(Collectors.toList())
                 .isEmpty()){
            return new ResponseEntity<>("Client has already card of the same type and same color.", HttpStatus.FORBIDDEN);
        }else{
-            Card card = new Card(currentClient,cardNumber(), createCVV(),LocalDate.now().plusYears(5),LocalDate.now(), type, color);
+
+            Card card = new Card(currentClient, CardUtils.getCardNumber(cardServiceImplement), getCVV(),LocalDate.now().plusYears(5),LocalDate.now(), type, color, true);
             currentClient.addCard(card);
             cardServiceImplement.save(card);
 
@@ -61,27 +68,23 @@ public class CardController {
 
     }
 
-    private String cardNumber(){
-        String randomNumber1;
-        String randomNumber2;
-        String randomNumber3;
-        String randomNumber4;
-        String number;
-        do{
-            Random random = new Random();
-            randomNumber1 = String.format("%04d", random.nextInt(9999));
-            randomNumber2 = String.format("%04d", random.nextInt(9999));
-            randomNumber3 = String.format("%04d", random.nextInt(9999));
-            randomNumber4 = String.format("%04d", random.nextInt(9999));
-            number = randomNumber1 + " " + randomNumber2  + " "  + randomNumber3 + " "  + randomNumber4;
-        }while(cardServiceImplement.findByNumber(number) != null);
-        return number;
+    @PatchMapping("/clients/current/cards/{id}")
+    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication) { //VERRR
+        Client client = clientServiceImplement.findByEmail(authentication.getName());
+        Set<Card> clientCards = client.getCards();
+        Card card = cardServiceImplement.getCard(id);
+
+        if (!clientCards.contains(card)) {
+            return new ResponseEntity<>("The card does not belong to the authenticated client.", HttpStatus.FORBIDDEN);
+        }
+
+        if(card.getActiveCard()){ // VERIFICO SI EL ACTIVE ESTA EN TRUE Y LO PASO A FALSE
+            card.setActiveCard(false);
+            cardServiceImplement.save(card);
+        }
+
+        return new ResponseEntity<>("Your card has been deleted successfully in the view.", HttpStatus.ACCEPTED);
     }
 
-    public short createCVV() {
-        Random random = new Random();
-        short cvv = (short) random.nextInt(1000);
-        return cvv;
-    }
 
 }

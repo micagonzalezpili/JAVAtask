@@ -9,7 +9,8 @@ public class TransactionDTO {
     private double amount;
     private String description;
     private LocalDateTime date;
-
+    private Boolean isActive;
+    private double balance;
     public TransactionDTO(){};
     public TransactionDTO(Transaction transaction){
         this.type = transaction.getType();
@@ -17,6 +18,8 @@ public class TransactionDTO {
         this.description = transaction.getDescription();
         this.date = transaction.getDate();
         this.id = transaction.getId();
+        this.isActive = transaction.getActive();
+        this.balance = transaction.getBalance();
     }
 
     public Long getId() {
@@ -36,5 +39,12 @@ public class TransactionDTO {
     }
     public void setAccount(AccountDTO accountDTO){
 
+    }
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 }

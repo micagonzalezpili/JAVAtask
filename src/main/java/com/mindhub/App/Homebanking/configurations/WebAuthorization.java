@@ -8,9 +8,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 
 @EnableWebSecurity
 @Configuration
@@ -31,6 +36,7 @@ public class WebAuthorization {
                         "/api/clients").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/logout").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/payments").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/transactions").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST, "/api/loans").hasAuthority("CLIENT")
                 .antMatchers("/api/accounts/**",
@@ -39,16 +45,21 @@ public class WebAuthorization {
                         "/api/loans").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST,"/api/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST,"/api/clients/current/cards").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.POST,"/api/loans/payment").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/**").hasAuthority("CLIENT")
+                .antMatchers(HttpMethod.PATCH, "/clients/current/accounts").hasAuthority("CLIENT")
                 .antMatchers("/web/accounts.html",
                         "/web/account.html",
                         "/web/cards.html",
                         "/web/create-cards.html",
                         "/web/transfers.html",
-                        "/web/loan-application.html").hasAnyAuthority("CLIENT", "ADMIN")
+                        "/web/loan-application.html", "/api/cards/{id}").hasAnyAuthority("CLIENT", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/admin/loans").hasAuthority("ADMIN")
                 .antMatchers("/rest/**",
                         "/web/**",
-                        "/h2-console/**").hasAuthority("ADMIN")
-                .anyRequest().denyAll();
+                        "/h2-console/**",
+                        "/api/loans").permitAll() // cambiar a ADMIN
+                .anyRequest().permitAll();
 
         http.formLogin()
                 .usernameParameter("email")
@@ -56,6 +67,8 @@ public class WebAuthorization {
                 .loginPage("/api/login");
 
         http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
+
+        http.cors();
 
         http.csrf().disable(); // las csrf mandan solicitudes como si fueran el usuario autenticado
 
@@ -82,5 +95,20 @@ public class WebAuthorization {
             session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
         }
     }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOriginPatterns(Arrays.asList("*")); // Use allowedOriginPatterns instead of allowedOrigins
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true); // Set this to true if you want to allow credentials (cookies, authorization headers, etc.)
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
+
 }
 

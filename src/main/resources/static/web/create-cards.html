@@ -34,41 +34,42 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
 </head>
 <body style="background-color: #06060615;">
   <div id="app">
-    <div class="header_section header_bg " style="min-height: 10vh;">
-        <nav class="navbar navbar-expand-lg w-100 "style="background-color: #7773731e;">
+    <div class="header_section header_bg" style="min-height: 10vh;">
+        <nav class="navbar border-bottom  navbar-expand-lg " style="background-color: #7773731e; box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+        -webkit-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);
+        -moz-box-shadow: -2px 9px 5px 0px rgba(0,0,0,0.25);">
           <div ><a href="#"><img src="../img/logo-removebg-preview.png" style="width: 15rem;"></a></div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse " id="navbarSupportedContent" >
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                 <a class="nav-link" href="../index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="../web/accounts.html">Accounts</a>
+                <a class="nav-link " href="../web/accounts.html" >Accounts</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../web/cards.html">Cards</a>
+                <a class="nav-link" href="../web/cards.html" >Cards</a>
               </li>
-              <div v-if="loggedOut">
-                <li class="nav-item">
-                <a class="nav-link" href="../web/sign-in.html">Login</a>
-              </li> 
-              </div>
-               
-              <div  v-if="loggedIn">
-                <button type="button" @click.prevent="logOut" class="bg-light pt-1 rounded">
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
-                                  viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
-                                  stroke-linejoin="round">
-                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                  <path d="M9 12h12l-3 -3" />
-                                  <path d="M18 15l3 -3" />
-                                </svg> 
-                              </button> 
-                </div>               
+              <li class="nav-item">
+                <a class="nav-link" href="../web/transfers.html" >Transfers</a>
+              </li>
+                           
+              <div  v-if="loggedIn" class="ms-3">
+              <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="#7bc62d" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                <path d="M9 12h12l-3 -3" />
+                                <path d="M18 15l3 -3" />
+                              </svg> 
+                            </button> 
+              </div> 
+                         
             </ul>
           </div>
         </nav>

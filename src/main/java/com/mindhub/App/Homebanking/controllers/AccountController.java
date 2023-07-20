@@ -1,23 +1,18 @@
 package com.mindhub.App.Homebanking.controllers;
 import com.mindhub.App.Homebanking.dtos.AccountDTO;
-import com.mindhub.App.Homebanking.dtos.ClientDTO;
 import com.mindhub.App.Homebanking.models.Account;
 import com.mindhub.App.Homebanking.models.Client;
 import com.mindhub.App.Homebanking.models.Transaction;
-import com.mindhub.App.Homebanking.repositories.AccountRepository;
-import com.mindhub.App.Homebanking.repositories.ClientRepository;
+import com.mindhub.App.Homebanking.models.enums.AccountType;
 import com.mindhub.App.Homebanking.services.AccountService;
 import com.mindhub.App.Homebanking.services.ClientService;
-import com.mindhub.App.Homebanking.services.Implement.AccountServiceImplement;
-import com.mindhub.App.Homebanking.services.Implement.ClientServiceImplement;
+import com.mindhub.App.Homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -30,6 +25,8 @@ public class AccountController {
     private AccountService accountServiceImplement;
     @Autowired
     private ClientService clientServiceImplement;
+    @Autowired
+    private TransactionService transactionService;
 
     @GetMapping("/accounts")
     public List<AccountDTO> getAccountsDTO(){
@@ -49,7 +46,7 @@ public class AccountController {
         return new ResponseEntity<>(new AccountDTO(account), HttpStatus.ACCEPTED);
     }
     @PostMapping(path = "/clients/current/accounts")
-    public ResponseEntity<Object> createAccount(Authentication authentication) {
+    public ResponseEntity<Object> createAccount(@RequestParam AccountType accountType, Authentication authentication) {
 
      Client client = clientServiceImplement.findByEmail(authentication.getName());
      String randomNumber;
@@ -60,16 +57,46 @@ public class AccountController {
 
      }while(accountServiceImplement.findByNumber(randomNumber) != null);
 
-     if (client.getAccounts().size() >= 3) {
+     if (client.getAccounts().stream().filter(account -> account.getActiveAcc() == true).count() >= 3) {
           return new ResponseEntity<>("The client can´t have more than 3 accounts.", HttpStatus.FORBIDDEN);
       }else {
-         Account account = new Account(randomNumber, LocalDate.now(), 0.0, client);
+         Account account = new Account(randomNumber, LocalDate.now(), 0.0, client, true, accountType);
          client.addAccount(account);
          accountServiceImplement.save(account);
 
          return new ResponseEntity<>(HttpStatus.CREATED);
      }
 
+    }
+
+    @PatchMapping("/clients/current/accounts")
+    public ResponseEntity<Object> deleteAccount(@RequestParam Long id, Authentication authentication){
+        Account account = accountServiceImplement.findById(id);
+        Client client = clientServiceImplement.findByEmail(authentication.getName());
+        Set<Transaction> transactions = account.getTransactions();
+
+        if(!client.getAccounts().contains(account)){
+            return new ResponseEntity<>("The account does not belong to the client.", HttpStatus.FORBIDDEN);
+        }
+
+        if(account.getBalance() > 0){
+            return new ResponseEntity<>("The account cannot be deleted if the balance is greater than $0.", HttpStatus.FORBIDDEN);
+        }
+
+
+        if(transactions.isEmpty()){ // SI LA ACC NO TIENE TRANSACTIONS, LA DESACTIVO Y ACTUALIZO EN LA BD
+            account.setActiveAcc(false);
+            accountServiceImplement.save(account);
+        }
+
+        if(!transactions.isEmpty()){ // SI LA ACC TIENE TRANSACTIONS LAS REMUEVO Y LUEGO DESACTIVO Y ACTUALIZO EN BD
+            transactions.forEach(transaction -> transaction.setActive(false));
+            transactions.forEach(transaction -> transactionService.save(transaction));
+            account.setActiveAcc(false);
+            accountServiceImplement.save(account);
+        }
+
+        return new ResponseEntity<>("Account deleted in the view.", HttpStatus.ACCEPTED);
     }
 
 }

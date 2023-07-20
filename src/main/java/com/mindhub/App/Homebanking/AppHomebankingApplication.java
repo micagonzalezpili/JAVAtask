@@ -1,5 +1,6 @@
 package com.mindhub.App.Homebanking;
 import com.mindhub.App.Homebanking.models.*;
+import com.mindhub.App.Homebanking.models.enums.AccountType;
 import com.mindhub.App.Homebanking.models.enums.CardColor;
 import com.mindhub.App.Homebanking.models.enums.CardType;
 import com.mindhub.App.Homebanking.models.enums.TransactionType;
@@ -22,7 +23,7 @@ public class AppHomebankingApplication {
 		SpringApplication.run(AppHomebankingApplication.class, args);
 
 	}
-	/*@Autowired
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 	@Bean // cada vez q se crea la app
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository){ // declaro la var
@@ -35,9 +36,9 @@ public class AppHomebankingApplication {
 			clientRepository.save(client2);
 			clientRepository.save(admin);
 
-			Account account1 = new Account("VIN-001", LocalDate.now() , 5000.0, melba);
-			Account account2 = new Account("VIN-002", LocalDate.now().plusDays(1) , 7500.0, melba);
-			Account account3 = new Account("VIN-003", LocalDate.now(), 5000.0, client2);
+			Account account1 = new Account("VIN-001", LocalDate.now() , 5000.0, melba, true, AccountType.CHECKING);
+			Account account2 = new Account("VIN-002", LocalDate.now().plusDays(1) , 7500.0, melba, true, AccountType.SAVING);
+			Account account3 = new Account("VIN-003", LocalDate.now(), 5000.0, client2, true, AccountType.CHECKING);
 
 			accountRepository.save(account1);
 			accountRepository.save(account2);
@@ -62,6 +63,13 @@ public class AppHomebankingApplication {
 			Transaction transaction13 = new Transaction(TransactionType.DEBIT, -1200.0, "Cake Shop", LocalDateTime.now(), account3);
 			Transaction transaction14 = new Transaction(TransactionType.DEBIT, -600.0, "Clothing Store", LocalDateTime.now(), account3);
 			Transaction transaction15 = new Transaction(TransactionType.DEBIT, -800.0, "Cosmetics Store", LocalDateTime.now(), account3);
+
+			transaction1.setBalance(account1.getBalance() + transaction1.getAmount());
+			transaction1.setBalance(account1.getBalance() - transaction2.getAmount());
+			transaction1.setBalance(account1.getBalance() + transaction3.getAmount());
+			transaction1.setBalance(account1.getBalance() - transaction4.getAmount());
+			transaction1.setBalance(account1.getBalance() - transaction5.getAmount());
+
 
 			transactionRepository.save(transaction1);
 			transactionRepository.save(transaction2);
@@ -95,9 +103,9 @@ public class AppHomebankingApplication {
 			account3.addTransaction(transaction14);
 			account3.addTransaction(transaction15);
 
-			Loan loan1 = new Loan("Mortgage", 500000.0, List.of(12, 24, 36, 48, 60));
-			Loan loan2 = new Loan("Personal", 100000.0, List.of(6, 12, 24));
-			Loan loan3 = new Loan("Car", 300000.0, List.of(6, 12, 24, 36));
+			Loan loan1 = new Loan("Mortgage", 500000.0, List.of(12, 24, 36, 48, 60), 50);
+			Loan loan2 = new Loan("Personal", 100000.0, List.of(6, 12, 24), 80);
+			Loan loan3 = new Loan("Car", 300000.0, List.of(6, 12, 24, 36), 60);
 
 			loanRepository.save(loan1);
 			loanRepository.save(loan2);
@@ -122,9 +130,9 @@ public class AppHomebankingApplication {
 			clientLoanRepository.save(clientLoan3);
 			clientLoanRepository.save(clientLoan4);
 
-			Card goldCard = new Card(melba,"1234 5678 9101 1121", (short) 281, LocalDate.now().plusYears(5), LocalDate.now(), CardType.DEBIT, CardColor.GOLD);
-			Card platinumCard = new Card(melba,"3141 5161 7181 9202", (short) 445, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.PLATINUM);
-			Card silverCard = new Card(client2,"2122 3242 5262 7282", (short) 976, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.SILVER);
+			Card goldCard = new Card(melba,"1234 5678 9101 1121", (short) 281, LocalDate.now().plusYears(5), LocalDate.now(), CardType.DEBIT, CardColor.GOLD, true);
+			Card platinumCard = new Card(melba,"3141 5161 7181 9202", (short) 445, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.PLATINUM, true);
+			Card silverCard = new Card(client2,"2122 3242 5262 7282", (short) 976, LocalDate.now().plusYears(5), LocalDate.now(), CardType.CREDIT, CardColor.SILVER, true);
 
 			cardRepository.save(goldCard);
 			cardRepository.save(platinumCard);
@@ -136,6 +144,6 @@ public class AppHomebankingApplication {
 
 		});
 
-	}*/
+	}
 
 }

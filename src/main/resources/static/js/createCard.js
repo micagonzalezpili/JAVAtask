@@ -49,7 +49,7 @@ axios.post('/api/clients/current/cards', 'color='+ this.color + '&type=' + this.
     console.log(error);
     Swal.fire(
       'Oops.. something went wrong.',
-      'You already have cards of the same type/color.',
+      'Make sure you filled all the fields and do not have cards of the same type/color.',
       'error'
     )
     

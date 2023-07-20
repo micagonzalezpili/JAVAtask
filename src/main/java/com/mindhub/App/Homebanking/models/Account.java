@@ -1,5 +1,6 @@
 package com.mindhub.App.Homebanking.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mindhub.App.Homebanking.models.enums.AccountType;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,12 +21,16 @@ public class Account {
     private String number;
     private LocalDate creationDate;
     private double balance;
+    private Boolean activeAcc = true;
+    private AccountType accountType;
     public Account(){ }
-    public Account(String numberAcc, LocalDate date , Double balanceAcc, Client client){
+    public Account(String numberAcc, LocalDate date , Double balanceAcc, Client client, Boolean activeAcc, AccountType accountType){
         number = numberAcc;
         creationDate = date;
         balance = balanceAcc;
         this.client = client;
+        this.activeAcc = activeAcc;
+        this.accountType = accountType;
     }
 
     public long getId() {
@@ -59,14 +64,34 @@ public class Account {
     public void setClient(Client client) {
         this.client = client;
     }
+
+    public Boolean getActiveAcc() {
+        return activeAcc;
+    }
+
+    public void setActiveAcc(Boolean activeAcc) {
+        this.activeAcc = activeAcc;
+    }
+
     @JsonIgnore
     public Set<Transaction> getTransactions() {
         return transactions;
     }
     public void addTransaction(Transaction transaction){
         transaction.setAccount(this);
+        transaction.setActive(true);
         transactions.add(transaction);
+
     }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
     public String toString() {
         return number + " " + creationDate + " " + balance ;
     }

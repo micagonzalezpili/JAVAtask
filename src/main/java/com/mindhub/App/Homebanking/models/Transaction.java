@@ -17,15 +17,28 @@ public class Transaction {
     private double amount;
     private String description;
     private LocalDateTime date;
+    private Boolean isActive = true;
+    private double balance;
     public Transaction(){}
-
     public Transaction(TransactionType type, double amount, String description, LocalDateTime date, Account account){
         this.type = type;
         this.amount = amount;
         this.description = description;
         this.date = date;
         this.account = account;
+        this.isActive = true;
+        this.balance = account.getBalance();
+
     }
+  /*  public Transaction(TransactionType type, double amount, String description, LocalDateTime date, Account account, Boolean isActive, double balance){
+        this.type = type;
+        this.amount = amount;
+        this.description = description;
+        this.date = date;
+        this.account = account;
+        this.isActive = isActive;
+        this.balance = balance;
+    }*/
 
     public long getId() {
         return id;
@@ -62,5 +75,21 @@ public class Transaction {
     }
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

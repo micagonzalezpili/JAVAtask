@@ -1,37 +1,35 @@
 package com.mindhub.App.Homebanking.controllers;
 
+import com.mindhub.App.Homebanking.dtos.TransactionDTO;
 import com.mindhub.App.Homebanking.models.Account;
 import com.mindhub.App.Homebanking.models.Client;
 import com.mindhub.App.Homebanking.models.Transaction;
 import com.mindhub.App.Homebanking.models.enums.TransactionType;
-import com.mindhub.App.Homebanking.repositories.AccountRepository;
-import com.mindhub.App.Homebanking.repositories.ClientRepository;
-import com.mindhub.App.Homebanking.repositories.TransactionRepository;
-import com.mindhub.App.Homebanking.services.Implement.AccountServiceImplement;
-import com.mindhub.App.Homebanking.services.Implement.ClientServiceImplement;
-import com.mindhub.App.Homebanking.services.Implement.TransactionServiceImplement;
+import com.mindhub.App.Homebanking.services.AccountService;
+import com.mindhub.App.Homebanking.services.ClientService;
+import com.mindhub.App.Homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
 public class TransactionController {
     @Autowired
-    private ClientServiceImplement clientServiceImplement;
+    private ClientService clientServiceImplement;
     @Autowired
-    private AccountServiceImplement accountServiceImplement;
+    private AccountService accountServiceImplement;
     @Autowired
-    private TransactionServiceImplement transactionServiceImplement;
+    private TransactionService transactionServiceImplement;
 
     @Transactional
     @PostMapping("/transactions")
@@ -71,19 +69,40 @@ public class TransactionController {
             return new ResponseEntity<>("The account does not exist.", HttpStatus.FORBIDDEN);
         }
 
-        Transaction debitTransaction = new Transaction(TransactionType.DEBIT, - amount, description + " "+ originAcc, LocalDateTime.now(), account1);
+        Transaction debitTransaction = new Transaction(TransactionType.DEBIT, - amount, description + " "+ destinAcc, LocalDateTime.now(), account1);
         account1.addTransaction(debitTransaction);
+        debitTransaction.setBalance(account1.getBalance() - amount);
         account1.setBalance(account1.getBalance() - amount);
         transactionServiceImplement.save(debitTransaction);
         accountServiceImplement.save(account1);
 
-        Transaction creditTransaction = new Transaction(TransactionType.CREDIT, amount, description + " " + destinAcc, LocalDateTime.now(), account2);
+        Transaction creditTransaction = new Transaction(TransactionType.CREDIT, amount, description + " " + originAcc, LocalDateTime.now(), account2);
         account2.addTransaction(creditTransaction);
+        creditTransaction.setBalance(account2.getBalance() + amount);
         account2.setBalance(account2.getBalance() + amount);
         transactionServiceImplement.save(creditTransaction);
         accountServiceImplement.save(account2);
 
         return new ResponseEntity<>("The transaction was made successfully.", HttpStatus.CREATED);
 
+    }
+    @PostMapping("/filter/transactions")
+    public ResponseEntity<Object> getTransactionsByDate(@RequestParam Long id, @RequestParam LocalDate startDate,
+                                                        @RequestParam LocalDate endDate, Authentication authentication) {
+
+        Client client = clientServiceImplement.findByEmail(authentication.getName());
+        Account account = accountServiceImplement.findById(id);
+
+        if(startDate == null ){
+            return new ResponseEntity<>("Start date cannot be null.", HttpStatus.FORBIDDEN);
+        }
+        if(endDate == null || endDate.isAfter(LocalDate.now())){
+            return new ResponseEntity<>("Start date invalid, please try again.", HttpStatus.FORBIDDEN);
+        }
+
+        List<Transaction> transactionsList = transactionServiceImplement.getTransactionsByDate(startDate, endDate);
+
+
+        return new ResponseEntity<>("Transactions filtered successfully.", HttpStatus.CREATED);
     }
 }

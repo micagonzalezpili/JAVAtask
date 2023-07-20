@@ -10,6 +10,11 @@ const app = createApp({
       dataParams: [],
       loggedIn: false,
       loggedOut: true,
+      currentBalance: 0,
+      activeTransactions: [],
+      startDate: null,
+      endDate: null
+
     };
   },
   created() {
@@ -23,28 +28,39 @@ const app = createApp({
       });
       return USDollar.format(number);
     },
-    sortedTransactions() {
-      this.transactions.sort((a, b) => b.date - a.date);
-    },
+   
     loadData() {
       this.params = new URLSearchParams(location.search);
       this.dataParams = this.params.get('id');
-      console.log(this.dataParams);
-
+      console.log(this.dataParams);    
       axios
-        .get('http://localhost:8080/api/accounts/' + this.dataParams)
+        .get('/api/accounts/' + this.dataParams)
         .then((response) => {
           this.accountID = this.data.find((acc) => acc.id == this.dataParams);
           this.data = response.data;
           console.log(this.data);
-          this.transactions = this.data.transactions.sort((a, b) => b.date - a.date);
-          console.log(this.transactions);
+          this.transactions = this.data.transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+           console.log(this.transactions);
           this.transactions.forEach((transaction) => (transaction.time = transaction.date.slice(11, 19)));
           this.transactions.forEach((transaction) => (transaction.date = transaction.date.slice(0, 10)));
+          this.activeTransactions = this.transactions.filter(transaction => transaction.active == true)
+          this.activeTransactions = this.activeTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+          console.log(this.activeTransactions);
+          this.currentBalance = this.activeTransactions.filter(transaction => transaction.balance)
+          console.log(this.currentBalance);
+         /*  
+          this.currentBalance = this.data.balance; // Obtén el saldo actual de la cuenta      
+          this.transactions.forEach((transaction) => {
+            this.currentBalance -= transaction.amount; // Actualiza el saldo actual restando el monto de la transacción
+          }); */
+    
         })
         .catch((error) => {
           console.error(error);
         });
+    },
+    getCurrentBalance(transaction) {
+      return this.data.balance - transaction.amount;
     },
     logOut() {
       axios

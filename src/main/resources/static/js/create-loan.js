@@ -9,10 +9,10 @@ const app = createApp({
       accounts: [],
       loans: [],
       loggedIn: true,
-      activeAcc: [],
-      savingAcc: [],
-      checkingAcc: [],
-      accType: ""
+      loanName: "",
+      maxAmount: 0,
+      payments: 0,
+      percentage: 0
       
     };
   },
@@ -49,32 +49,54 @@ axios.get('http://localhost:8080/api/clients/current')
            console.error(error);
          });
 },
-createAccount(){
-  axios.post('/api/clients/current/accounts', 'accountType=' + this.accType)
+createLoan(){
+    axios.post('/api/admin/loans', 'loanName=' + this.loanName + '&maxAmount=' + this.maxAmount + '&payments=' + this.payments + '&percentage=' + this.percentage, 
+    { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
   .then(response => {
-    console.log("account created!!!");
-    window.location.href = '/web/accounts.html';
+    console.log("loan created!!!");    
   })
   .catch(error => {
     console.log(error)
+
   })
 },
-deleteAccount(id){
-  axios.patch(`/api/clients/current/accounts?id=${id}`)
-      .then(response => {
-        console.log('account deleted!!');
-        this.loadData();
+confirmOperation() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
 
-      })
-      .catch(error => {
-        //alert(error.response.data); // hacer alert mas lindo!!!
-        Swal.fire(
-          'Oops..',
-          `${error.response.data} Please try again.`,
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You are about to create a new loan.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, create.',
+      cancelButtonText: 'No, cancel.',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Loan succesfully created!',
+          'See you soon.',
+          'success',
+          this.createLoan()
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'No loan created :)',
           'error'
         )
-      })
-    },
+      }
+    })
+  },
 logOut() {
   console.log("hola");
    axios.post('/api/logout')

@@ -21,9 +21,10 @@ const app = createApp({
                 "payment": this.selectedPayment,
                 "amount": this.amount,
                 "accountDestin": this.destinAcc
-            }
-
-
+            },
+            maxAmount: 0,
+            interest: 0,
+            total: 0
         };
     },
     created() {
@@ -55,7 +56,9 @@ const app = createApp({
                     console.log(this.loans);
                     this.payments = this.loans.map(loan => loan.payments)
                     console.log(this.payments);
-
+                    this.maxAmount = this.loans.map(loan => loan.maxAmount)
+                    console.log(this.maxAmount);
+                    //this.total = this.loanSelected.forEach(loan => loan.amount * loan.percentage);
                 })
                 .catch(error => {
                     console.log(error);
@@ -67,12 +70,7 @@ const app = createApp({
             }
             return [];
         },
-        applyLoan() {
-            /* console.log(this.loanSelected.id);
-            console.log(this.loanSelected.name);
-            console.log(this.selectedPayment);
-            console.log(this.amount);
-            console.log(this.destinAcc); */
+        applyLoan() {           
             axios.post('/api/loans', {
                 id: this.loanSelected.id,
                 name: this.loanSelected.name,
@@ -124,6 +122,15 @@ const app = createApp({
                 }
             })
         },
+        getMaxAmount() {
+            if (this.loanSelected != null) {
+                const loan = this.loans.find(loan => loan.id === this.loanSelected);
+                if (loan) {
+                    return `Max Amount: $${loan.maxAmount}`;
+                }
+            }
+            return "";
+        },
         logOut() {
             console.log("hola");
             axios.post('/api/logout')
@@ -136,16 +143,14 @@ const app = createApp({
                 });
         }
     },
-    computed: {
-        getMaxAmount() {
-            if (this.loanSelected !== null) {
-                const loan = this.loans.find(loan => loan.id === this.loanSelected);
-                if (loan) {
-                    return `Max Amount: $${loan.maxAmount}`;
-                }
+   /*  computed: {
+        getTotalAmount(){
+            if(this.loanSelected != null){
+                const total = this.loanSelected.map(loan => loan.amount * loan.percentage);
+                return total;
             }
-            return "";
+           return "";
         }
-    }
+    } */
 })
 app.mount('#app');

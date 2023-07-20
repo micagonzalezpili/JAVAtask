@@ -57,11 +57,11 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
             <li class="nav-item">
               <a class="nav-link" href="../web/transfers.html" >Transfers</a>
             </li>
-            <div v-if="loggedOut">
+            <!-- 
                <li class="nav-item">
               <a class="nav-link" href="../web/sign-in.html" >Login</a>
-            </li>  
-            </div>
+            </li>   -->
+           
             <div  v-if="loggedIn" class="ms-3">
             <button type="button" @click.prevent="logOut" class=" pt-1 rounded" style="background-color: #77737300;">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="34" height="34"
@@ -85,44 +85,83 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
       <div class="container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <h2 class="what_taital">ACCOUNTS</h2>
         <div class="what_we_do_section_2 mb-3 ">
+        <div v-if="activeAcc">
           <div class="row d-flex justify-content-center align-items-center">
-          <div class="col-lg-3 col-sm-6 " v-for="account of accounts">
-            <div class="box_main d-flex flex-column" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
-            -webkit-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
-            -moz-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);">              
-              <h4 class="lorem_text text-black fw-bold" >Account number:<br> {{account.number}}</h4>
-              <h3 class="accounting_text ">Amount available: <br>{{ precioFormat(account.balance.toFixed(2)) }}</h3>
-              <p class="lorem_text text-black fw-bold">Created:<br> {{account.creationDate}}</p>
-             <!--  <button type="button" class="btn w-75  align-self-center mb-2"  style="background-color: black; text-decoration: none; color: white;"><a :href="'./account.html?id='+account.id" style="text-decoration: none;">See transactions</a>  </button>  -->
-           <!--    <button v-show="accounts.length < 3" type="button" class="btn  mb-2 w-75 align-self-center p-2" style=" background-color: black; text-decoration: none; " @click="createAccount">Create new account</button> -->
-              <div class="moremore_bt d-flex justify-content-center align-items-center w-100"><a :href="'./account.html?id='+account.id" class="w-50 p-2">See Transactions</a></div> 
+            <div class="col-lg-3 col-sm-6 " v-for="account of activeAcc">
+              <div class="box_main d-flex flex-column" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
+              -webkit-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
+              -moz-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);">              
+
+                <h4 class="lorem_text text-black fw-bold" >Account number:<br> {{account.number}}</h4>
+                <h3 class="accounting_text ">Amount available: <br>{{ precioFormat(account.balance.toFixed(2)) }}</h3>
+                <p class="lorem_text text-black fw-bold">Created:<br> {{account.creationDate}}</p>
+                <p class="lorem_text text-black fw-bold">Type: {{account.accountType}}</p>
+               
+                <div class="moremore_bt d-flex justify-content-center align-items-center w-100 "><a :href="'./account.html?id='+account.id" class="w-50 p-2" style="text-decoration: none;">See Transactions</a></div> 
+                <div class="moremore_bt d-flex justify-content-center align-items-center w-100 mt-2 "><a href="#" class="w-50 border border-danger border border-2" style="text-decoration: none;"><button class="btn" @click="deleteAccount(account.id)">Delete<br> account</button> </a></div> 
               
+              </div>
+            </div> 
+            <!-- <div v-if="savingAcc" class="d-flex flex-column justify-content-center align-items-center">
+              <h3 class="what_taital">SAVING </h3>
+              <div class="col-lg-3 col-sm-6 " v-for="account of savingAcc">
+                <div class="box_main d-flex flex-column" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
+                -webkit-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
+                -moz-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);">              
+                  <h4 class="lorem_text text-black fw-bold" >Account number:<br> {{account.number}}</h4>
+                  <h3 class="accounting_text ">Amount available: <br>{{ precioFormat(account.balance.toFixed(2)) }}</h3>
+                  <p class="lorem_text text-black fw-bold">Created:<br> {{account.creationDate}}</p>
+                 <!--  <button type="button" class="btn w-75  align-self-center mb-2"  style="background-color: black; text-decoration: none; color: white;"><a :href="'./account.html?id='+account.id" style="text-decoration: none;">See transactions</a>  </button>  -->
+               <!--    <button v-show="accounts.length < 3" type="button" class="btn  mb-2 w-75 align-self-center p-2" style=" background-color: black; text-decoration: none; " @click="createAccount">Create new account</button> -->
+                  <!-- <div class="moremore_bt d-flex justify-content-center align-items-center w-100"><a :href="'./account.html?id='+account.id" class="w-50 p-2" style="text-decoration: none;">See Transactions</a></div> 
+                  <div class="moremore_bt d-flex justify-content-center align-items-center w-100 "><a href="#" class="w-50 border border-danger border border-2" style="text-decoration: none;"><button class="btn" @click="deleteAccount(account.id)">Delete account</button> </a></div> 
+                </div>
+              </div> 
             </div>
-          </div>  
-          <div class="d-flex flex-column mt-4 justify-content-center align-items-center">
-             <div  class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="#"><button v-show="accounts.length < 3" type="button" class="btn  mb-2 align-self-center p-1"  @click="createAccount">Create <br> new account</button></a> </div>      
+            <div v-if="checkingAcc" class="d-flex flex-column justify-content-center align-items-center">
+              <h3 class="what_taital mt-3">CHECKING </h3>
+              <div class="col-lg-3 col-sm-6" v-for="account of checkingAcc">
+                          <div class="box_main d-flex flex-column" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
+                          -webkit-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
+                          -moz-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);">              
+                            <h4 class="lorem_text text-black fw-bold" >Account number:<br> {{account.number}}</h4>
+                            <h3 class="accounting_text ">Amount available: <br>{{ precioFormat(account.balance.toFixed(2)) }}</h3>
+                            <p class="lorem_text text-black fw-bold">Created:<br> {{account.creationDate}}</p>
+                          <!--  <button type="button" class="btn w-75  align-self-center mb-2"  style="background-color: black; text-decoration: none; color: white;"><a :href="'./account.html?id='+account.id" style="text-decoration: none;">See transactions</a>  </button>  -->
+                        <!--    <button v-show="accounts.length < 3" type="button" class="btn  mb-2 w-75 align-self-center p-2" style=" background-color: black; text-decoration: none; " @click="createAccount">Create new account</button> -->
+                           <!--  <div class="moremore_bt d-flex justify-content-center align-items-center w-100"><a :href="'./account.html?id='+account.id" class="w-50 p-2" style="text-decoration: none;">See Transactions</a></div> 
+                            <div class="moremore_bt d-flex justify-content-center align-items-center w-100 "><a href="#" class="w-50 border border-danger border border-2" style="text-decoration: none;"><button class="btn" @click="deleteAccount(account.id)">Delete account</button> </a></div> 
+                          </div>
+              </div>  
+            </div>  -->        
+          <div v-show="accounts.length < 3" class="d-flex flex-column mt-4 justify-content-center align-items-center">
+          <div  class="moremore_bt d-flex justify-content-center align-items-center col-sm-6 col-lg-2"><a href="../web/create-accounts.html" v-show="activeAcc.length < 3"><button v-show="activeAcc.length < 3" type="button" class="btn  mb-2 align-self-center p-1">Create <br> new account</button></a> </div>      
+          <!-- <div  class="moremore_bt d-flex justify-content-center align-items-center w-25"><a href="#" v-show="activeAcc.length < 3"><button v-show="activeAcc.length < 3" type="button" class="btn  mb-2 align-self-center p-1"  @click="createAccount">Create <br> new account</button></a> </div>  -->     
           </div>   
          
         </div>
+        </div>
+         
         </div>
         <h2 class="what_taital mt-3">LOANS</h2>
          <div class="what_we_do_section_2 mb-3">
           <div class="row d-flex justify-content-center align-items-center">
           <div class="col-lg-3 col-sm-6"v-for="loan of loans">
-            <div class="box_main" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
+            <div class="box_main d-flex flex-column justify-content-evenly" style="box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
             -webkit-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);
             -moz-box-shadow: 23px 39px 74px -31px rgba(58,112,87,1);" >              
               <h3 class="lorem_text fw-bold text-black">Loan name: <br>  {{loan.name}}</h3>
               <h3 class="accounting_text">Total amount <br>  (with interests): <br> {{ precioFormat(loan.amount.toFixed(2)) }}</h3>
-              <p class="lorem_text text-black fw-bold">Total payments: <br>  {{loan.payments}}</p>          
+              <p class="lorem_text text-black fw-bold">Payments remaining: <br>  {{loan.payments}}</p>          
+              <div class="moremore_bt d-flex justify-content-center align-items-center w-100"><a href="./payfee.html" class="w-50 p-2" style="text-decoration: none;">Pay fee</a></div> 
             </div>
           </div> 
            <div class="d-flex flex-column mt-4 justify-content-center align-items-center">
           <!--  <a href="../web/cards.html" class="mb-4 align-self-center">
           <button type="button" class="btn btn-success">Go to cards</button>
           </a> -->
-          <div class="moremore_bt d-flex justify-content-center align-items-center w-50"><a href="../web/loan-application.html" class="w-50 p-2">Apply</a></div>
-          <div class="moremore_bt d-flex justify-content-center align-items-center w-50"><a href="../web/cards.html" class="w-50 p-2">Go to cards</a></div>
+          <div class="moremore_bt d-flex justify-content-center align-items-center col-sm-6 col-lg-2"><a href="../web/loan-application.html" class="w-50 p-2" style="text-decoration: none;">Apply</a></div>
+          <div class="moremore_bt d-flex justify-content-center align-items-center col-sm-6 col-lg-2 mt-2"><a href="../web/cards.html" class="w-50 p-2" style="text-decoration: none;">Go to cards</a></div>
         </div>       
 
         </div>

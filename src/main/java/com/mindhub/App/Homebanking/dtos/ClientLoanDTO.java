@@ -25,4 +25,11 @@ public class ClientLoanDTO {
         return payments;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Long getLoanId() {
+        return loanId;
+    }
 }

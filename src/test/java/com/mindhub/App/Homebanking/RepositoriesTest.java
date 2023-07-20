@@ -13,19 +13,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
-
-import static org.assertj.core.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
-import static org.springframework.test.util.AssertionErrors.assertFalse;
-
 
 @DataJpaTest
 
@@ -74,23 +68,6 @@ public class RepositoriesTest {
             assertThat(cards, hasSize(4));
         }
 
-        @Test
-        public void deleteCard(){
-            Client client = new Client("Juan", "Lopez", "juan@gmail.com", "12345");
-            Card card = new Card();
-            card.setCardholder("Juan");
-            card.setColor(CardColor.SILVER);
-            card.setId(1144);
-            card.setClient(client);
-            card.setFromDate(LocalDate.now());
-            card.setThruDate(LocalDate.now());
-            card.setNumber("1111 2222 3333 4444");
-            card.setCvv((short) 221);
-            cardRepository.save(card);
-            cardRepository.delete(card);
-           // assertFalse(cardRepository.existsById(card.getId()));
-
-        }
 
         // TEST DE LOAN REPOSITORIES
         @Test

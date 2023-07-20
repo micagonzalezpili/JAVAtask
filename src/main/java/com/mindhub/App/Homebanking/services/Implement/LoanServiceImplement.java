@@ -20,10 +20,20 @@ public class LoanServiceImplement implements LoanService {
     }
 
     @Override
+    public Loan findById(Long id) {
+        return loanRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public List<LoanDTO> getAllLoansDTO() {
         return loanRepository.findAll()
                 .stream()
                 .map(loan -> new LoanDTO(loan))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void save(Loan loan) {
+        loanRepository.save(loan);
     }
 }

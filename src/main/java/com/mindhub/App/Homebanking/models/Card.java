@@ -25,10 +25,11 @@ public class Card {
     private LocalDate fromDate;
     private CardType type;
     private CardColor color;
+    private Boolean activeCard = true;
 
     public Card(){}
 
-    public Card(Client client, String number, short cvv, LocalDate thruDate, LocalDate fromDate, CardType cardType, CardColor cardColor){
+    public Card(Client client, String number, short cvv, LocalDate thruDate, LocalDate fromDate, CardType cardType, CardColor cardColor, Boolean activeCard){
         this.cardholder = client.getFirstName() + " " + client.getLastName();
         this.number = number;
         this.cvv = cvv;
@@ -37,6 +38,7 @@ public class Card {
         this.type = cardType;
         this.color = cardColor;
         this.client = client;
+        this.activeCard = activeCard;
     }
 
     public long getId() {
@@ -109,5 +111,13 @@ public class Card {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Boolean getActiveCard() {
+        return activeCard;
+    }
+
+    public void setActiveCard(Boolean activeCard) {
+        this.activeCard = activeCard;
     }
 }

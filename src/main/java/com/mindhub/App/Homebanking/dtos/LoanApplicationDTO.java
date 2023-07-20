@@ -14,7 +14,6 @@ public class LoanApplicationDTO {
 
     public LoanApplicationDTO(){}
     public LoanApplicationDTO( String name, int payment, double amount,  String accountDestin) {
-
         this.name = name;
         this.payment = payment;
         this.amount = amount;
