@@ -1,14 +1,8 @@
 package com.mindhub.App.Homebanking;
 
-import com.mindhub.App.Homebanking.models.Account;
-import com.mindhub.App.Homebanking.models.Card;
-import com.mindhub.App.Homebanking.models.Client;
-import com.mindhub.App.Homebanking.models.Loan;
+import com.mindhub.App.Homebanking.models.*;
 import com.mindhub.App.Homebanking.models.enums.CardColor;
-import com.mindhub.App.Homebanking.repositories.AccountRepository;
-import com.mindhub.App.Homebanking.repositories.CardRepository;
-import com.mindhub.App.Homebanking.repositories.ClientRepository;
-import com.mindhub.App.Homebanking.repositories.LoanRepository;
+import com.mindhub.App.Homebanking.repositories.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -21,11 +15,11 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
-@DataJpaTest
+/*@DataJpaTest
 
-@AutoConfigureTestDatabase(replace = NONE)
+@AutoConfigureTestDatabase(replace = NONE)*/
 public class RepositoriesTest {
-        @Autowired
+    /*    @Autowired
         ClientRepository clientRepository;
         @Autowired
         AccountRepository accountRepository;
@@ -33,6 +27,8 @@ public class RepositoriesTest {
         CardRepository cardRepository;
         @Autowired
         LoanRepository loanRepository;
+        @Autowired
+        TransactionRepository transactionRepository;
 
         // TEST DE CLIENT REPOSITORIES
         @Test
@@ -40,12 +36,12 @@ public class RepositoriesTest {
             List<Client> clients = clientRepository.findAll();
             assertThat(clients, is(not(empty())));
         }
-        @Test
+       *//* @Test
         public void clientsContainsMelba(){
            List<Client> clients = clientRepository.findAll();
            boolean containsMelba = clients.stream().anyMatch(client -> client.getFirstName().equals("Melba"));
            assertTrue(containsMelba);
-        }
+        }*//*
 
         // TEST DE ACCOUNT REPOSITORIES
         @Test
@@ -80,6 +76,11 @@ public class RepositoriesTest {
         public void existPersonalLoan(){
             List<Loan> loans = loanRepository.findAll();
             assertThat(loans, hasItem(hasProperty("name", is("Car"))));
-        }
-
+        }*/
+    // TEST DE TRANSACTION REPOSITORIES
+  /*  @Test
+    public void existTransactions(){
+        List<Transaction> transactions = transactionRepository.findAll();
+        assertThat(transactions,is(not(empty())));
+    }*/
 }

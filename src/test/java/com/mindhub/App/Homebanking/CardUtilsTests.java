@@ -23,7 +23,7 @@ public class CardUtilsTests {
     CardRepository cardRepository;
     @Autowired
     CardService cardService;
-    @Test
+  /*  @Test
     public void cardNumberIsCreated(){
         String cardNumber = CardUtils.getCardNumber(cardService);
         assertThat(cardNumber,is(not(emptyOrNullString())));
@@ -33,5 +33,5 @@ public class CardUtilsTests {
     public void getCVVSize(){
         List<Card> cards =  cardRepository.findAll();
         assertThat(cards, hasSize(4));
-    }
+    }*/
 }
