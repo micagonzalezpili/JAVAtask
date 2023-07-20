@@ -18,6 +18,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,46 +31,41 @@ public class TransactionServiceImplement implements TransactionService {
     public void save(Transaction transaction) {
         transactionRepository.save(transaction);
     }
-
     @Override
-    public List<TransactionDTO> getTransactionsDTO() {
-        return transactionRepository.findAll()
-                .stream()
-                .map(TransactionDTO::new)
-                .collect(Collectors.toList());
+    public List<Transaction> getTransactionsByDate(LocalDateTime startDate, LocalDateTime endDate) {
+        return transactionRepository.findByDateBetween(startDate, endDate);
     }
 
     @Override
-    public List<Transaction> getTransactionsByDate(LocalDate startDate, LocalDate endDate) {
-        return transactionRepository.findBetween(startDate, endDate);
-    }
-
-    @Override
-    public byte[] generatePDF(Account account, List<Transaction> transactions) {
+    public byte[] generatePDF(Account account) {
 
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, outputStream);
+            List<Transaction> transactions1 = new ArrayList<>(account.getTransactions());
 
             document.open();
 
-            // Agregar datos de la cuenta
-            document.add(new Paragraph("Account Number: " + account.getAccountNumber()));
-            document.add(new Paragraph("Account Holder: " + account.getAccountHolder()));
+            // Agrego datos de la cuenta
+            document.add(new Paragraph("Account Number: " + account.getNumber()));
+            document.add(new Paragraph("Account Holder: " + account.getClient().getFirstName() + " " + account.getClient().getLastName()));
             document.add(new Paragraph("Balance: " + account.getBalance()));
+            document.add(new Paragraph("Account Type: " + account.getAccountType()));
 
             // Agregar tabla de transacciones
-            PdfPTable table = new PdfPTable(4);
-            table.addCell("ID");
-            table.addCell("Fecha");
-            table.addCell("Descripción");
-            table.addCell("Monto");
+            PdfPTable table = new PdfPTable(5);
+            table.addCell("Type");
+            table.addCell("Date");
+            table.addCell("Description");
+            table.addCell("Amount");
+            table.addCell("Current Balance");
 
-            for (Transaction transaction : transactions) {
-                table.addCell(String.valueOf(transaction.getId()));
-                table.addCell(transaction.getFecha().toString());
-                table.addCell(transaction.getDescripcion());
-                table.addCell(String.valueOf(transaction.getMonto()));
+            for (Transaction transaction : transactions1) {
+                table.addCell(String.valueOf(transaction.getType()));
+                table.addCell(transaction.getDate().toString());
+                table.addCell(transaction.getDescription());
+                table.addCell(String.valueOf(transaction.getAmount()));
+                table.addCell(String.valueOf(transaction.getBalance()));
             }
 
             document.add(table);
@@ -76,7 +73,7 @@ public class TransactionServiceImplement implements TransactionService {
 
             return outputStream.toByteArray();
         } catch (DocumentException | IOException e) {
-            // Manejar errores
+            // Manejo dee errores
             e.printStackTrace();
         }
 

@@ -9,7 +9,10 @@ import com.mindhub.App.Homebanking.services.AccountService;
 import com.mindhub.App.Homebanking.services.ClientService;
 import com.mindhub.App.Homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -87,22 +91,30 @@ public class TransactionController {
 
     }
     @PostMapping("/filter/transactions")
-    public ResponseEntity<Object> getTransactionsByDate(@RequestParam Long id, @RequestParam LocalDate startDate,
-                                                        @RequestParam LocalDate endDate, Authentication authentication) {
+    public ResponseEntity<Object> getTransactionsByDate(@RequestParam Long id, @RequestParam String startDate,
+                                                        @RequestParam String endDate, Authentication authentication) {
 
         Client client = clientServiceImplement.findByEmail(authentication.getName());
         Account account = accountServiceImplement.findById(id);
+        LocalDateTime start = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.MIN);
+        LocalDateTime end = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MAX);
 
-        if(startDate == null ){
+        if(start == null ){
             return new ResponseEntity<>("Start date cannot be null.", HttpStatus.FORBIDDEN);
         }
-        if(endDate == null || endDate.isAfter(LocalDate.now())){
-            return new ResponseEntity<>("Start date invalid, please try again.", HttpStatus.FORBIDDEN);
+        if(end == null || end.isAfter(LocalDateTime.now())){
+            return new ResponseEntity<>("End date invalid, please try again.", HttpStatus.FORBIDDEN);
         }
 
-        List<Transaction> transactionsList = transactionServiceImplement.getTransactionsByDate(startDate, endDate);
+        List<Transaction> transactionsList = transactionServiceImplement.getTransactionsByDate(start, end);
 
+       // System.out.println(transactionsList);
 
-        return new ResponseEntity<>("Transactions filtered successfully.", HttpStatus.CREATED);
+        byte[] pdfByte = transactionServiceImplement.generatePDF(account);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "transactions.pdf");
+
+        return new ResponseEntity<>(pdfByte, headers, HttpStatus.OK);
     }
 }

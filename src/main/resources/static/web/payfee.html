@@ -86,10 +86,10 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                 </select>               
               </div>    
               <div class="d-flex flex-column justify-content-center align-items-center gap-2 mt-2">
-                {{accountSelected}} 
+               <!--  {{accountSelected}}  -->
                 <label for="" class="me-4 fw-bold">Loan to pay:</label>
                 <select class="form-select w-50" aria-label="Default select example" v-model="loanSelected">   
-                  {{loanSelected.id}}                   
+                 <!--  {{loanSelected.id}}      -->              
                   <option :value="loan" v-for="loan of loans">{{ loan.name}}</option>            
                 </select> 
                 <div class="moremore_bt d-flex justify-content-center align-items-center w-50"><a href="#" class="w-50 "><button class="btn"  @click="confirmOperation"> Send </button></a></div>                        

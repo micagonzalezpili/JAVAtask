@@ -107,7 +107,7 @@
                                                     <div class="card-number">{{debitCard.number}}</div>
                                                     <!-- VERIFICO SI LAS TARJETAS ESTAN VENCIDAS Y LE AVISO AL USUARIO -->
                                                     <div v-if="debitCard.thruDate < actualDate" class="pb-3 bg-danger"><p class="text-black bg-danger fw-bold  ">CARD EXPIRED!!!</p></div>
-                                                    <div class="card-valid p-1" v-else>{{debitCard.thruDate}}</div>
+                                                    <div class="card-valid p-1" v-else> {{debitCard.thruDate}}</div>
                                                 </div>
                                                 <div class="card-back">
                                                     <div class="card-signature">CashFlow Bank</div>
@@ -193,7 +193,8 @@
                         <div v-for="creditCard of creditCards" class="mb-3  d-flex flex-column" >  
                         <!--  {{creditCard.thruDate}} {{actualDate}} -->               
                                         <div v-if="creditCard.color == 'PLATINUM'">
-                                        <div class="card border border-0" id="cardBodyDos">
+                                           
+                                        <div class="card border border-0" id="cardBodyTres">
                                             <div class="card-inner">
                                                 <div class="card-front">
                                                     <div class="card-bg" style="background: linear-gradient(90deg, rgba(0,0,5,0.8799894957983193) 0%, rgba(41,41,46,0.8099614845938375) 35%, rgba(192,212,215,0.19371498599439774) 100%);"></div>

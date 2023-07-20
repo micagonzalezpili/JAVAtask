@@ -83,7 +83,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                 <label for="" class="me-4 fw-bold">From:</label>
                 <select class="form-select w-50" aria-label="Default select example" v-model="accountSelected">
                   <!-- <option disabled value="">Choose an account</option>      -->          
-                  <option :value="account" v-for="account of accounts">{{ account.number}} - ${{account.balance.toFixed(2)}}</option>            
+                  <option :value="account" v-for="account of arrayAccounts">{{ account}}</option>            
                 </select>
                 <!-- <h6 v-if="accountSelected" class="mt-2">Amount available: $ {{selectedAccountBalance}}</h6> -->
               </div>    
@@ -121,7 +121,7 @@ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUU
                 <div class="d-flex flex-column col-12 justify-content-center align-items-center mt-3"> 
                     <label for="description" class="fw-bold mb-2">Description:</label> 
                     <input type="text" name="description" id="description" v-model="description">
-                    <div class="moremore_bt d-flex justify-content-center align-items-center w-50"><a href="../web/accounts.html" class="w-50 "><button class="btn"  @click="confirmOperation"> Send </button></a></div>
+                    <div class="moremore_bt d-flex justify-content-center align-items-center w-50"><a href="#" class="w-50 "><button class="btn"  @click="confirmOperation"> Send </button></a></div>
                 </div>
                
                 

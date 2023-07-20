@@ -62,6 +62,25 @@ const app = createApp({
     getCurrentBalance(transaction) {
       return this.data.balance - transaction.amount;
     },
+    getTransactionsByDate(){
+      axios.post('/api/filter/transactions', 'id=' + this.dataParams + '&startDate=' + this.startDate + '&endDate=' + this.endDate, {
+        responseType: 'arraybuffer', // Indica que la respuesta debe tratarse como un arreglo de bytes
+      })
+      .then(response => {
+        console.log('transactions filtered!');
+        const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+        const url = URL.createObjectURL(pdfBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'transactions.pdf';
+        a.click();
+        URL.revokeObjectURL(url); // Liberar el objeto URL
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
+    
     logOut() {
       axios
         .post('/api/logout')
