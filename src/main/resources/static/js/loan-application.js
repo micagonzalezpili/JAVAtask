@@ -83,6 +83,11 @@ const app = createApp({
           })
           .catch(error => {
             console.log(error);
+            Swal.fire(
+                'Oops..',
+                `${error.response.data} `,
+                'error'
+              )
           })
         },
         confirmOperation() {
@@ -121,6 +126,13 @@ const app = createApp({
                     )
                 }
             })
+            /* .catch(error => {
+                Swal.fire(
+                    'Oops..',
+                    `${error.response.data} Please try again.`,
+                    'error'
+                  )
+            }) */
         },
         getMaxAmount() {
             if (this.loanSelected != null) {
@@ -142,15 +154,6 @@ const app = createApp({
                     console.error('Error', error);
                 });
         }
-    },
-   /*  computed: {
-        getTotalAmount(){
-            if(this.loanSelected != null){
-                const total = this.loanSelected.map(loan => loan.amount * loan.percentage);
-                return total;
-            }
-           return "";
-        }
-    } */
+    }
 })
 app.mount('#app');

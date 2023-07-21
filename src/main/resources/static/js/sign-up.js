@@ -48,11 +48,11 @@ const app = createApp({
                 })
                 .catch(function (error) {
                   if (error.response) {          
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Please, try again.',
-                      text: 'Make sure you filled all the fields correctly.'
-                    }) } else if (error.request) {
+                    Swal.fire(
+                      'Oops..',
+                      `${error.response.data} `,
+                      'error'
+                    ) } else if (error.request) {
                       // The request was made but no response was received
                       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                       // http.ClientRequest in node.js

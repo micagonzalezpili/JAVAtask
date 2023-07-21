@@ -24,7 +24,7 @@ const app = createApp({
   },
   methods: {
     loadData() {
-      axios.get('http://localhost:8080/api/clients/current')
+      axios.get('/api/clients/current')
         .then(response => {
           this.data = response.data
           console.log(this.data);
@@ -52,6 +52,11 @@ const app = createApp({
         .catch(
           error => {
             console.log(error);
+            Swal.fire(
+              'Oops..',
+              `${error.response.data} Please try again.`,
+              'error'
+            )
           })
     },
     confirmOperation() {
@@ -102,18 +107,6 @@ const app = createApp({
           console.error('Error', error);
         });
     }
-  }/* ,
-  computed: {
-    
-    selectedAccountBalance() {
-    
-      if (this.accountSelected) {
-        const selectedAccount = this.accounts.find(account => account.id === this.accountSelected);
-        return selectedAccount.balance;
-      } else {
-        return 0;
-      }
-    }
-  } */
+  }
 })
 app.mount('#app');

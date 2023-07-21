@@ -17,7 +17,7 @@ const app = createApp({
 },
 methods: {
 loadData(){
-axios.get('http://localhost:8080/rest/clients')
+axios.get('/rest/clients')
          .then(response => {
          this.data = response.data
            console.log(this.data);
@@ -33,7 +33,7 @@ addClient(){
 this.postClient()
 },
 postClient(){
-axios.post('http://localhost:8080/rest/clients', this.clientData)
+axios.post('/rest/clients', this.clientData)
 .then(response => {
     this.loadData()
 })
@@ -49,16 +49,7 @@ axios.delete(id)
     .catch(error => {
       console.error(error);
     });
-}/* ,
-modifyClient(){
-  axios.patch('http://localhost:8080/rest/clients', this.clientData, firstName)
-  .then(response => {
-    this.loadData()
-  })
-  .catch(error => {
-    console.error(error)
-  })
-} */
+}
 }
 })
 app.mount('#app');

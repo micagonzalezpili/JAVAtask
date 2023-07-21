@@ -78,6 +78,11 @@ const app = createApp({
       })
       .catch(error => {
         console.log(error);
+        Swal.fire(
+          'Oops..',
+          'Please try again. Make sure both fields are correct.',
+          'error'
+        )
       })
     },
     
