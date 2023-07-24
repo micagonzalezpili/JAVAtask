@@ -15,11 +15,10 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
-/*@DataJpaTest
-
-@AutoConfigureTestDatabase(replace = NONE)*/
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = NONE)
 public class RepositoriesTest {
-    /*    @Autowired
+        @Autowired
         ClientRepository clientRepository;
         @Autowired
         AccountRepository accountRepository;
@@ -36,12 +35,12 @@ public class RepositoriesTest {
             List<Client> clients = clientRepository.findAll();
             assertThat(clients, is(not(empty())));
         }
-       *//* @Test
+        @Test
         public void clientsContainsMelba(){
            List<Client> clients = clientRepository.findAll();
            boolean containsMelba = clients.stream().anyMatch(client -> client.getFirstName().equals("Melba"));
            assertTrue(containsMelba);
-        }*//*
+        }
 
         // TEST DE ACCOUNT REPOSITORIES
         @Test
@@ -76,11 +75,11 @@ public class RepositoriesTest {
         public void existPersonalLoan(){
             List<Loan> loans = loanRepository.findAll();
             assertThat(loans, hasItem(hasProperty("name", is("Car"))));
-        }*/
+        }
     // TEST DE TRANSACTION REPOSITORIES
-  /*  @Test
+   @Test
     public void existTransactions(){
         List<Transaction> transactions = transactionRepository.findAll();
         assertThat(transactions,is(not(empty())));
-    }*/
+    }
 }

@@ -71,6 +71,7 @@ public class AccountController {
 
     @PatchMapping("/clients/current/accounts")
     public ResponseEntity<Object> deleteAccount(@RequestParam Long id, Authentication authentication){
+
         Account account = accountServiceImplement.findById(id);
         Client client = clientServiceImplement.findByEmail(authentication.getName());
         Set<Transaction> transactions = account.getTransactions();
@@ -82,7 +83,6 @@ public class AccountController {
         if(account.getBalance() > 0){
             return new ResponseEntity<>("The account cannot be deleted if the balance is greater than $0.", HttpStatus.FORBIDDEN);
         }
-
 
         if(transactions.isEmpty()){ // SI LA ACC NO TIENE TRANSACTIONS, LA DESACTIVO Y ACTUALIZO EN LA BD
             account.setActiveAcc(false);

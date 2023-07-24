@@ -107,7 +107,7 @@
                                                     <div class="card-number">{{debitCard.number}}</div>
                                                     <!-- VERIFICO SI LAS TARJETAS ESTAN VENCIDAS Y LE AVISO AL USUARIO -->
                                                     <div v-if="debitCard.thruDate < actualDate" class="pb-3 bg-danger"><p class="text-black bg-danger fw-bold  ">CARD EXPIRED!!!</p></div>
-                                                    <div class="card-valid p-1" v-else> {{debitCard.thruDate}}</div>
+                                                    <div class="card-valid p-1" v-else> {{debitCard.thruDate}} </div>
                                                 </div>
                                                 <div class="card-back">
                                                     <div class="card-signature">CashFlow Bank</div>

@@ -30,15 +30,6 @@ public class Transaction {
         this.balance = account.getBalance();
 
     }
-  /*  public Transaction(TransactionType type, double amount, String description, LocalDateTime date, Account account, Boolean isActive, double balance){
-        this.type = type;
-        this.amount = amount;
-        this.description = description;
-        this.date = date;
-        this.account = account;
-        this.isActive = isActive;
-        this.balance = balance;
-    }*/
 
     public long getId() {
         return id;

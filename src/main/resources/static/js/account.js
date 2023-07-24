@@ -48,11 +48,7 @@ const app = createApp({
           console.log(this.activeTransactions);
           this.currentBalance = this.activeTransactions.filter(transaction => transaction.balance)
           console.log(this.currentBalance);
-         /*  
-          this.currentBalance = this.data.balance; // Obtén el saldo actual de la cuenta      
-          this.transactions.forEach((transaction) => {
-            this.currentBalance -= transaction.amount; // Actualiza el saldo actual restando el monto de la transacción
-          }); */
+        
     
         })
         .catch((error) => {

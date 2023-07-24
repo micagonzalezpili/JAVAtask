@@ -107,7 +107,7 @@
                 <template v-if="activeTransactions && activeTransactions.length > 0">
                   <tr v-for="transaction of activeTransactions" class="border border-black">
                     <td class="border border-black p-1" :class="{'text-danger': transaction.type === 'DEBIT', 'text-success': transaction.type === 'CREDIT'}">{{ transaction.type }}</td>
-                    <td class="border border-black p-1"><!-- {{ transaction.date }} --> 2023-05-20</td> <!-- ACOMODAR DATE!!! -->
+                    <td class="border border-black p-1">{{ transaction.date }} <!-- 2023-05-20 --></td> <!-- ACOMODAR DATE!!! -->
                     <td class="border border-black p-1">{{ transaction.time }}</td>
                     <td class="border border-black p-1">{{ transaction.description }}</td>
                     <td class="border border-black p-1" :class="{'text-danger': transaction.amount < 0, 'text-success': transaction.amount > 0}">{{ precioFormat(transaction.amount.toFixed(2)) }}</td>

@@ -99,6 +99,9 @@ public class TransactionController {
         LocalDateTime start = LocalDateTime.of(LocalDate.parse(startDate), LocalTime.MIN);
         LocalDateTime end = LocalDateTime.of(LocalDate.parse(endDate), LocalTime.MAX);
 
+        if(!client.getAccounts().contains(account)){
+            return new ResponseEntity<>("Account does not belong to the client.", HttpStatus.FORBIDDEN);
+        }
         if(start == null ){
             return new ResponseEntity<>("Start date cannot be null.", HttpStatus.FORBIDDEN);
         }
@@ -106,11 +109,10 @@ public class TransactionController {
             return new ResponseEntity<>("End date invalid, please try again.", HttpStatus.FORBIDDEN);
         }
 
-        List<Transaction> transactionsList = transactionServiceImplement.getTransactionsByDate(start, end);
+        //List<Transaction> transactionsList = transactionServiceImplement.getTransactionsByDate(start, end);
 
-       // System.out.println(transactionsList);
 
-        byte[] pdfByte = transactionServiceImplement.generatePDF(account);
+        byte[] pdfByte = transactionServiceImplement.generatePDF(account, start, end);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("attachment", "transactions.pdf");

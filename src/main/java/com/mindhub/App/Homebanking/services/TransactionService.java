@@ -11,8 +11,8 @@ import java.util.List;
 public interface TransactionService {
     void save(Transaction transaction);
     //List<TransactionDTO> getTransactionsDTO();
-    List<Transaction> getTransactionsByDate(LocalDateTime startDate, LocalDateTime endDate);
+    List<Transaction> getTransactionsByDate(List<Transaction> transactions, LocalDateTime startDate, LocalDateTime endDate);
 
-    byte[] generatePDF(Account account);
+    byte[] generatePDF(Account account, LocalDateTime startDate, LocalDateTime endDate);
 
 }

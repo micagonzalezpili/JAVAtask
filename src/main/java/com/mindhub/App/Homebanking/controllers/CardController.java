@@ -69,7 +69,8 @@ public class CardController {
     }
 
     @PatchMapping("/clients/current/cards/{id}")
-    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication) { //VERRR
+    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication) {
+
         Client client = clientServiceImplement.findByEmail(authentication.getName());
         Set<Card> clientCards = client.getCards();
         Card card = cardServiceImplement.getCard(id);

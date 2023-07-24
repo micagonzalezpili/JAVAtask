@@ -43,7 +43,7 @@ public class LoanController {
         Client client = clientServiceImplement.findByEmail(authentication.getName());
         Account accountOfDestin = accountServiceImplement.findByNumber(loanApplicationDTO.getAccountDestin());
         Loan loan = loanServiceImplement.findByName(loanApplicationDTO.getName());
-        Double loanAmount = null;
+        double loanAmount = loanApplicationDTO.getAmount() * (1 + (loan.getPercentage() / 100));
 
         if(loan == null){
             return new ResponseEntity<>("The loan does not exist.", HttpStatus.FORBIDDEN);
@@ -66,7 +66,7 @@ public class LoanController {
         if(!loan.getName().equals(loanApplicationDTO.getName())){
             return new ResponseEntity<>("The name of the loan does not exist.", HttpStatus.FORBIDDEN);
         }
-        if(loan.getName().equals("Mortgage")){
+        /*if(loan.getName().equals("Mortgage")){
             loanAmount = loanApplicationDTO.getAmount() * 1.5;
         }
         if(loan.getName().equals("Personal")){
@@ -74,7 +74,10 @@ public class LoanController {
         }
         if(loan.getName().equals("Car")){
             loanAmount = loanApplicationDTO.getAmount() * 1.6;
-        }
+        }else{
+            loanAmount = loanApplicationDTO.getAmount() * loan.getPercentage();
+        }*/
+
 
         ClientLoan clientLoan = new ClientLoan(loanAmount, loanApplicationDTO.getPayment());
         Transaction transaction = new Transaction(TransactionType.CREDIT, loanApplicationDTO.getAmount(), loanApplicationDTO.getName() + " loan approved",
